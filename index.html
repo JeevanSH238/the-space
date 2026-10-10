@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#000000">
+<meta name="description" content="THE SPACE — a student-focused hub for engineering academics, projects, industry learning and opportunities.">
+<title>THE SPACE — Engineering Resources</title>
+<style>
+:root{--bg:#080808;--ink:#f7f7f7;--muted:#b4b4b4;--line:#292929;--soft:#141414;--black:#000;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:90px}
+body{font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.7}
+a{color:inherit;text-decoration:none}
+button,input,select,textarea{font:inherit}
+button,a{ -webkit-tap-highlight-color:transparent }
+.container{width:min(1120px,92%);margin-inline:auto}
+#splash{position:fixed;inset:0;background:#000;color:#fff;display:flex;align-items:center;justify-content:center;z-index:9999;transition:opacity .55s ease,visibility .55s ease}
+#splash span{font-size:clamp(36px,8vw,64px);font-weight:800;letter-spacing:-2px}
+#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
+.skip{position:absolute;left:-9999px;top:auto}.skip:focus{left:10px;top:10px;background:#fff;padding:10px;z-index:10000}
+header{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.96);border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+.navbar{min-height:72px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.brand{font-size:20px;font-weight:800;letter-spacing:1px}.brand small{display:block;font-size:9px;letter-spacing:1.3px;color:var(--muted);font-weight:500}
+.navlinks{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:#c8c8c8}
+.navlinks a:hover,.textlink:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.menu-btn{display:none;background:#111;color:#fff;border:1px solid #444;border-radius:8px;padding:8px 10px}
+.hero{padding:76px 0 62px;border-bottom:1px solid var(--line)}
+.eyebrow,.tag{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:30px;padding:5px 10px;font-size:10px;color:#ddd;letter-spacing:.5px}
+.hero h1{font-size:clamp(40px,8vw,78px);line-height:1.02;letter-spacing:-3px;margin:20px 0}
+.hero p{max-width:690px;color:var(--muted);font-size:16px}
+.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid #eee;border-radius:8px;padding:11px 16px;font-size:12px;font-weight:700;cursor:pointer}
+.btn.primary{background:#f5f5f5;color:#080808}.btn.secondary{background:#080808;color:#fff;border-color:#555}.btn:hover{opacity:.8}
+.notice{font-size:11px!important;margin-top:22px;color:#aaa!important}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:34px;max-width:680px}
+.stat{border-top:1px solid var(--line);padding-top:12px}.stat strong{display:block;font-size:20px}.stat span{font-size:11px;color:var(--muted)}
+.section{padding:60px 0;border-bottom:1px solid var(--line)}
+.heading{margin-bottom:25px}.kicker{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#aaa}
+.heading h2{font-size:clamp(27px,4vw,38px);letter-spacing:-1px;line-height:1.2;margin:7px 0}
+.heading p{font-size:14px;color:var(--muted);max-width:700px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.card{border:1px solid var(--line);border-radius:var(--radius);padding:20px;display:flex;flex-direction:column;align-items:flex-start;min-width:0;background:#0e0e0e}
+.card:hover{border-color:#777;background:#111}
+.card h3{font-size:16px;line-height:1.35;margin:12px 0 8px}
+.card p{font-size:13px;color:var(--muted);margin-bottom:12px}
+.card ul{padding-left:17px;font-size:12px;margin:0 0 13px}.card li{margin:4px 0}
+.card .tag{font-size:9px}.textlink{font-size:12px;font-weight:700;text-decoration:underline;text-underline-offset:3px;margin-top:auto;padding-top:8px}
+.card .meta{font-size:11px;border-top:1px solid var(--line);padding-top:11px;margin-top:auto;width:100%;color:#777}
+.callout{padding:22px;border:1px solid var(--line);border-radius:var(--radius);background:var(--soft);margin-top:20px}
+.callout h3{font-size:16px;margin-bottom:7px}.callout p{font-size:13px;color:var(--muted)}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.tools input,.tools select{border:1px solid #383838;border-radius:8px;padding:11px 12px;background:#111;color:#fff;min-width:0}
+.tools input{flex:1;min-width:180px}
+.pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+.pill{border:1px solid var(--line);border-radius:25px;padding:7px 11px;background:#111;color:#eee;font-size:11px;cursor:pointer}
+.pill.active{background:#f5f5f5;color:#080808;border-color:#f5f5f5}
+.result-count{font-size:11px;color:var(--muted);margin-bottom:12px}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:15px}
+.step{border-top:2px solid #eee;padding-top:12px}.step strong{font-size:13px}.step p{font-size:12px;color:var(--muted);margin-top:6px}
+.status{display:inline-block;font-size:9px;font-weight:700;letter-spacing:.5px;border:1px solid #ddd;border-radius:5px;padding:3px 6px;margin-bottom:7px}
+.status.verify{background:#191919;color:#ddd}
+details{border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0}
+summary{font-size:13px;font-weight:700;cursor:pointer}
+details p{font-size:12px;color:var(--muted);margin-top:10px}
+.feedback-form{display:grid;gap:12px;max-width:650px}
+.feedback-form label{font-size:12px;font-weight:700}
+.feedback-form input,.feedback-form select,.feedback-form textarea{display:block;width:100%;border:1px solid #383838;border-radius:8px;padding:11px;margin-top:5px;background:#111;color:#fff}
+.feedback-form textarea{min-height:110px;resize:vertical}
+.form-help{font-size:11px;color:var(--muted)}
+footer{padding:28px 0}.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}.foot p{font-size:11px;color:var(--muted)}
+.hidden{display:none!important}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.steps{grid-template-columns:repeat(2,1fr)}.navbar{min-height:65px}.navlinks{gap:10px}}
+@media(max-width:600px){.menu-btn{display:block}.navbar{flex-wrap:wrap;padding:12px 0}.navlinks{display:none;width:100%;padding:8px 0 12px;flex-direction:column;align-items:flex-start}.navlinks.open{display:flex}.grid,.steps{grid-template-columns:1fr}.hero{padding:56px 0 45px}.hero h1{letter-spacing:-2px}.section{padding:45px 0}.stats{gap:8px}.stat strong{font-size:17px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{transition:none!important}}
+
+.quick-access{padding:28px 0 8px;background:#080808;border-bottom:1px solid var(--line)}
+.quick-title{font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:#aaa;margin:0 0 12px}
+.quick-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.quick-link{display:flex;flex-direction:column;gap:7px;min-height:94px;justify-content:space-between;padding:15px;border:1px solid #343434;border-radius:10px;background:#101010;text-decoration:none;transition:border-color .18s,background .18s}
+.quick-link:hover,.quick-link:focus-visible{border-color:#eee;background:#171717;outline:none}
+.quick-link strong{font-size:12px;letter-spacing:.35px;text-transform:uppercase}
+.quick-link span{font-size:11px;color:#aaa;line-height:1.4}
+.quick-link .arrow{font-size:16px;color:#fff;align-self:flex-end}
+@media(max-width:760px){.quick-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.quick-link:last-child{grid-column:span 2}}
+
+
+.branch-finder{margin-top:38px;padding:26px;border:1px solid var(--line);border-radius:18px;background:#0d0d0d}
+.finder-controls{display:grid;gap:14px;margin:18px 0}
+#branchSearch{width:100%;background:#050505;border:1px solid #444;color:#fff;padding:14px 16px;border-radius:10px;outline:none}
+#branchSearch:focus{border-color:#aaa;box-shadow:0 0 0 2px #333}
+.category-row{display:flex;gap:8px;flex-wrap:wrap}
+.category-chip{background:#111;color:#ddd;border:1px solid #393939;border-radius:999px;padding:8px 13px;cursor:pointer}
+.category-chip.active,.category-chip:hover{background:#fff;color:#000;border-color:#fff}
+.branch-picker-grid{grid-template-columns:repeat(auto-fit,minmax(210px,1fr))}
+.branch-choice{display:flex;flex-direction:column;align-items:flex-start;gap:8px;text-align:left;width:100%;height:100%;background:#111;color:#fff;border:1px solid #303030;border-radius:13px;padding:16px;cursor:pointer}
+.branch-choice:hover,.branch-choice:focus-visible{border-color:#aaa;outline:none}
+.branch-choice strong{font-size:15px;line-height:1.4}.branch-choice span{font-size:12px;color:#aaa}
+.resource-panel{margin-top:22px}.resource-panel h3{font-size:23px;margin:6px 0 10px}
+.selector-row{display:flex;gap:14px;flex-wrap:wrap;margin:18px 0}
+.selector-row label{display:grid;gap:6px;color:#bbb;font-size:13px;min-width:160px}
+.selector-row select{background:#080808;color:#fff;border:1px solid #444;border-radius:9px;padding:10px}
+.resource-links{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}
+.resource-note{font-size:13px;color:#aaa;margin-top:12px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:600px){.branch-finder{padding:17px}.resource-links .btn{width:100%;text-align:center}.selector-row label{width:100%}}
+
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div id="splash" aria-label="THE SPACE"><span>THE SPACE</span></div>
+
+<header>
+  <div class="container navbar">
+    <a class="brand" href="#home">THE SPACE<small>YOUR SPACE FOR ENGINEERING RESOURCES</small></a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Menu</button>
+    <nav class="navlinks" id="navlinks" aria-label="Main navigation">
+      <a href="#academics">Academics</a><a href="#projects">Projects</a><a href="#industry">Industry</a><a href="#opportunities">Opportunities</a><a href="#careers">Careers</a><a href="#events">Events</a><a href="#feedback">Feedback</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="hero" id="home">
+ <div class="container">
+  <span class="eyebrow">Independent student initiative</span>
+  <h1>Learn with purpose.<br>Build with confidence.</h1>
+  <p>A thoughtful starting point for engineering students to explore academics, learn from industry, build useful projects and discover opportunities. Learn at your own pace; build with care; let curiosity become capability.</p>
+  <div class="actions"><a class="btn primary" href="#academics">Explore academics</a><a class="btn secondary" href="#projects">Find a project</a></div>
+  <div class="callout"><h3>Knowledge grows when it is shared.</h3><p>Start where you are. Ask clear questions, verify what you learn, respect different perspectives, and turn ideas into work that can help someone in the real world.</p></div>\n  <div class="stats"><div class="stat"><strong>01—08</strong><span>Semester directory structure</span></div><div class="stat"><strong>All branches</strong><span>Expandable resource directory</span></div><div class="stat"><strong>Learn by doing</strong><span>Projects and career preparation</span></div></div>
+  <p class="notice">THE SPACE is an independent student project, not an official VTU or college website. Always check official sources for the latest syllabus, eligibility, deadlines and announcements.</p>
+ </div>
+</section>
+
+<section class="quick-access" aria-label="Quick access">
+ <div class="container">
+  <p class="quick-title">Quick access · Go straight to what you need</p>
+  <div class="quick-grid">
+   <a class="quick-link" href="#academics"><strong>Academics</strong><span>Syllabus, question papers &amp; lab manuals</span><span class="arrow" aria-hidden="true">↗</span></a>
+   <a class="quick-link" href="#projects"><strong>Projects</strong><span>Ideas to practise and build</span><span class="arrow" aria-hidden="true">↗</span></a>
+   <a class="quick-link" href="#opportunities"><strong>Job Opportunities</strong><span>Career portals and official listings</span><span class="arrow" aria-hidden="true">↗</span></a>
+   <a class="quick-link" href="#opportunities"><strong>Internships</strong><span>Student programmes and eligibility</span><span class="arrow" aria-hidden="true">↗</span></a>
+   <a class="quick-link" href="#industry"><strong>Top MNC Companies</strong><span>Official company learning and career pages</span><span class="arrow" aria-hidden="true">↗</span></a>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="academics">
+ <div class="container">
+  <div class="heading"><span class="kicker">01 / Academics</span><h2>Build strong foundations.</h2><p>Start with official university sources, then use supplementary learning materials to understand concepts. Scheme, branch and semester must match before using a document for exams.</p></div>
+  <div class="grid">
+   <article class="card"><span class="tag">Official source</span><h3>VTU Scheme & Syllabus</h3><p>Use the university's published documents to confirm subjects, credits and applicable scheme. Check for revisions and circulars.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Open VTU syllabus portal ↗</a></article>
+   <article class="card"><span class="tag">Official source</span><h3>Academic Calendar</h3><p>Check semester schedules, academic dates and university notices. Confirm that the calendar applies to your course and scheme.</p><a class="textlink" href="https://vtu.ac.in/en/academic-calendar/" target="_blank" rel="noopener noreferrer">Open VTU calendar ↗</a></article>
+   <article class="card"><span class="tag">Official source</span><h3>Model Question Papers</h3><p>VTU publishes model question papers for selected schemes and semesters. The page currently includes 2025-scheme B.E./B.Tech. papers for first and second semesters, along with papers for some earlier schemes.</p><a class="textlink" href="https://vtu.ac.in/en/model-question-paper-b-e-b-tech-b-arch/" target="_blank" rel="noopener noreferrer">Browse VTU model papers ↗</a></article>
+   <article class="card"><span class="tag">Official source · Lab work</span><h3>VTU Laboratory Manuals</h3><p>Find lab syllabi and any reference manuals published alongside the official scheme. Availability differs by branch, course code and scheme, so verify the exact subject before using a manual.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Open VTU lab resources ↗</a></article>
+   <article class="card"><span class="tag">Official reference manual</span><h3>C Programming Lab Manual</h3><p>VTU has published a reference manual for the first-year C Programming Laboratory (1BPOPL107/207). Check whether this course code applies to your scheme.</p><a class="textlink" href="https://vtu.ac.in/pdf/UG2024/3327.pdf" target="_blank" rel="noopener noreferrer">Open VTU manual notice (PDF) ↗</a></article>
+   <article class="card"><span class="tag">Learning</span><h3>NPTEL Courses</h3><p>Explore university-level courses in engineering, mathematics, science, programming and related subjects.</p><a class="textlink" href="https://nptel.ac.in/" target="_blank" rel="noopener noreferrer">Explore NPTEL ↗</a></article>
+   <article class="card"><span class="tag">ECE</span><h3>Electronics Fundamentals</h3><p>Learn circuits, semiconductor devices, digital logic and measurement concepts with explanatory tutorials.</p><a class="textlink" href="https://www.allaboutcircuits.com/" target="_blank" rel="noopener noreferrer">Learn electronics ↗</a></article>
+   <article class="card"><span class="tag">Programming</span><h3>Programming Practice</h3><p>Build foundational programming skills and practise small exercises before taking on larger projects.</p><a class="textlink" href="https://www.freecodecamp.org/" target="_blank" rel="noopener noreferrer">Explore free learning ↗</a></article>
+   <article class="card"><span class="tag">Reference</span><h3>Organise your study plan</h3><p>For each subject, track the official syllabus, notes, lab work, practice questions and topics you still need to learn.</p><a class="textlink" href="#study-path">See study workflow ↓</a></article>
+  </div>
+
+
+  <section class="branch-finder" id="academic-finder" aria-labelledby="finder-title">
+   <div class="heading"><span class="kicker">FIND YOUR RESOURCES</span><h2 id="finder-title">Your branch. Your semester. Your resources.</h2><p>Search for your branch or browse by discipline. Then choose your year, semester and subject area to reach the official academic sources.</p></div>
+   <div class="finder-controls">
+    <label class="sr-only" for="branchSearch">Search engineering branches</label>
+    <input id="branchSearch" type="search" placeholder="Search a branch (e.g. ECE, Civil, AI &amp; ML)" autocomplete="off">
+    <div class="category-row" id="branchCategories" aria-label="Browse by discipline">
+     <button type="button" class="category-chip active" data-category="all">All branches</button>
+     <button type="button" class="category-chip" data-category="computing">Computing</button>
+     <button type="button" class="category-chip" data-category="electronics">Electronics</button>
+     <button type="button" class="category-chip" data-category="electrical">Electrical</button>
+     <button type="button" class="category-chip" data-category="mechanical">Mechanical</button>
+     <button type="button" class="category-chip" data-category="civil">Civil &amp; mining</button>
+     <button type="button" class="category-chip" data-category="chemical">Chemical &amp; materials</button>
+     <button type="button" class="category-chip" data-category="other">Other disciplines</button>
+    </div>
+   </div>
+   <p class="result-count" id="branchResultCount" aria-live="polite">Choose your branch to get started.</p>
+   <div class="grid branch-picker-grid" id="branchPickerGrid"></div>
+   <div class="card resource-panel" id="selectedBranchPanel" hidden>
+    <span class="tag">Selected branch</span><h3 id="selectedBranchTitle">Choose a branch</h3>
+    <p>Use these filters to organise your search. Exact subjects and available manuals depend on the applicable VTU scheme; confirm the course code with your syllabus.</p>
+    <div class="selector-row">
+     <label>Year<select id="academicYear"><option value="1">First year</option><option value="2">Second year</option><option value="3">Third year</option><option value="4">Fourth year</option></select></label>
+     <label>Semester<select id="academicSemester"><option value="1">Semester 1</option><option value="2">Semester 2</option><option value="3">Semester 3</option><option value="4">Semester 4</option><option value="5">Semester 5</option><option value="6">Semester 6</option><option value="7">Semester 7</option><option value="8">Semester 8</option></select></label>
+    </div>
+    <div class="resource-links">
+     <a class="btn primary" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Official syllabus &amp; lab courses ↗</a>
+     <a class="btn secondary" href="https://vtu.ac.in/en/model-question-paper-b-e-b-tech-b-arch/" target="_blank" rel="noopener noreferrer">Model question papers ↗</a>
+     <a class="btn secondary" href="https://vtu.ac.in/en/academic-calendar/" target="_blank" rel="noopener noreferrer">Academic calendar ↗</a>
+    </div>
+    <p class="resource-note" id="semesterNote">Selected semester: Semester 1. Check the official syllabus for the matching branch, scheme and course code.</p>
+    <div class="grid" id="subjectResourceGrid" style="margin-top:18px"></div>
+    <p class="resource-note">Only resources relevant to the selected branch, year and semester are shown here. Official portals may contain documents for multiple schemes; verify the course code before using a file.</p>
+   </div>
+  </section>
+
+  <section class="section" id="lab-manual-directory" style="padding-top:30px">
+   <div class="heading"><span class="kicker">LAB RESOURCE DIRECTORY</span><h2>Laboratory manuals by branch.</h2><p>Choose your branch to find the official VTU syllabus and any manuals published for its lab courses. This directory does not pretend a manual exists when VTU has not published one; where a public manual is unavailable, check with your department.</p></div>
+   <div class="tools"><input id="labSearch" type="search" placeholder="Search branch lab manuals..." aria-label="Search branch lab manuals"></div>
+   <p class="result-count" id="labCount">Showing branch lab guides</p>
+   <div class="grid" id="labManualGrid">
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electronics &amp; Communication Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Computer Science &amp; Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Information Science &amp; Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electrical &amp; Electronics Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Mechanical Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Civil Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Artificial Intelligence &amp; Machine Learning</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Artificial Intelligence &amp; Data Science</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Computer Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Computer &amp; Communication Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Computer Science &amp; Technology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electronics &amp; Telecommunication Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electronics Engineering (VLSI Design &amp; Technology)</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electronics &amp; Computer Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Electronics &amp; Instrumentation Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Medical Electronics Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Biomedical Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Automobile Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Mechatronics</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Marine Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Industrial &amp; Production Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Industrial Engineering &amp; Management</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Manufacturing Science &amp; Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Mechanical &amp; Smart Manufacturing</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Construction Technology &amp; Management</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Environmental Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Mining Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Ceramics &amp; Cement Technology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Chemical Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Petrochemical Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Biotechnology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Nanoscience &amp; Technology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Textile Technology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Silk Technology</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Aeronautical Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Aerospace Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Agricultural Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Automation &amp; Robotics</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Robotics &amp; Artificial Intelligence</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Robotics &amp; Automation</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Industrial IoT</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Smart Agritech</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+    <article class="card lab-branch-card"><span class="tag">Branch lab resources</span><h3>Energy Engineering</h3><p>Check the official VTU scheme for this programme and open the relevant laboratory course syllabus. Use a published manual only when its course code, semester and scheme match your curriculum.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official lab syllabus/manual ↗</a></article>
+   </div>
+   <div class="callout"><h3>Verified manual currently linked</h3><p>VTU has issued a reference-manual notice for the C Programming Laboratory (1BPOPL107/207). Confirm that this course code applies to your scheme before using it.</p><a class="textlink" href="https://vtu.ac.in/pdf/UG2024/3327.pdf" target="_blank" rel="noopener noreferrer">Open VTU C Programming Lab Manual notice (PDF) ↗</a></div>
+  </section>
+
+  <div class="callout"><h3>Branch and semester directory</h3><p>The directory below covers a broad range of VTU engineering disciplines. For lab manuals, match the subject code, branch, semester and scheme first. Some manuals are published by VTU; others may be supplied by your department. Do not assume every branch or course has a public manual. Verify the current syllabus and any revisions on VTU's official portal.</p></div>
+  <div class="heading" style="margin-top:28px;margin-bottom:15px"><h2 style="font-size:22px">Explore by branch</h2><p>Search the directory or select a broad discipline. The official syllabus remains the source of truth for subject names.</p></div>
+  <div class="tools"><input id="branchSearch" type="search" placeholder="Search branches or topics..." aria-label="Search branches"><select id="yearFilter" aria-label="Select year"><option value="">All years</option><option value="1">First year · Sem 1–2</option><option value="2">Second year · Sem 3–4</option><option value="3">Third year · Sem 5–6</option><option value="4">Fourth year · Sem 7–8</option></select></div>
+  <div class="pills" id="branchPills"><button class="pill active" data-branch="all">All branches</button><button class="pill" data-branch="computing">Computing</button><button class="pill" data-branch="electronics">Electronics</button><button class="pill" data-branch="electrical">Electrical</button><button class="pill" data-branch="mechanical">Mechanical & manufacturing</button><button class="pill" data-branch="civil">Civil & mining</button><button class="pill" data-branch="chemical">Chemical & materials</button><button class="pill" data-branch="other">Other disciplines</button></div>
+  <p class="result-count" id="branchCount">Showing branch guides</p>
+  <div class="grid" id="branchGrid">
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Electronics & Communication Engineering</h3><p>Explore electronics, circuits, semiconductor devices, digital systems, signals, communication, embedded systems and laboratories.</p><ul><li>Semesters: 1–8, as applicable</li><li>Verify scheme-specific subject names</li><li>Supplement with circuit and embedded tutorials</li></ul><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Computer Science & Engineering</h3><p>Explore programming, data structures, algorithms, operating systems, databases, networks and software engineering.</p><ul><li>Semesters: 1–8, as applicable</li><li>Practise coding alongside theory</li><li>Build small, documented projects</li></ul><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Information Science & Engineering</h3><p>Explore software development, databases, networking, information systems and data-oriented computing.</p><p class="meta">Check the current scheme and branch-specific curriculum before choosing resources.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electrical" data-years="1,2,3,4"><span class="tag">Electrical</span><h3>Electrical & Electronics Engineering</h3><p>Explore circuits, electrical machines, power systems, control, measurements and energy conversion.</p><p class="meta">Use safe low-voltage educational models and qualified supervision for hardware.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical</span><h3>Mechanical Engineering</h3><p>Explore mechanics, manufacturing, materials, machine design, thermal sciences and CAD.</p><p class="meta">Use scheme-specific syllabus and laboratory instructions.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="civil" data-years="1,2,3,4"><span class="tag">Built environment</span><h3>Civil Engineering</h3><p>Explore structures, construction materials, surveying, transportation, geotechnics and environmental engineering.</p><p class="meta">Confirm current course structure and applicable electives with official documents.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Emerging technology</span><h3>Artificial Intelligence & Machine Learning</h3><p>Explore programming, mathematics, data analysis, machine learning and intelligent systems.</p><p class="meta">Prerequisites and subject names vary by scheme.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other programmes</span><h3>Other engineering disciplines</h3><p>Use the official VTU directory to find applicable programmes and specializations not listed here.</p><p class="meta">The college may not offer every VTU programme.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Browse official portal ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Artificial Intelligence & Data Science</h3><p>Explore data analysis, statistics, machine learning and data-driven applications.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Computer Engineering</h3><p>Explore computer hardware, programming, systems and software fundamentals.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Computer & Communication Engineering</h3><p>Explore computing systems, communication networks and software-hardware integration.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="computing" data-years="1,2,3,4"><span class="tag">Computing</span><h3>Computer Science & Technology</h3><p>Explore core computer science concepts and practical software development.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Electronics & Telecommunication Engineering</h3><p>Explore communication systems, electronic circuits and signal processing.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Electronics Engineering (VLSI Design & Technology)</h3><p>Explore digital design, semiconductor devices and integrated-circuit design.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Electronics & Computer Engineering</h3><p>Explore embedded systems, electronics and computer engineering foundations.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Electronics & Instrumentation Engineering</h3><p>Explore sensors, measurement systems, instrumentation and control.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Medical Electronics Engineering</h3><p>Explore electronic systems used in medical instrumentation and healthcare technology.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="electronics" data-years="1,2,3,4"><span class="tag">Electronics</span><h3>Biomedical Engineering</h3><p>Explore engineering principles applied to medical devices and biological systems.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Automobile Engineering</h3><p>Explore vehicle systems, automotive design, manufacturing and mobility technologies.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Mechatronics</h3><p>Explore the integration of mechanical systems, electronics, control and computing.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Marine Engineering</h3><p>Explore engineering systems used in ships and marine environments.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Industrial & Production Engineering</h3><p>Explore production systems, manufacturing processes and quality methods.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Industrial Engineering & Management</h3><p>Explore process improvement, operations, productivity and systems management.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Manufacturing Science & Engineering</h3><p>Explore manufacturing methods, materials, production and design.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="mechanical" data-years="1,2,3,4"><span class="tag">Mechanical & manufacturing</span><h3>Mechanical & Smart Manufacturing</h3><p>Explore mechanical systems and modern manufacturing technologies.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="civil" data-years="1,2,3,4"><span class="tag">Civil & mining</span><h3>Construction Technology & Management</h3><p>Explore construction methods, project management and infrastructure delivery.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="civil" data-years="1,2,3,4"><span class="tag">Civil & mining</span><h3>Environmental Engineering</h3><p>Explore water, waste, pollution control and environmental systems.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="civil" data-years="1,2,3,4"><span class="tag">Civil & mining</span><h3>Mining Engineering</h3><p>Explore mine planning, mineral extraction and mine safety engineering.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="civil" data-years="1,2,3,4"><span class="tag">Civil & mining</span><h3>Ceramics & Cement Technology</h3><p>Explore ceramic materials, cement, processing and material properties.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Chemical Engineering</h3><p>Explore process engineering, transport phenomena and chemical production.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Petrochemical Engineering</h3><p>Explore industrial processes involving petroleum-derived chemicals and materials.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Biotechnology</h3><p>Explore biological systems and their applications in engineering and industry.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Nanoscience & Technology</h3><p>Explore nanoscale materials, properties and technology applications.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Textile Technology</h3><p>Explore fibres, yarns, fabrics, textile processing and materials.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="chemical" data-years="1,2,3,4"><span class="tag">Chemical & materials</span><h3>Silk Technology</h3><p>Explore silk production, processing and textile technology.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Aeronautical Engineering</h3><p>Explore aircraft systems, aerodynamics, propulsion and flight-related engineering.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Aerospace Engineering</h3><p>Explore engineering for aircraft, spacecraft and aerospace systems.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Agricultural Engineering</h3><p>Explore engineering systems for agriculture, irrigation and farm technologies.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Automation & Robotics</h3><p>Explore automation, robotics, sensing and control systems.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Robotics & Artificial Intelligence</h3><p>Explore robotics, intelligent systems, sensing and automation.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Robotics & Automation</h3><p>Explore robotic systems, automation and control applications.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Industrial IoT</h3><p>Explore connected industrial devices, sensors, data and monitoring systems.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Smart Agritech</h3><p>Explore technology applications for agriculture and farm monitoring.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+   <article class="card branch-card" data-branch="other" data-years="1,2,3,4"><span class="tag">Other disciplines</span><h3>Energy Engineering</h3><p>Explore energy systems, efficiency and sustainable engineering technologies.</p><p class="meta">Use the official VTU portal to confirm the applicable scheme, semesters and available documents. Not every programme is offered at every college.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find official syllabus ↗</a></article>
+  </div>
+  <div class="callout" id="study-path"><h3>A reliable study workflow</h3><div class="steps"><div class="step"><strong>1. Confirm</strong><p>Check scheme, branch, semester and subject code in the official syllabus.</p></div><div class="step"><strong>2. Learn</strong><p>Use class notes and reputable tutorials to understand concepts.</p></div><div class="step"><strong>3. Practise</strong><p>Attempt examples, lab work and verified past papers.</p></div><div class="step"><strong>4. Review</strong><p>Recheck notices and revisions before exams.</p></div></div></div>
+ </div>
+</section>
+
+<section class="section" id="projects">
+ <div class="container">
+  <div class="heading"><span class="kicker">02 / Project library</span><h2>Ideas worth building.</h2><p>Use these as starting points. Each project should grow from a clear problem, a small prototype, testing and honest documentation.</p></div>
+  <div class="tools"><input id="projectSearch" type="search" placeholder="Search projects, components or skills..." aria-label="Search projects"><select id="projectLevel" aria-label="Filter project difficulty"><option value="">All difficulty levels</option><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></div>
+  <p class="result-count" id="projectCount">Project ideas</p>
+  <div class="grid" id="projectGrid">
+   <article class="card project-card" data-level="beginner"><span class="tag">Beginner · ECE / IoT</span><h3>Smart Irrigation Prototype</h3><p><strong>Goal:</strong> Demonstrate watering based on soil moisture.</p><ul><li><strong>Learn:</strong> Sensor readings, thresholds and control logic.</li><li><strong>Components:</strong> Soil-moisture sensor, microcontroller and LED/simulated pump output.</li><li><strong>Improve:</strong> Add data logging and adjustable thresholds.</li></ul><div class="meta">Start with an LED or simulation; protect electronics from water.</div></article>
+   <article class="card project-card" data-level="beginner"><span class="tag">Beginner · Electronics</span><h3>Automatic Streetlight Model</h3><p><strong>Goal:</strong> Switch an LED model based on ambient brightness.</p><ul><li><strong>Learn:</strong> Light sensors and switching thresholds.</li><li><strong>Components:</strong> Light sensor, microcontroller or simple control circuit, LED.</li><li><strong>Improve:</strong> Add adjustable sensitivity and a timer mode.</li></ul><div class="meta">Use a low-voltage LED model; never work on household mains wiring.</div></article>
+   <article class="card project-card" data-level="beginner"><span class="tag">Beginner · Sensors</span><h3>Water-Level Indicator</h3><p><strong>Goal:</strong> Show low, medium and high levels in a small container.</p><ul><li><strong>Learn:</strong> Measurement, thresholds and alerts.</li><li><strong>Components:</strong> Suitable sensor, controller and LEDs/buzzer.</li><li><strong>Improve:</strong> Add a display or event log.</li></ul><div class="meta">Keep electronics dry and use suitable low-voltage components.</div></article>
+   <article class="card project-card" data-level="beginner"><span class="tag">Beginner–Intermediate</span><h3>Mini Weather Station</h3><p><strong>Goal:</strong> Measure temperature and humidity.</p><ul><li><strong>Learn:</strong> Sensor interfaces and data display.</li><li><strong>Components:</strong> Environmental sensor, controller and optional display.</li><li><strong>Improve:</strong> Graph readings over time.</li></ul></article>
+   <article class="card project-card" data-level="intermediate"><span class="tag">Intermediate · Wireless</span><h3>Wireless Sensor Pair</h3><p><strong>Goal:</strong> Send a sensor reading between two devices.</p><ul><li><strong>Learn:</strong> Communication, data packets and error handling.</li><li><strong>Components:</strong> Compatible boards and wireless modules.</li><li><strong>Improve:</strong> Add timestamps and delivery status.</li></ul></article>
+   <article class="card project-card" data-level="intermediate"><span class="tag">Intermediate · Software / ECE</span><h3>Energy-Use Dashboard</h3><p><strong>Goal:</strong> Visualise sample or safely obtained low-voltage measurements.</p><ul><li><strong>Learn:</strong> Data processing and visualisation.</li><li><strong>Components:</strong> Simulated dataset, spreadsheet or web dashboard.</li><li><strong>Improve:</strong> Compare usage over time.</li></ul><div class="meta">Do not connect a student prototype directly to household mains electricity.</div></article>
+   <article class="card project-card" data-level="beginner"><span class="tag">Beginner · Web</span><h3>Student Resource Finder</h3><p><strong>Goal:</strong> Help students filter trusted learning links by subject and skill.</p><ul><li><strong>Learn:</strong> HTML, CSS, JavaScript and information design.</li><li><strong>Components:</strong> Web page and curated resource data.</li><li><strong>Improve:</strong> Add source dates and report-broken-link controls.</li></ul></article>
+   <article class="card project-card" data-level="intermediate"><span class="tag">Intermediate · Data</span><h3>Study Planner</h3><p><strong>Goal:</strong> Organise subjects, tasks and revision sessions.</p><ul><li><strong>Learn:</strong> UI design, data structures and local storage.</li><li><strong>Components:</strong> Web app and a task list.</li><li><strong>Improve:</strong> Add progress summaries and export.</li></ul></article>
+   <article class="card project-card" data-level="advanced"><span class="tag">Advanced · AI / Software</span><h3>Document Search Assistant</h3><p><strong>Goal:</strong> Search a curated set of course documents and return source-linked results.</p><ul><li><strong>Learn:</strong> Information retrieval, evaluation and privacy.</li><li><strong>Components:</strong> Search index, verified documents and interface.</li><li><strong>Improve:</strong> Add citations and a way to flag incorrect results.</li></ul><div class="meta">Use only documents you have permission to host and clearly identify the source.</div></article>
+  </div>
+  <div class="callout"><h3>Project method</h3><div class="steps"><div class="step"><strong>Define</strong><p>Write the problem and intended user.</p></div><div class="step"><strong>Design</strong><p>Draw a block diagram and choose safe components.</p></div><div class="step"><strong>Build</strong><p>Test one part at a time and keep records.</p></div><div class="step"><strong>Document</strong><p>Show results, limitations and your contribution.</p></div></div></div>
+ </div>
+</section>
+
+<section class="section" id="industry">
+ <div class="container">
+  <div class="heading"><span class="kicker">03 / Industry learning</span><h2>Learn from official ecosystems.</h2><p>These are starting points for official learning materials, developer tools and project inspiration. A tutorial or sample project is not automatically an internship, certification or job.</p></div>
+  <div class="grid">
+   <article class="card"><span class="tag">AI · GPU · Robotics</span><h3>NVIDIA</h3><p>Explore AI, deep learning, accelerated computing and robotics learning resources. Check prerequisites before starting a course.</p><a class="textlink" href="https://www.nvidia.com/en-us/learn/" target="_blank" rel="noopener noreferrer">Official NVIDIA learning ↗</a><a class="textlink" href="https://developer.nvidia.com/" target="_blank" rel="noopener noreferrer">NVIDIA Developer ↗</a></article>
+   <article class="card"><span class="tag">Java · Database · Cloud</span><h3>Oracle</h3><p>Explore Java learning, database technologies, cloud documentation and student-focused education resources.</p><a class="textlink" href="https://www.oracle.com/education/" target="_blank" rel="noopener noreferrer">Oracle education ↗</a><a class="textlink" href="https://dev.java/learn/" target="_blank" rel="noopener noreferrer">Learn Java ↗</a></article>
+   <article class="card"><span class="tag">AI · Cloud · Software</span><h3>Microsoft</h3><p>Explore Microsoft Learn, developer documentation, AI learning paths and tools for building software.</p><a class="textlink" href="https://learn.microsoft.com/en-us/training/student-hub/" target="_blank" rel="noopener noreferrer">Microsoft Student Hub ↗</a><a class="textlink" href="https://learn.microsoft.com/" target="_blank" rel="noopener noreferrer">Microsoft Learn ↗</a></article>
+   <article class="card"><span class="tag">Android · Web · AI</span><h3>Google</h3><p>Explore Android development, web technologies, cloud learning and developer documentation.</p><a class="textlink" href="https://developers.google.com/" target="_blank" rel="noopener noreferrer">Google for Developers ↗</a><a class="textlink" href="https://developer.android.com/" target="_blank" rel="noopener noreferrer">Android Developers ↗</a></article>
+   <article class="card"><span class="tag">AI · Data · Cloud</span><h3>IBM</h3><p>Explore AI, data science, enterprise technology and learning resources from IBM.</p><a class="textlink" href="https://www.ibm.com/think" target="_blank" rel="noopener noreferrer">IBM Think ↗</a><a class="textlink" href="https://skillsbuild.org/" target="_blank" rel="noopener noreferrer">IBM SkillsBuild ↗</a></article>
+   <article class="card"><span class="tag">Networking · Cybersecurity</span><h3>Cisco</h3><p>Explore networking fundamentals, cybersecurity learning and networking academy resources.</p><a class="textlink" href="https://www.netacad.com/" target="_blank" rel="noopener noreferrer">Cisco Networking Academy ↗</a></article>
+   <article class="card"><span class="tag">Hardware · AI</span><h3>Intel</h3><p>Explore hardware, processors, software development and AI resources.</p><a class="textlink" href="https://www.intel.com/content/www/us/en/developer/overview.html" target="_blank" rel="noopener noreferrer">Intel Developer Zone ↗</a></article>
+   <article class="card"><span class="tag">Embedded · Electronics</span><h3>Arduino</h3><p>Learn electronics and microcontroller prototyping through tutorials and examples.</p><a class="textlink" href="https://docs.arduino.cc/" target="_blank" rel="noopener noreferrer">Arduino documentation ↗</a></article>
+   <article class="card"><span class="tag">Open source · Portfolio</span><h3>GitHub</h3><p>Learn version control, collaborate on projects and document your own work. Check repository licences before reusing code.</p><a class="textlink" href="https://skills.github.com/" target="_blank" rel="noopener noreferrer">GitHub Skills ↗</a><a class="textlink" href="https://github.com/explore" target="_blank" rel="noopener noreferrer">Explore projects ↗</a></article>
+  </div>
+  <div class="callout"><h3>How to use a company resource</h3><p>Choose one learning path, check prerequisites, complete a small practical exercise, document what you learned and link to the official source. Do not claim a certificate or credential unless you actually earned it.</p></div>
+ </div>
+</section>
+
+<section class="section" id="opportunities">
+ <div class="container">
+  <div class="heading"><span class="kicker">04 / Opportunities</span><h2>Find the right next step.</h2><p>Use official portals to discover programmes. Availability and eligibility change, so this page does not label any opportunity as currently open without a fresh check.</p></div>
+  <div class="grid">
+   <article class="card"><span class="tag">Hackathon</span><h3>Smart India Hackathon</h3><p>Read official announcements and problem statements. Understand the problem, user, constraints and evaluation criteria before designing a solution.</p><a class="textlink" href="https://www.sih.gov.in/" target="_blank" rel="noopener noreferrer">Official SIH website ↗</a></article>
+   <article class="card"><span class="tag">Internships · India</span><h3>AICTE Internship Portal</h3><p>Explore internship listings and programme details. Verify eligibility, dates and the host organisation directly.</p><a class="textlink" href="https://internship.aicte-india.org/" target="_blank" rel="noopener noreferrer">AICTE internship portal ↗</a></article>
+   <article class="card"><span class="tag">Employment services</span><h3>National Career Service</h3><p>Explore career and employment-related services provided through India's national portal.</p><a class="textlink" href="https://www.ncs.gov.in/" target="_blank" rel="noopener noreferrer">Official NCS portal ↗</a></article>
+   <article class="card"><span class="tag">Students & graduates</span><h3>Oracle Careers</h3><p>Look for student and graduate opportunities. Check location, eligibility and application dates on the official listing.</p><a class="textlink" href="https://www.oracle.com/careers/students-grads/" target="_blank" rel="noopener noreferrer">Oracle students & graduates ↗</a></article>
+   <article class="card"><span class="tag">Students</span><h3>Microsoft Student Resources</h3><p>Explore student learning resources and official announcements for programmes that may be available to eligible students.</p><a class="textlink" href="https://www.microsoft.com/en-us/education/students" target="_blank" rel="noopener noreferrer">Microsoft student resources ↗</a></article>
+   <article class="card"><span class="tag">Research & learning</span><h3>NPTEL</h3><p>Explore courses and check each course's schedule, assessment and certificate conditions if applicable.</p><a class="textlink" href="https://nptel.ac.in/" target="_blank" rel="noopener noreferrer">Official NPTEL portal ↗</a></article>
+  </div>
+  <div class="callout"><h3>Opportunity safety checklist</h3><p>Apply through the official company or institution website. Be cautious of upfront recruitment fees, requests for passwords or one-time passcodes, and messages that pressure you to act immediately. Never invent project experience or credentials on an application.</p></div>
+ </div>
+</section>
+
+<section class="section" id="careers">
+ <div class="container">
+  <div class="heading"><span class="kicker">05 / Career development</span><h2>Build skills before you need them.</h2><p>Small, consistent steps help you build a credible portfolio over time. You do not need to master everything in your first year.</p></div>
+  <div class="grid">
+   <article class="card"><span class="tag">Resume</span><h3>Create a truthful resume</h3><p>Include education, relevant skills, projects, your specific contribution and results you can explain. Keep it readable and accurate.</p></article>
+   <article class="card"><span class="tag">Portfolio</span><h3>Document your projects</h3><p>For each project, describe the problem, design, tools, test results, limitations and what you personally contributed.</p><a class="textlink" href="https://docs.github.com/en/get-started" target="_blank" rel="noopener noreferrer">GitHub getting started ↗</a></article>
+   <article class="card"><span class="tag">Interview</span><h3>Practise explaining</h3><p>Explain one concept in simple language, solve small problems aloud and practise describing why you made a design choice.</p></article>
+   <article class="card"><span class="tag">Communication</span><h3>Improve technical communication</h3><p>Write short project summaries, ask clear questions, give constructive feedback and practise presenting your work.</p></article>
+   <article class="card"><span class="tag">Planning</span><h3>Make a learning roadmap</h3><p>Choose one foundation skill, one small project and one learning resource at a time. Review progress monthly.</p></article>
+   <article class="card"><span class="tag">Teamwork</span><h3>Collaborate responsibly</h3><p>Agree on roles, use version control, credit collaborators and be clear about which work is yours.</p></article>
+  </div>
+ </div>
+</section>
+
+<section class="section" id="events">
+ <div class="container">
+  <div class="heading"><span class="kicker">06 / Campus community</span><h2>College events & announcements.</h2><p>A home for cultural festivals, technical workshops, seminars and student activities once details are confirmed.</p></div>
+  <div class="callout"><h3>No unverified dates or announcements</h3><p>This prototype does not contain confirmed campus event listings. A future event entry should include the event name, organiser, date, venue, registration details, official source and last-verified date. Do not publish private student details.</p></div>
+ </div>
+</section>
+
+<section class="section" id="feedback">
+ <div class="container">
+  <div class="heading"><span class="kicker">07 / Feedback</span><h2>Help improve THE SPACE.</h2><p>Use this form to draft a suggestion or report a broken link. This standalone version does not send responses to a server.</p></div>
+  <form class="feedback-form" id="feedbackForm">
+   <label>Type of feedback<select id="feedbackType" required><option value="Suggestion">Suggestion</option><option value="Broken link">Broken link</option><option value="Incorrect information">Incorrect information</option><option value="Resource request">Resource request</option></select></label>
+   <label>Message<textarea id="feedbackMessage" required maxlength="1200" placeholder="Describe your suggestion or the issue..."></textarea></label>
+   <button class="btn primary" type="submit">Prepare feedback email</button>
+   <p class="form-help">This opens your email app with a draft. It will not send anything automatically. Update the placeholder email address in the code when you have a dedicated project email.</p>
+   <p class="form-help" id="feedbackStatus" role="status"></p>
+  </form>
+ </div>
+</section>
+
+<section class="section" id="about">
+ <div class="container">
+  <div class="heading"><span class="kicker">08 / About</span><h2>A space to learn and build.</h2><p>THE SPACE is an independent student initiative intended to make useful learning resources easier to discover. Its guiding principle is simple: be curious, be honest about sources, respect the work of others, and use knowledge responsibly.</p></div>
+  <div class="callout"><h3>Transparency matters</h3><p>This project is not affiliated with or endorsed by VTU, any college, or the companies linked here. External links lead to their respective owners. Resource links, curricula, programmes and eligibility can change. Verify important information at its official source before relying on it.</p></div>
+ </div>
+</section>
+</main>
+
+<footer><div class="container foot"><div><strong>THE SPACE</strong><p>Your Space for Engineering Resources</p></div><p>Independent student project · Built for learning</p><a class="textlink" href="#home">Back to top ↑</a></div></footer>
+
+<script>
+(function(){
+  const splash = document.getElementById('splash');
+  // Show the text-only splash briefly. Respect reduced-motion preferences.
+  const delay = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 250 : 1300;
+  window.setTimeout(function(){ splash.classList.add('hide'); }, delay);
+
+  const menuBtn = document.getElementById('menuBtn');
+  const nav = document.getElementById('navlinks');
+  menuBtn.addEventListener('click', function(){
+    const open = nav.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', String(open));
+  });
+  nav.querySelectorAll('a').forEach(function(link){
+    link.addEventListener('click', function(){
+      nav.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded','false');
+    });
+  });
+
+  const branchSearch = document.getElementById('branchSearch');
+  const yearFilter = document.getElementById('yearFilter');
+  const branchCards = Array.from(document.querySelectorAll('.branch-card'));
+  const branchCount = document.getElementById('branchCount');
+  let activeBranch = 'all';
+  function filterBranches(){
+    const query = branchSearch.value.toLowerCase().trim();
+    const year = yearFilter.value;
+    let shown = 0;
+    branchCards.forEach(function(card){
+      const branchMatch = activeBranch === 'all' || card.dataset.branch === activeBranch;
+      const queryMatch = card.textContent.toLowerCase().includes(query);
+      const yearMatch = !year || card.dataset.years.split(',').includes(year);
+      const visible = branchMatch && queryMatch && yearMatch;
+      card.classList.toggle('hidden', !visible);
+      if(visible) shown++;
+    });
+    branchCount.textContent = 'Showing ' + shown + ' branch guide' + (shown === 1 ? '' : 's') + '. Subject lists must be confirmed against the official syllabus.';
+  }
+  branchSearch.addEventListener('input', filterBranches);
+  yearFilter.addEventListener('change', filterBranches);
+  document.querySelectorAll('#branchPills .pill').forEach(function(pill){
+    pill.addEventListener('click', function(){
+      document.querySelectorAll('#branchPills .pill').forEach(function(p){p.classList.remove('active');});
+      pill.classList.add('active');
+      activeBranch = pill.dataset.branch;
+      filterBranches();
+    });
+  });
+
+  const projectSearch = document.getElementById('projectSearch');
+  const projectLevel = document.getElementById('projectLevel');
+  const projectCards = Array.from(document.querySelectorAll('.project-card'));
+  const projectCount = document.getElementById('projectCount');
+  function filterProjects(){
+    const query = projectSearch.value.toLowerCase().trim();
+    const level = projectLevel.value;
+    let shown = 0;
+    projectCards.forEach(function(card){
+      const visible = card.textContent.toLowerCase().includes(query) && (!level || card.dataset.level === level);
+      card.classList.toggle('hidden', !visible);
+      if(visible) shown++;
+    });
+    projectCount.textContent = 'Showing ' + shown + ' project idea' + (shown === 1 ? '' : 's') + '.';
+  }
+  projectSearch.addEventListener('input', filterProjects);
+  projectLevel.addEventListener('change', filterProjects);
+
+  document.getElementById('feedbackForm').addEventListener('submit', function(event){
+    event.preventDefault();
+    const type = document.getElementById('feedbackType').value;
+    const message = document.getElementById('feedbackMessage').value.trim();
+    if(!message) return;
+    // Replace this placeholder with a dedicated project contact address before using.
+    const recipient = 'YOUR_PROJECT_EMAIL@example.com';
+    const subject = encodeURIComponent('THE SPACE feedback: ' + type);
+    const body = encodeURIComponent('Feedback type: ' + type + '\n\n' + message);
+    if(recipient === 'YOUR_PROJECT_EMAIL@example.com'){
+      document.getElementById('feedbackStatus').textContent = 'Your feedback draft is ready, but no project email has been configured yet. Copy your message and save it, or configure a dedicated email address in the code.';
+      return;
+    }
+    window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
+  });
+})();
+
+// Searchable branch-wise lab resource directory.
+const labSearch = document.getElementById('labSearch');
+const labCards = [...document.querySelectorAll('.lab-branch-card')];
+const labCount = document.getElementById('labCount');
+function filterLabCards(){ const q=(labSearch?.value||'').trim().toLowerCase(); let shown=0; labCards.forEach(card=>{const match=card.textContent.toLowerCase().includes(q); card.hidden=!match; if(match) shown++;}); if(labCount) labCount.textContent=`Showing ${shown} of ${labCards.length} branch lab guides`; }
+labSearch?.addEventListener('input',filterLabCards);
+filterLabCards();
+
+// Academic branch finder: searchable list + discipline filters + year/semester selectors.
+(function(){
+ const branches=[
+  ['Computer Science & Engineering','computing','CSE'],['Information Science & Engineering','computing','ISE'],['Artificial Intelligence & Machine Learning','computing','AI & ML'],['Artificial Intelligence & Data Science','computing','AI & DS'],['Computer Engineering','computing','Computer Engineering'],['Computer & Communication Engineering','computing','CCE'],['Computer Science & Technology','computing','CST'],['Robotics & Artificial Intelligence','computing','Robotics & AI'],
+  ['Electronics & Communication Engineering','electronics','ECE'],['Electronics & Telecommunication Engineering','electronics','ETE'],['Electronics Engineering (VLSI Design & Technology)','electronics','VLSI'],['Electronics & Computer Engineering','electronics','Electronics & Computer'],['Electronics & Instrumentation Engineering','electronics','E&I'],['Medical Electronics Engineering','electronics','Medical Electronics'],['Biomedical Engineering','electronics','Biomedical'],
+  ['Electrical & Electronics Engineering','electrical','EEE'],
+  ['Mechanical Engineering','mechanical','Mechanical'],['Automobile Engineering','mechanical','Automobile'],['Mechatronics Engineering','mechanical','Mechatronics'],['Industrial & Production Engineering','mechanical','I&P'],['Industrial Engineering & Management','mechanical','IEM'],['Manufacturing Science & Engineering','mechanical','Manufacturing'],['Automation & Robotics','mechanical','Automation & Robotics'],
+  ['Civil Engineering','civil','Civil'],['Construction Technology & Management','civil','CTM'],['Environmental Engineering','civil','Environmental'],['Mining Engineering','civil','Mining'],
+  ['Chemical Engineering','chemical','Chemical'],['Petrochemical Engineering','chemical','Petrochemical'],['Biotechnology','chemical','Biotechnology'],['Nanoscience & Technology','chemical','Nanoscience'],['Textile Technology','chemical','Textile'],['Silk Technology','chemical','Silk'],['Ceramics & Cement Technology','chemical','Ceramics & Cement'],
+  ['Aeronautical Engineering','other','Aeronautical'],['Aerospace Engineering','other','Aerospace'],['Agricultural Engineering','other','Agricultural'],['Marine Engineering','other','Marine'],['Industrial Internet of Things','other','Industrial IoT'],['Agricultural & Smart Agritech','other','Smart Agritech'],['Chemical / interdisciplinary programmes','other','Interdisciplinary']
+ ];
+ const grid=document.getElementById('branchPickerGrid'), search=document.getElementById('branchSearch'), count=document.getElementById('branchResultCount');
+ if(!grid||!search)return;
+ let category='all', chosen=null;
+ function render(){
+  const q=search.value.trim().toLowerCase();
+  const visible=branches.filter(b=>(category==='all'||b[1]===category)&&(!q||b.join(' ').toLowerCase().includes(q)));
+  grid.innerHTML=visible.map((b,i)=>`<article class="card"><button type="button" class="branch-choice" data-name="${b[0].replace(/&/g,'&amp;').replace(/"/g,'&quot;')}" data-code="${b[2].replace(/&/g,'&amp;').replace(/"/g,'&quot;')}"><span>${b[2]}</span><strong>${b[0]}</strong><span>Choose branch ↗</span></button></article>`).join('');
+  count.textContent=`Showing ${visible.length} branch ${visible.length===1?'option':'options'}. Search or choose a discipline to narrow the list.`;
+ }
+ document.getElementById('branchCategories').addEventListener('click',e=>{
+  const btn=e.target.closest('[data-category]');if(!btn)return;
+  category=btn.dataset.category;
+  document.querySelectorAll('.category-chip').forEach(x=>x.classList.toggle('active',x===btn));render();
+ });
+ search.addEventListener('input',render);
+ grid.addEventListener('click',e=>{
+  const btn=e.target.closest('.branch-choice');if(!btn)return;
+  chosen=btn.dataset.name;
+  document.getElementById('selectedBranchTitle').textContent=chosen;
+  document.getElementById('selectedBranchPanel').hidden=false;
+  renderSubjectAreas();updateSemester();document.getElementById('selectedBranchPanel').scrollIntoView({behavior:'smooth',block:'nearest'});
+ });
+ const subjectGrid=document.getElementById('subjectResourceGrid');
+ const yearNames=['','First','Second','Third','Fourth'];
+ function renderSubjectResources(){
+  if(!subjectGrid||!chosen)return;
+  const y=Number(document.getElementById('academicYear').value), sem=Number(document.getElementById('academicSemester').value);
+  const safe=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const branch=safe(chosen), period=`${yearNames[y]} year · Semester ${sem}`;
+  subjectGrid.innerHTML=`
+  <article class="card"><span class="tag">Your selection</span><h3>${branch}</h3><p>${period}</p><p>Use the official scheme and syllabus to identify the exact subjects and course codes for this selection.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Find matching syllabus ↗</a></article>
+  <article class="card"><span class="tag">Model papers</span><h3>Question papers</h3><p>Check papers for your selected semester and applicable scheme. Not every subject necessarily has a published model paper.</p><a class="textlink" href="https://vtu.ac.in/en/model-question-paper-b-e-b-tech-b-arch/" target="_blank" rel="noopener noreferrer">Open official model papers ↗</a></article>
+  <article class="card"><span class="tag">Practical learning</span><h3>Laboratory manuals</h3><p>Use a manual only when its branch, course code, scheme and experiments match your syllabus. Direct manuals will be added when verified.</p><a class="textlink" href="https://vtu.ac.in/en/b-e-scheme-syllabus/" target="_blank" rel="noopener noreferrer">Check official lab course details ↗</a></article>
+  <article class="card"><span class="tag">Study support</span><h3>Learning courses</h3><p>Explore supplementary lessons and compare them with your prescribed curriculum.</p><a class="textlink" href="https://nptel.ac.in/" target="_blank" rel="noopener noreferrer">Explore NPTEL ↗</a></article>
+  <article class="card"><span class="tag">Academic planning</span><h3>Academic calendar</h3><p>Check official academic dates and notices.</p><a class="textlink" href="https://vtu.ac.in/en/academic-calendar/" target="_blank" rel="noopener noreferrer">Open academic calendar ↗</a></article>`;
+ }
+ function updateSemester(){
+  const y=Number(document.getElementById('academicYear').value), sem=Number(document.getElementById('academicSemester').value);
+  document.getElementById('semesterNote').textContent=`Showing resources for ${chosen||'your selected branch'} · ${yearNames[y]} year · Semester ${sem}. Confirm scheme and course codes in the official syllabus.`;
+  renderSubjectResources();
+ }
+ document.getElementById('academicYear').addEventListener('change',()=>{
+  const y=Number(document.getElementById('academicYear').value);
+  document.getElementById('academicSemester').value=String(y*2-1);updateSemester();
+ });
+ document.getElementById('academicSemester').addEventListener('change',()=>{
+  const sem=Number(document.getElementById('academicSemester').value);
+  document.getElementById('academicYear').value=String(Math.ceil(sem/2));updateSemester();
+ });
+ render();
+})();
+
+</script>
+</body>
+</html>
