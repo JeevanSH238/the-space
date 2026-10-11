@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1020">
+<meta name="description" content="ORBIT — Your Engineering Guide, a learning-focused prototype for THE SPACE.">
+<title>ORBIT — Your Engineering Guide | THE SPACE</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1020;--panel:#111a2d;--panel2:#172239;--line:#283752;--text:#eef3ff;--muted:#a8b5cb;--accent:#7da7ff;--accent2:#91e0d0;--user:#1b2a47;--shadow:0 16px 48px #0003}
+:root[data-theme="light"]{color-scheme:light;--bg:#f5f7fb;--panel:#fff;--panel2:#edf2fa;--line:#dbe3f0;--text:#17243b;--muted:#5c6b83;--accent:#2459c4;--accent2:#147d72;--user:#e7efff;--shadow:0 16px 48px #243b6212}
+*{box-sizing:border-box}html,body{height:100%;margin:0}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--text)}button,a,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}.app{min-height:100%;display:grid;grid-template-columns:260px minmax(0,1fr)}.sidebar{background:var(--panel);border-right:1px solid var(--line);padding:20px 14px;display:flex;flex-direction:column;gap:20px}.brand{display:flex;align-items:center;gap:11px;padding:5px 7px}.orb{width:38px;height:38px;border-radius:13px;background:linear-gradient(135deg,#7da7ff,#7ce0d1);display:grid;place-items:center;color:#071125;font-weight:900;font-size:19px;box-shadow:0 7px 24px #709cff35}.brand strong{display:block;font-size:15px;letter-spacing:.12em}.brand small{display:block;color:var(--muted);font-size:11px;margin-top:3px}.new-chat,.side-link,.theme,.prompt,.send,.icon-btn,.back-link{border:1px solid var(--line);border-radius:12px;background:transparent;color:var(--text)}.new-chat{padding:12px;text-align:left;background:var(--panel2);font-weight:650}.side-label{font-size:11px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);padding:0 8px}.side-link{display:block;width:100%;text-align:left;padding:10px 11px;border-color:transparent;color:var(--muted);margin-top:4px}.side-link:hover,.side-link:focus-visible,.theme:hover,.icon-btn:hover{background:var(--panel2);color:var(--text)}.side-bottom{margin-top:auto;display:grid;gap:8px}.theme,.back-link{padding:10px 12px;text-align:center}.main{min-width:0;min-height:100vh;display:flex;flex-direction:column}.topbar{height:68px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,42px);border-bottom:1px solid var(--line);background:color-mix(in srgb,var(--bg) 88%,transparent);position:sticky;top:0;z-index:5;backdrop-filter:blur(14px)}.top-title{font-weight:700}.top-title span{color:var(--muted);font-weight:450}.top-actions{display:flex;gap:8px}.icon-btn{padding:8px 11px}.chat{width:min(850px,100%);margin:0 auto;padding:34px 22px 24px;flex:1;display:flex;flex-direction:column}.welcome{margin:auto 0 28px;text-align:center;padding:24px 0 6px}.welcome .orb{margin:0 auto 18px;width:54px;height:54px;border-radius:18px;font-size:24px}.eyebrow{color:var(--accent2);font-size:12px;text-transform:uppercase;letter-spacing:.15em;font-weight:750}.welcome h1{font-size:clamp(29px,5vw,43px);line-height:1.13;letter-spacing:-.04em;margin:12px 0}.welcome p{color:var(--muted);max-width:540px;margin:0 auto;line-height:1.7;font-size:15px}.suggestions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:28px;text-align:left}.prompt{padding:15px 16px;background:var(--panel);text-align:left;transition:.15s;min-height:82px}.prompt:hover{border-color:var(--accent);transform:translateY(-1px)}.prompt strong{display:block;font-size:14px;margin-bottom:6px}.prompt span{display:block;color:var(--muted);font-size:12px;line-height:1.45}.messages{display:grid;gap:24px;padding:4px 0 24px}.message{display:grid;grid-template-columns:32px minmax(0,1fr);gap:12px;align-items:start}.avatar{width:31px;height:31px;border-radius:10px;display:grid;place-items:center;background:var(--panel2);font-size:12px;font-weight:800}.message.user .avatar{background:var(--user);color:var(--accent)}.message-body{min-width:0;line-height:1.72;font-size:15px;overflow-wrap:anywhere}.message.user .message-body{background:var(--user);border:1px solid var(--line);padding:12px 15px;border-radius:4px 15px 15px 15px;justify-self:start;max-width:100%}.message-body p{margin:0 0 12px}.message-body p:last-child{margin-bottom:0}.message-body h3{font-size:16px;margin:16px 0 6px}.message-body ul,.message-body ol{padding-left:22px;margin:7px 0 14px}.message-body li{margin:5px 0}.message-body code{background:var(--panel2);border:1px solid var(--line);padding:2px 5px;border-radius:5px;font-size:.92em}.composer-wrap{position:sticky;bottom:0;padding:14px 22px max(18px,env(safe-area-inset-bottom));background:linear-gradient(transparent,var(--bg) 18%);z-index:3}.composer{width:min(800px,100%);margin:0 auto;border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:11px;box-shadow:var(--shadow)}.composer textarea{display:block;width:100%;resize:none;min-height:48px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);padding:8px 9px;font-size:15px;line-height:1.5}.composer textarea::placeholder{color:var(--muted)}.composer-foot{display:flex;align-items:center;justify-content:space-between;padding:3px 3px 1px 8px;gap:10px}.hint{color:var(--muted);font-size:11px;line-height:1.4}.send{background:var(--accent);color:#071225;border:0;padding:10px 16px;border-radius:12px;font-weight:800;min-width:74px}.send:disabled{opacity:.45;cursor:not-allowed}.disclaimer{text-align:center;color:var(--muted);font-size:10px;line-height:1.5;margin:9px auto 0;max-width:720px}.mobile-brand{display:none}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--panel2);border:1px solid var(--line);padding:10px 15px;border-radius:12px;display:none;z-index:20;font-size:13px}.toast.show{display:block}
+@media(max-width:760px){.app{grid-template-columns:1fr}.sidebar{display:none}.topbar{height:60px;padding:0 14px}.mobile-brand{display:flex;align-items:center;gap:9px;font-weight:750}.mobile-brand .orb{width:30px;height:30px;border-radius:10px;font-size:15px}.top-title{display:none}.chat{padding:20px 15px 14px}.welcome{margin:auto 0 20px;padding-top:20px}.welcome h1{font-size:32px}.welcome p{font-size:14px}.suggestions{grid-template-columns:1fr 1fr;gap:8px;margin-top:22px}.prompt{padding:12px;min-height:90px}.prompt strong{font-size:13px}.prompt span{font-size:11px}.composer-wrap{padding:10px 12px max(12px,env(safe-area-inset-bottom))}.composer{border-radius:17px}.composer textarea{min-height:44px}.hint{font-size:10px}.send{padding:9px 13px}.message{grid-template-columns:28px minmax(0,1fr);gap:9px}.avatar{width:28px;height:28px}.message-body{font-size:14px}.disclaimer{font-size:9px}}
+@media(max-width:380px){.suggestions{grid-template-columns:1fr}.prompt{min-height:0}.hint{max-width:180px}}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="sidebar" aria-label="ORBIT navigation">
+  <a class="brand" href="index.html" aria-label="THE SPACE home"><span class="orb">O</span><span><strong>ORBIT</strong><small>YOUR ENGINEERING GUIDE</small></span></a>
+  <button class="new-chat" id="newChat">＋ &nbsp; New conversation</button>
+  <div><div class="side-label">Explore</div>
+    <button class="side-link" data-prompt="Teach me a difficult ECE concept step by step, starting from the basics.">✦ &nbsp; Learn a concept</button>
+    <button class="side-link" data-prompt="Help me choose and plan a practical engineering project suitable for a beginner.">⌘ &nbsp; Build a project</button>
+    <button class="side-link" data-prompt="Create a realistic learning roadmap for a first-year ECE student.">↗ &nbsp; Plan my journey</button>
+    <button class="side-link" data-prompt="Help me prepare for hackathons and student opportunities, and explain how to verify deadlines.">◇ &nbsp; Find opportunities</button>
+  </div>
+  <div class="side-bottom">
+    <button class="theme" id="themeToggle">☼ &nbsp; Switch to light mode</button>
+    <a class="back-link" href="index.html">← Back to THE SPACE</a>
+  </div>
+</aside>
+<main class="main">
+<header class="topbar">
+  <a class="mobile-brand" href="index.html"><span class="orb">O</span><span>ORBIT</span></a>
+  <div class="top-title">ORBIT <span> / Your Engineering Guide</span></div>
+  <div class="top-actions"><button class="icon-btn" id="topTheme" aria-label="Switch colour theme">☼</button><button class="icon-btn" id="topNew">＋ New</button></div>
+</header>
+<section class="chat" aria-label="Conversation">
+  <div class="welcome" id="welcome">
+    <div class="orb">O</div>
+    <div class="eyebrow">Understand more. Build better. Go further.</div>
+    <h1>Your next idea starts here.</h1>
+    <p>A space to learn engineering concepts, think through projects, debug your approach and plan your next steps—one clear question at a time.</p>
+    <div class="suggestions">
+      <button class="prompt" data-prompt="Explain n-type and p-type semiconductors step by step, with a simple comparison."><strong>✦ Learn something</strong><span>Understand a concept from the basics.</span></button>
+      <button class="prompt" data-prompt="Suggest a beginner-friendly ECE project. Include the problem, components, how it works, and how to test it."><strong>⌘ Build something</strong><span>Turn an idea into a practical project.</span></button>
+      <button class="prompt" data-prompt="Make me a manageable 4-week learning roadmap for a first-year ECE student."><strong>↗ Plan my journey</strong><span>Build skills with a realistic roadmap.</span></button>
+      <button class="prompt" data-prompt="How can a first-year engineering student prepare for a hackathon without knowing everything yet?"><strong>◇ Explore opportunities</strong><span>Prepare, research and take the next step.</span></button>
+    </div>
+  </div>
+  <div class="messages" id="messages" aria-live="polite"></div>
+</section>
+<div class="composer-wrap">
+  <form class="composer" id="chatForm">
+    <textarea id="question" rows="1" maxlength="3000" placeholder="Ask ORBIT anything about learning, engineering or your next step…" aria-label="Your message"></textarea>
+    <div class="composer-foot"><span class="hint">Enter to send · Shift + Enter for a new line</span><button class="send" id="sendBtn" type="submit">Send ↑</button></div>
+  </form>
+  <p class="disclaimer">Prototype mode: responses are generated from a small built-in demo guide, not a live AI model. Verify important technical details and current deadlines using trusted sources.</p>
+</div>
+</main>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(() => {
+ const root=document.documentElement, form=document.getElementById('chatForm'), input=document.getElementById('question');
+ const messages=document.getElementById('messages'), welcome=document.getElementById('welcome'), send=document.getElementById('sendBtn'), toast=document.getElementById('toast');
+ let toastTimer;
+ function notify(s){toast.textContent=s;toast.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toast.classList.remove('show'),2800)}
+ function setTheme(){const light=root.dataset.theme==='light';document.getElementById('themeToggle').textContent=light?'☾  Switch to dark mode':'☼  Switch to light mode';document.getElementById('topTheme').textContent=light?'☾':'☼'}
+ function toggleTheme(){root.dataset.theme=root.dataset.theme==='light'?'dark':'light';localStorage.setItem('orbit-theme',root.dataset.theme);setTheme()}
+ try{root.dataset.theme=localStorage.getItem('orbit-theme')||'dark'}catch{root.dataset.theme='dark'}setTheme();
+ document.getElementById('themeToggle').addEventListener('click',toggleTheme);document.getElementById('topTheme').addEventListener('click',toggleTheme);
+ function addMessage(text,who){welcome.style.display='none';const row=document.createElement('div');row.className='message '+who;const avatar=document.createElement('div');avatar.className='avatar';avatar.textContent=who==='user'?'YOU':'O';const body=document.createElement('div');body.className='message-body';body.innerHTML=who==='assistant'?format(text):'';if(who==='user')body.textContent=text;row.append(avatar,body);messages.append(row);row.scrollIntoView({behavior:'smooth',block:'nearest'})}
+ function format(text){return text.split('\n').map(line=>{let s=line.trim();if(!s)return '';if(s.startsWith('### '))return '<h3>'+esc(s.slice(4))+'</h3>';if(s.startsWith('- '))return '<p>• '+esc(s.slice(2))+'</p>';if(/^\d+\.\s/.test(s))return '<p>'+esc(s)+'</p>';return '<p>'+esc(s).replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')+'</p>'}).join('')}
+ function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+ function answer(q){const t=q.toLowerCase();
+ if(/semiconductor|n-type|p-type|n type|p type/.test(t))return `### Start with the basic idea\nA semiconductor is a material whose ability to conduct electricity is between that of a conductor and an insulator. Silicon is a common example.\n\n### N-type semiconductor\n- Made by doping silicon with a pentavalent impurity such as phosphorus.\n- It contributes extra free electrons, so electrons are the majority charge carriers.\n\n### P-type semiconductor\n- Made by doping silicon with a trivalent impurity such as boron.\n- It creates holes, so holes are the majority charge carriers.\n\n### Remember\nN-type → electrons are majority carriers. P-type → holes are majority carriers. Both materials remain electrically neutral overall. This is a starter explanation; use your course notes for the exact syllabus treatment.`;
+ if(/project|build|sensor|circuit|prototype/.test(t))return `### A practical way to start an engineering project\n\n**1. Choose one real problem.** Keep the first version narrow—for example, monitoring room temperature or detecting water leakage.\n\n**2. Learn the building blocks.** Identify the sensor, controller (if needed), power source and output. Understand voltage levels before connecting components.\n\n**3. Draw before building.** Make a block diagram, then a circuit diagram. Check each component's operating voltage and current limits.\n\n**4. Build in stages.** Test the power supply, then the sensor, then the output, and finally combine them.\n\n**5. Record evidence.** Take measurements, note failures, and explain what you changed.\n\nTell me your budget, what components you have, and your current skill level to narrow this into a specific plan.`;
+ if(/roadmap|learn|first.year|first year|study plan|schedule/.test(t))return `### A manageable learning roadmap\n\n**Week 1 — Foundations:** revise basic electricity, voltage, current, resistance and Ohm's law. Practise explaining each in your own words.\n\n**Week 2 — Tools:** learn basic multimeter safety and measurement, circuit symbols and breadboard layout.\n\n**Week 3 — Programming:** practise variables, conditions, loops and small problem-solving exercises in one beginner-friendly language.\n\n**Week 4 — Mini build:** select a small project, sketch the design, test one part at a time and document what you learned.\n\nKeep the workload realistic alongside college. You do not need to master everything before starting; learn the concept needed for the next step.`;
+ if(/hackathon|sih|opportunit|internship|competition|deadline/.test(t))return `### Preparing for a hackathon as a beginner\n\n**1. Understand the problem first.** Rewrite it in your own words and identify who faces it and why existing solutions may fall short.\n\n**2. Build a balanced team.** Look for complementary skills—research, hardware, coding, design and presentation. Ask a mentor or senior when you get stuck.\n\n**3. Make a small proof of concept.** Demonstrate one important feature rather than promising a complete product.\n\n**4. Verify official rules.** Check the organiser's official website for eligibility, dates, submission format and team size; these details can change.\n\n**5. Explain your contribution.** Keep a clear record of what you researched, designed, tested and learned.\n\nI can't verify live deadlines from this prototype. Check the official event page before making plans.`;
+ if(/critical thinking|analytical thinking|communicat|english|teamwork/.test(t))return `### Turn the idea into a practice\n\n- **Define the question:** what exactly are you trying to understand or decide?\n- **Separate facts from assumptions:** mark what you know, what you infer and what still needs checking.\n- **Compare explanations:** look for evidence that supports or challenges each one.\n- **Explain your reasoning:** state your conclusion and the reasons behind it in simple language.\n- **Reflect:** after feedback or a test, note what changed your mind.\n\nA useful habit: explain a concept in three sentences, then invite someone to ask one difficult question.`;
+ if(/debug|error|bug|code|program/.test(t))return `### A structured debugging method\n\n**1. Reproduce the problem.** Record the exact input, expected output and actual output.\n\n**2. Read the full error.** Note the line number and the first meaningful error message.\n\n**3. Isolate the cause.** Reduce the code to the smallest example that still fails.\n\n**4. Change one thing at a time.** Retest after each change so you know what fixed—or worsened—the issue.\n\n**5. Keep evidence.** If you share the code, error message and what you expected, I can help reason through the next debugging steps.`;
+ if(/hello|hi\b|hey\b/.test(t))return `Hello! I'm ORBIT, the learning-guide prototype for THE SPACE.\n\nI can demonstrate starter guidance for ECE concepts, beginner projects, learning roadmaps, hackathon preparation and debugging. Ask a specific question and I'll help you find a useful next step.`;
+ return `Let's break your question into something we can work through.\n\n**A useful first step:** identify the exact goal, what you already know, and where you are getting stuck. Then we can divide the problem into smaller steps and check each one.\n\nThis version of ORBIT is a local prototype with a limited built-in guide—not a live, open-ended AI assistant. I don't want to pretend it knows answers outside those examples. For a more specific response, try asking about an ECE concept, a beginner project, a learning roadmap, hackathon preparation or debugging.`;
+ }
+ function submit(text){const q=(text??input.value).trim();if(!q)return;addMessage(q,'user');input.value='';resize();send.disabled=true;setTimeout(()=>{addMessage(answer(q),'assistant');send.disabled=false;input.focus()},250)}
+ form.addEventListener('submit',e=>{e.preventDefault();submit()});
+ input.addEventListener('input',resize);input.addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();submit()}});
+ function resize(){input.style.height='auto';input.style.height=Math.min(input.scrollHeight,180)+'px'}
+ document.querySelectorAll('[data-prompt]').forEach(b=>b.addEventListener('click',()=>submit(b.dataset.prompt)));
+ function newChat(){messages.innerHTML='';welcome.style.display='';input.value='';resize();input.focus()}
+ document.getElementById('newChat').addEventListener('click',newChat);document.getElementById('topNew').addEventListener('click',newChat);
+})();
+</script>
+</body>
+</html>
