@@ -116,19 +116,6 @@ footer{padding:28px 0}.foot{display:flex;justify-content:space-between;align-ite
 .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 @media(max-width:600px){.branch-finder{padding:17px}.resource-links .btn{width:100%;text-align:center}.selector-row label{width:100%}}
 
-
-/* ORBIT assistant */
-.orbit-launch{position:fixed;right:18px;bottom:18px;z-index:8000;border:1px solid #777;border-radius:999px;padding:13px 18px;background:#f5f5f5;color:#080808;font-weight:850;letter-spacing:.04em;box-shadow:0 8px 32px #0008;cursor:pointer;display:flex;align-items:center;gap:10px}
-.orbit-launch .orbit-mark{width:26px;height:26px;border:1px solid #222;border-radius:50%;display:grid;place-items:center;font-size:12px}
-.orbit-panel{position:fixed;z-index:8001;right:18px;bottom:78px;width:min(410px,calc(100vw - 24px));height:min(620px,calc(100dvh - 105px));background:#0b0b0b;color:#f5f5f5;border:1px solid #444;border-radius:20px;box-shadow:0 20px 70px #000b;display:none;overflow:hidden;grid-template-rows:auto 1fr auto auto}
-.orbit-panel.open{display:grid}
-.orbit-head{padding:16px;border-bottom:1px solid #333;display:flex;justify-content:space-between;gap:12px;align-items:center;background:linear-gradient(135deg,#161616,#080808)}
-.orbit-head h2{margin:0;font-size:18px;letter-spacing:.12em}.orbit-head p{margin:4px 0 0;color:#aaa;font-size:12px}.orbit-close{background:transparent;color:#fff;border:1px solid #555;border-radius:10px;padding:7px 11px;cursor:pointer}
-.orbit-messages{padding:14px;overflow:auto;display:flex;flex-direction:column;gap:12px}.orbit-msg{max-width:95%;padding:12px 13px;border-radius:14px;line-height:1.55;font-size:14px;overflow-wrap:anywhere}.orbit-msg.bot{align-self:flex-start;background:#191919;border:1px solid #333}.orbit-msg.user{align-self:flex-end;background:#f0f0f0;color:#111}.orbit-msg p{margin:0 0 8px}.orbit-msg p:last-child{margin-bottom:0}.orbit-msg ul{margin:6px 0;padding-left:20px}.orbit-msg a{color:#d9d9d9;text-decoration:underline}.orbit-msg .orbit-project-link{display:inline-block;margin:5px 5px 0 0;padding:6px 9px;border:1px solid #555;border-radius:8px;text-decoration:none}
-.orbit-prompts{display:flex;gap:7px;padding:0 12px 10px;overflow:auto}.orbit-prompts button{flex:0 0 auto;background:#111;color:#ddd;border:1px solid #444;border-radius:999px;padding:7px 10px;font-size:12px;cursor:pointer}
-.orbit-form{display:flex;gap:8px;padding:12px;border-top:1px solid #333}.orbit-form input{min-width:0;flex:1;background:#151515;color:#fff;border:1px solid #555;border-radius:11px;padding:12px;font:inherit}.orbit-form button{background:#eee;color:#111;border:0;border-radius:11px;padding:0 14px;font-weight:800;cursor:pointer}.orbit-disclaimer{font-size:10px;color:#999;padding:0 14px 12px}.global-result-project{min-width:0;padding:18px;border:1px solid #343434;border-radius:16px;background:#101010;color:#f5f5f5}.global-result-project h3{margin-top:10px}.global-result-project ul{padding-left:22px}.global-result-project .meta{margin-top:12px}.global-results-level{margin:22px 0 12px;font-size:18px;letter-spacing:.04em}.global-project-group{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px}.global-project-tag{display:inline-block;border:1px solid #555;border-radius:999px;padding:5px 9px;font-size:12px;color:#ddd}
-@media(max-width:520px){.orbit-launch{right:12px;bottom:12px;padding:11px 14px}.orbit-panel{right:8px;bottom:70px;width:calc(100vw - 16px);height:min(650px,calc(100dvh - 84px));border-radius:16px}.global-result-project{padding:14px}}
-
 </style>
 
 <style>
@@ -251,7 +238,7 @@ footer{padding:40px 0 70px}
     <a class="brand" href="#home">THE SPACE<small>YOUR SPACE FOR ENGINEERING RESOURCES</small></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Menu</button>
     <nav class="navlinks" id="navlinks" aria-label="Main navigation">
-      <a href="#academics">Academics</a><a href="#learn-beyond">Video Learning</a><a href="#projects">Projects</a><a href="#industry">Industry</a><a href="#opportunities">Opportunities</a><a href="#careers">Careers</a><a href="#events">Events</a><a href="#feedback">Feedback</a><a class="orbit-nav-link" href="ORBIT.html">Ask ORBIT ↗</a>
+      <a href="#academics">Academics</a><a href="#learn-beyond">Video Learning</a><a href="#projects">Projects</a><a href="#industry">Industry</a><a href="#opportunities">Opportunities</a><a href="#careers">Careers</a><a href="#events">Events</a><a href="#feedback">Feedback</a><a class="orbit-nav-link" href="ORBIT.html?welcome=1">Ask ORBIT ↗</a>
     </nav>
   </div>
 </header>
@@ -271,7 +258,7 @@ footer{padding:40px 0 70px}
   <p class="space-tagline" style="font-size:clamp(13px,2vw,16px);font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#f7f7f7;margin-top:18px;">One space. More possibilities.</p>
   <h1>Learn with purpose.<br>Build with confidence.</h1>
   <p>A thoughtful starting point for engineering students to explore academics, learn from industry, build useful projects and discover opportunities. Learn at your own pace; build with care; let curiosity become capability.</p>
-  <div class="actions"><a class="btn primary" href="#academics">Explore academics</a><a class="btn secondary" href="#projects">Find a project</a><a class="btn secondary" href="ORBIT.html" style="border-color:#60a5fa;color:#bfdbfe">Ask ORBIT — Your Engineering Guide ↗</a></div>
+  <div class="actions"><a class="btn primary" href="#academics">Explore academics</a><a class="btn secondary" href="#projects">Find a project</a><a class="btn secondary" href="ORBIT.html?welcome=1" style="border-color:#60a5fa;color:#bfdbfe">Ask ORBIT — Your Engineering Guide ↗</a></div>
   <div class="callout"><h3>Knowledge grows when it is shared.</h3><p>Start where you are. Ask clear questions, verify what you learn, respect different perspectives, and turn ideas into work that can help someone in the real world.</p></div>
   <div class="stats"><div class="stat"><strong>01—08</strong><span>Semester directory structure</span></div><div class="stat"><strong>All branches</strong><span>Expandable resource directory</span></div><div class="stat"><strong>Learn by doing</strong><span>Projects and career preparation</span></div></div>
   <p class="notice">THE SPACE is an independent student project, not an official VTU or college website. Always check official sources for the latest syllabus, eligibility, deadlines and announcements.</p>
@@ -448,17 +435,6 @@ footer{padding:40px 0 70px}
 </main>
 
 <footer><div class="container foot"><div><strong>THE SPACE</strong><p>Your Space for Engineering Resources</p></div><p>Independent student project · Built for learning</p><p><strong>FOUNDER: JEEVAN</strong></p><a class="textlink" href="#home">Back to top ↑</a></div></footer>
-
-
-<button class="orbit-launch" id="orbitLaunch" type="button" aria-expanded="false" aria-controls="orbitPanel"><span class="orbit-mark">O</span> Ask ORBIT</button>
-<aside class="orbit-panel" id="orbitPanel" aria-label="ORBIT engineering guide" aria-hidden="true">
- <div class="orbit-head"><div><h2>ORBIT</h2><p>Your Engineering Guide · Lite prototype</p></div><button class="orbit-close" id="orbitClose" type="button" aria-label="Close ORBIT">✕</button></div>
- <div class="orbit-messages" id="orbitMessages" aria-live="polite"><div class="orbit-msg bot"><p><strong>Welcome to ORBIT.</strong></p><p>I can help you explore engineering topics, learning paths and the projects already listed on THE SPACE. Ask a question or try one of the prompts below.</p><p><strong>Prototype note:</strong> I'm not connected to a generative AI service yet. My answers come from built-in guidance and the site's project catalogue.</p></div></div>
- <div class="orbit-prompts" id="orbitPrompts"><button type="button" data-prompt="Show me beginner ECE projects">Beginner ECE projects</button><button type="button" data-prompt="How should I start programming?">Start programming</button><button type="button" data-prompt="Help me plan my engineering journey">Learning roadmap</button></div>
- <form class="orbit-form" id="orbitForm"><input id="orbitInput" type="text" maxlength="500" placeholder="Ask about ECE, projects, skills…" aria-label="Ask ORBIT a question" required><button type="submit">Send</button></form>
- <div class="orbit-disclaimer">Check important academic, career and safety information with official sources. No message is sent to a server.</div>
-</aside>
-
 <script>
 (function(){
   const splash = document.getElementById('splash');
@@ -660,28 +636,7 @@ filterLabCards();
  input.addEventListener('input',render);clear.addEventListener('click',()=>{input.value='';output.innerHTML='';input.focus();});input.addEventListener('keydown',e=>{if(e.key==='Escape'){input.value='';output.innerHTML='';}});
 })();
 
-// ORBIT Lite: local, transparent guidance using the site's actual project catalogue. No API key or server calls.
-(function(){
- const launch=document.getElementById('orbitLaunch'),panel=document.getElementById('orbitPanel'),close=document.getElementById('orbitClose'),form=document.getElementById('orbitForm'),input=document.getElementById('orbitInput'),messages=document.getElementById('orbitMessages');
- if(!launch||!panel||!form)return;
- const projects=[...document.querySelectorAll('.project-card')];
- function toggle(open){panel.classList.toggle('open',open);panel.setAttribute('aria-hidden',String(!open));launch.setAttribute('aria-expanded',String(open));if(open)input.focus();}
- launch.addEventListener('click',()=>toggle(!panel.classList.contains('open')));close.addEventListener('click',()=>toggle(false));
- function addMessage(content,who='bot',isHTML=false){const el=document.createElement('div');el.className='orbit-msg '+who;if(isHTML)el.innerHTML=content;else el.textContent=content;messages.append(el);messages.scrollTop=messages.scrollHeight;return el;}
- function projectLinks(list){if(!list.length)return '';return '<p><strong>Projects from THE SPACE:</strong></p>'+list.map(p=>`<a class="orbit-project-link" href="#projects" data-project="${p.querySelector('h3')?.textContent.replace(/&/g,'&amp;').replace(/"/g,'&quot;')||''}">${p.querySelector('h3')?.textContent||'View project'} ↗</a>`).join('');}
- function answer(question){const q=question.toLowerCase();let intro='',related=[];
-  if(/project|build|idea/.test(q)){if(/beginner|start|first|ece|electronics/.test(q))related=projects.filter(p=>p.dataset.level==='beginner'&&(/ece|electronics|sensor|web/i.test(p.textContent))).slice(0,5);else if(/advanced/.test(q))related=projects.filter(p=>p.dataset.level==='advanced');else if(/intermediate/.test(q))related=projects.filter(p=>p.dataset.level==='intermediate');else related=projects;intro=`<p><strong>Let's turn the idea into a manageable build.</strong></p><p>Choose a project level that matches what you already know. Start with a small simulated or low-voltage prototype, test one part at a time, and document what works and what does not.</p><p>Use the Projects section to see each project’s full goal, prerequisites, components, learning objectives and improvement ideas.</p>`+projectLinks(related);}
-  else if(/program|python|c language|coding|javascript/.test(q)){intro='<p><strong>A practical programming start</strong></p><ul><li>Learn basic logic: variables, conditions, loops and functions.</li><li>Practise small problems regularly instead of only watching tutorials.</li><li>For ECE, C is useful for embedded programming; Python is useful for automation, data and quick experiments. You can learn one first, then add the other.</li><li>Build a tiny project and explain your code in your own words.</li></ul><p>Do not worry about mastering every language at once.</p>'+projectLinks(projects.filter(p=>/resource finder|study planner|weather|sensor/i.test(p.textContent)).slice(0,3));}
-  else if(/roadmap|journey|first.year|first year|where.*start|start.*engineering/.test(q)){intro='<p><strong>A realistic engineering roadmap</strong></p><ol><li><strong>Build foundations:</strong> mathematics, physics, circuit basics and problem-solving.</li><li><strong>Learn tools gradually:</strong> one programming language, basic Git/GitHub and how to read a datasheet or official tutorial.</li><li><strong>Build small:</strong> complete a beginner project before adding advanced features.</li><li><strong>Document:</strong> write the problem, block diagram, steps, test results and limitations.</li><li><strong>Explore:</strong> join a team, ask seniors and look at hackathon problem statements without expecting to know everything immediately.</li></ol><p>Pick one small goal for this week rather than trying to learn everything together.</p>'+projectLinks(projects.filter(p=>p.dataset.level==='beginner').slice(0,3));}
-  else if(/internship|career|job|skill|resume|hackathon|sih|opportunit/.test(q)){intro='<p><strong>Build evidence of your skills</strong></p><ul><li>Choose one technical area to explore before trying to cover everything.</li><li>Complete a small project and keep clear documentation in a portfolio or repository.</li><li>Practise explaining the problem, your decisions, tests and what you would improve.</li><li>Check official organisation pages for current eligibility, deadlines and application instructions; never pay an unofficial person for a promised opportunity.</li></ul><p>For hackathons, a beginner can contribute research, user needs, diagrams, testing, documentation and a small prototype while learning from teammates.</p>'+projectLinks(projects.filter(p=>/resource finder|study planner|document search|energy-use/i.test(p.textContent)).slice(0,3));}
-  else if(/semiconductor|diode|transistor|circuit|ece|electronics|voltage|current/.test(q)){intro='<p><strong>Learn electronics step by step</strong></p><ol><li>Start with voltage, current, resistance and Ohm’s law.</li><li>Study basic components and how to read simple circuit diagrams.</li><li>Use simulations or low-voltage educational circuits before hardware experiments.</li><li>Explain each circuit’s purpose, expected output and limitations.</li></ol><p>For syllabus-specific or exam-critical details, compare explanations with your official course material and teacher’s guidance.</p>'+projectLinks(projects.filter(p=>/streetlight|water-level|irrigation|weather|wireless sensor/i.test(p.textContent)).slice(0,4));}
-  else if(/hello|hi\b|hey\b|who are you|what can you do/.test(q)){intro='<p>I’m <strong>ORBIT Lite</strong>, the built-in engineering guide prototype for THE SPACE.</p><p>I can offer prepared guidance about learning paths, ECE foundations, career preparation and the projects listed here. I’m not connected to a generative AI model yet, so I may not understand every question.</p><p>Try asking: “Show me beginner ECE projects” or “Help me plan my engineering journey.”</p>';}
-  else {intro='<p>I don’t have a prepared answer for that exact question yet. This version works with built-in guidance, not a live AI model.</p><p>Try asking about <strong>beginner projects, programming, ECE fundamentals, learning roadmaps, careers or hackathons</strong>. For a specific topic, check the Academics and Projects sections and verify important details with official sources.</p>'+projectLinks(projects.filter(p=>p.dataset.level==='beginner').slice(0,3));}
-  return intro;
- }
- function send(text){const q=text.trim();if(!q)return;addMessage(q,'user');const reply=addMessage('','bot',true);reply.innerHTML=answer(q);reply.querySelectorAll('a[data-project]').forEach(a=>a.addEventListener('click',()=>{const target=projects.find(p=>p.querySelector('h3')?.textContent===a.dataset.project);if(target){target.scrollIntoView({behavior:'smooth',block:'center'});target.style.outline='2px solid #fff';setTimeout(()=>target.style.outline='',1800);}toggle(false);}));}
- form.addEventListener('submit',e=>{e.preventDefault();send(input.value);input.value='';input.focus();});document.getElementById('orbitPrompts').addEventListener('click',e=>{const b=e.target.closest('[data-prompt]');if(b)send(b.dataset.prompt);});
-})();
+
 
 </script>
 
@@ -704,5 +659,53 @@ filterLabCards();
   if(t&&!t.contains(e.relatedTarget)){t.style.removeProperty('--tx');t.style.removeProperty('--ty');}});
 })();
 </script>
+
+
+<style>
+#orbit-voice-transition{position:fixed;inset:0;z-index:99999;display:none;place-items:center;padding:28px;background:radial-gradient(circle at 50% 42%,rgba(13,89,164,.34),transparent 48%),rgba(2,8,18,.96);backdrop-filter:blur(18px);color:#f3f8ff;text-align:center}
+#orbit-voice-transition.active{display:grid}
+#orbit-voice-transition .voice-card{width:min(560px,100%);padding:32px 22px;border:1px solid rgba(100,190,255,.32);border-radius:26px;background:linear-gradient(145deg,rgba(7,29,55,.96),rgba(3,12,27,.98));box-shadow:0 25px 90px rgba(0,0,0,.55),0 0 45px rgba(0,130,255,.14)}
+#orbit-voice-transition .voice-orb{width:90px;height:90px;margin:0 auto 24px;border-radius:50%;background:radial-gradient(circle at 32% 25%,#a5f5ff,#1379d8 24%,#071b48 62%,#010617 100%);border:1px solid rgba(133,225,255,.8);box-shadow:0 0 45px rgba(20,150,255,.5);animation:orbitTransitionSpin 5s linear infinite}
+#orbit-voice-transition.active.speaking .voice-orb{animation:orbitTransitionSpin 1.8s linear infinite}
+@keyframes orbitTransitionSpin{to{transform:rotate(360deg)}}
+#orbit-voice-transition .voice-line{font-size:clamp(25px,6vw,38px);font-weight:750;line-height:1.2;letter-spacing:-.035em}
+#orbit-voice-transition .voice-line span.active{color:#7fe7ff;text-shadow:0 0 16px rgba(71,216,255,.8)}
+#orbit-voice-transition .voice-note{margin-top:14px;color:#9eb8d5;font-size:12px;letter-spacing:.08em}
+</style>
+<div id="orbit-voice-transition" role="status" aria-live="polite"><div class="voice-card"><div class="voice-orb"></div><div class="voice-line" id="orbit-transition-text">Hello supreme, what are you looking for?</div><div class="voice-note">ORBIT · THE SPACE</div></div></div>
+<script>
+(function(){
+  var greeting = "Hello supreme, what are you looking for?";
+  var links = document.querySelectorAll('a[href*="ORBIT.html"]');
+  var overlay = document.getElementById('orbit-voice-transition');
+  var line = document.getElementById('orbit-transition-text');
+  links.forEach(function(link){
+    link.addEventListener('click', function(event){
+      if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
+      event.preventDefault();
+      var destination = link.href, synth = window.speechSynthesis, moved = false;
+      function go(){ if(moved)return; moved=true; try{sessionStorage.setItem('orbit-greeting-spoken','1');}catch(e){} window.location.href=destination; }
+      synth.cancel();
+      if(overlay) overlay.classList.add('active','speaking');
+      if(line){line.textContent='';greeting.split(/(\s+)/).forEach(function(word){var span=document.createElement('span');span.textContent=word;line.appendChild(span);});}
+      var utterance = new SpeechSynthesisUtterance(greeting);
+      var voices = synth.getVoices ? synth.getVoices() : [];
+      var english = voices.filter(function(v){return /^en([_-]|$)/i.test(v.lang);});
+      var voice = english.find(function(v){return /david|daniel|george|james|mark|guy|alex|aaron/i.test(v.name);}) || english[0];
+      if(voice) utterance.voice=voice;
+      utterance.lang='en-US';utterance.rate=0.76;utterance.pitch=0.42;utterance.volume=1;
+      utterance.onboundary=function(e){
+        if(!line || (e.name && e.name!=='word'))return;
+        var spans=Array.prototype.slice.call(line.children), index=0, total=0;
+        for(var i=0;i<spans.length;i++){var next=total+spans[i].textContent.length;if(e.charIndex<next){index=i;break;}total=next;index=Math.min(i+1,spans.length-1);}
+        spans.forEach(function(span,i){span.classList.toggle('active',i===index);});
+      };
+      utterance.onend=go;utterance.onerror=go;
+      try{synth.speak(utterance);window.setTimeout(go,9000);}catch(e){go();}
+    });
+  });
+})();
+</script>
+
 </body>
 </html>
