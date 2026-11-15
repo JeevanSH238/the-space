@@ -66,6 +66,42 @@
 .speech-replay:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.orbital-core.speaking svg,.orbital-core.speaking:after{animation:none!important}}
 
+
+/* ---- v2 additions ---- */
+.msg-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.msg-actions .speech-replay{margin-top:0;cursor:pointer}
+.speech-replay{cursor:pointer;min-height:34px}
+.message-body pre.code{margin:10px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(1,8,20,.7);overflow-x:auto;font-size:12.5px;line-height:1.6}
+.message-body pre.code code{background:none;border:0;padding:0;white-space:pre}
+.message-body .tbl{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:12px}
+.message-body table{border-collapse:collapse;width:100%;font-size:12.5px}
+.message-body th,.message-body td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+.message-body th{color:#9ad8ff;font-weight:700;background:rgba(14,90,160,.2)}
+.message-body tr:last-child td{border-bottom:0}
+.icon-btn.on,.icon-btn[aria-pressed="true"]{color:#fff;border-color:var(--cyan);background:rgba(14,140,230,.45);box-shadow:0 0 18px rgba(40,190,255,.35)}
+#orbitMic.on{animation:micPulse 1.2s ease-in-out infinite;border-color:#ff6b8b;background:rgba(255,80,120,.25)}
+@keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,90,130,.5)}50%{box-shadow:0 0 0 9px rgba(255,90,130,0)}}
+.rail-btn,.icon-btn,.send,.prompt,.top-btn,.speech-replay{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.speech-word-active{display:inline-block}
+.welcome h1 span{-webkit-text-fill-color:inherit}
+/* intro overlay */
+body.intro-open{overflow:hidden}
+.intro{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:24px;background:radial-gradient(circle at 50% 38%,rgba(10,95,180,.38),transparent 50%),rgba(2,7,16,.97);text-align:center}
+.intro.active{display:grid;animation:introIn .5s ease}
+@keyframes introIn{from{opacity:0}to{opacity:1}}
+.intro-card{width:min(560px,100%)}
+.intro-orb{width:150px;height:150px;margin:0 auto 26px;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#b8f7ff,#1688f0 22%,#071b52 60%,#010617 100%);border:1px solid rgba(133,225,255,.8);box-shadow:0 0 60px rgba(20,150,255,.55),inset 0 0 40px rgba(60,200,255,.25);animation:introSpin 7s linear infinite}
+.intro-orb:before,.intro-orb:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid transparent;border-top-color:#62eaff;border-right-color:rgba(165,140,255,.8);animation:introSpin 3.2s linear infinite}
+.intro-orb:after{inset:-30px;border-top-color:rgba(165,140,255,.7);border-right-color:transparent;border-bottom-color:rgba(98,234,255,.5);animation-duration:5.4s;animation-direction:reverse}
+.intro-orb.speaking{animation-duration:2s;box-shadow:0 0 90px rgba(40,190,255,.8),inset 0 0 40px rgba(60,200,255,.4)}
+@keyframes introSpin{to{transform:rotate(360deg)}}
+.intro-line{font-size:clamp(26px,7vw,40px);font-weight:760;line-height:1.2;letter-spacing:-.035em;min-height:2.5em}
+.intro-line span{transition:color .15s,text-shadow .15s}
+.intro-line .speech-word-active{color:#7fe7ff!important;text-shadow:0 0 18px rgba(71,216,255,.9);background:none}
+.intro-note{margin-top:12px;color:#9eb8d5;font-size:12px;letter-spacing:.14em}
+.intro-btn{margin-top:22px;border:0;border-radius:999px;padding:14px 26px;font-weight:800;font-size:14px;color:#02142a;background:linear-gradient(135deg,#7fe7ff,#a58cff);box-shadow:0 10px 36px rgba(60,170,255,.4)}
+.intro-skip{display:block;margin:16px auto 0;background:none;border:0;color:#7f9cbc;font-size:12px;text-decoration:underline;padding:8px}
+@media(prefers-reduced-motion:reduce){.intro-orb,.intro-orb:before,.intro-orb:after{animation:none!important}}
 </style>
 </head>
 <body>
@@ -84,7 +120,7 @@
   <main class="workspace">
     <header class="topbar">
       <a class="brand-line" href="index.html" aria-label="THE SPACE home"><span class="mini-mark"><svg viewBox="0 0 48 48" aria-hidden="true" class="orbit-logo-svg"><defs><radialGradient id="orbSmallFillTop" cx="32%" cy="25%" r="75%"><stop stop-color="#c8f8ff"/><stop offset=".22" stop-color="#278fe9"/><stop offset=".62" stop-color="#071d57"/><stop offset="1" stop-color="#02091f"/></radialGradient></defs><circle cx="24" cy="24" r="16.5" fill="url(#orbSmallFillTop)" stroke="#70dfff" stroke-width=".8"/><path d="M8 25C12 8 32 4 40 17c5 9-4 22-16 23C13 41 6 33 8 25Z" fill="none" stroke="#62eaff" stroke-width="2.2" class="logo-rotor-a"/><path d="M9 19C18 4 39 11 40 25c1 12-14 19-25 10C8 31 7 24 9 19Z" fill="none" stroke="#a58cff" stroke-width="1.7" class="logo-rotor-b"/><path d="M13 31C21 23 28 17 38 16" fill="none" stroke="#d7fbff" stroke-width="1.1"/><ellipse cx="18" cy="13" rx="7" ry="3" fill="#e5fdff" opacity=".22" transform="rotate(-28 18 13)"/><circle cx="14" cy="12" r="1.2" fill="#fff"/></svg></span><span><span class="brand-name">ORBIT</span><span class="brand-sub">INTELLIGENT COMPANION · THE SPACE</span></span></a>
-      <div class="top-actions"><span class="status-pill"><span class="status-dot"></span> ORBIT workspace</span><button class="top-btn" id="topNew" type="button">＋ New chat</button></div>
+      <div class="top-actions"><span class="status-pill"><span class="status-dot"></span> <span id="statusText">ORBIT workspace</span></span><button class="top-btn" id="topNew" type="button">＋ New chat</button></div>
     </header>
     <div class="main-content">
       <section class="welcome" id="welcome" aria-labelledby="welcomeTitle">
@@ -104,14 +140,536 @@
       <div class="composer-wrap">
         <form class="composer" id="chatForm">
           <textarea id="question" rows="1" maxlength="6000" placeholder="Ask ORBIT anything…" aria-label="Your message"></textarea>
-          <div class="composer-foot"><span class="hint">Enter to send · Shift + Enter for a new line</span><div class="composer-tools"><button class="icon-btn" id="orbitMic" type="button" aria-label="Start voice input" title="Speak your question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button><button class="icon-btn" id="orbitSpeak" type="button" aria-pressed="false" aria-label="Enable spoken answers" title="Toggle spoken answers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/></svg></button><button class="send" id="sendBtn" type="submit" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14-7-5 14-3-6-6-1Z"/><path d="m11 13 8-8"/></svg></button></div></div>
+          <div class="composer-foot"><span class="hint">Engineering guide · tap ➤ to send</span><div class="composer-tools"><button class="icon-btn" id="orbitMic" type="button" aria-label="Start voice input" title="Speak your question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button><button class="icon-btn" id="orbitSpeak" type="button" aria-pressed="false" aria-label="Enable spoken answers" title="Toggle spoken answers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/></svg></button><button class="send" id="sendBtn" type="submit" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14-7-5 14-3-6-6-1Z"/><path d="m11 13 8-8"/></svg></button></div></div>
         </form>
         <p class="disclaimer">ORBIT can make mistakes. Check important technical, academic and time-sensitive information against reliable sources.</p>
       </div>
     </div>
   </main>
 </div>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="ORBIT greeting"><div class="intro-card"><div class="intro-orb" id="introOrb" aria-hidden="true"></div><div class="intro-line" id="introLine" aria-live="polite">Hello supreme, what are you looking for?</div><div class="intro-note">ORBIT · THE SPACE</div><button class="intro-btn" id="introBtn" type="button">▶ Tap to hear ORBIT</button><button class="intro-skip" id="introSkip" type="button">Skip intro</button></div></div>
 <div class="toast" id="toast" role="status"></div>
-<script src="./orbit-client.js" defer></script>
+<noscript><p style="position:fixed;inset:auto 0 0 0;background:#08284c;color:#fff;padding:12px;text-align:center">ORBIT needs JavaScript. Please enable it in your browser.</p></noscript>
+<script>
+(function(){
+"use strict";
+/* ===== CONFIG =====
+   ORBIT works fully on its own (built-in engineering knowledge engine).
+   To connect a live AI, deploy orbit-worker.js (see README) and paste its URL here. */
+var ORBIT_API = "";
+var GREETING = "Hello supreme, what are you looking for?";
+
+var $ = function(id){return document.getElementById(id);};
+var els = {
+  welcome:$("welcome"), messages:$("messages"), form:$("chatForm"), q:$("question"), send:$("sendBtn"),
+  mic:$("orbitMic"), speak:$("orbitSpeak"), toast:$("toast"), core:document.querySelector(".orbital-core"),
+  status:$("statusText"), title:$("welcomeTitle"), replay:$("replayGreeting"),
+  intro:$("intro"), introLine:$("introLine"), introBtn:$("introBtn"), introSkip:$("introSkip"), introOrb:$("introOrb")
+};
+var history = [], busy = false, speakOn = false, lastTopic = null, typingTimer = null;
+
+/* ---------- safe storage ---------- */
+function sget(k){try{return window.localStorage.getItem(k);}catch(e){return null;}}
+function sset(k,v){try{window.localStorage.setItem(k,v);}catch(e){}}
+function ssget(k){try{return window.sessionStorage.getItem(k);}catch(e){return null;}}
+function ssset(k,v){try{window.sessionStorage.setItem(k,v);}catch(e){}}
+function ssdel(k){try{window.sessionStorage.removeItem(k);}catch(e){}}
+try{var qs=new URLSearchParams(location.search);if(qs.get("api")){sset("orbit_api",qs.get("api"));}}catch(e){}
+var API = (sget("orbit_api")||ORBIT_API||"").trim();
+if(els.status){els.status.textContent = API ? "ORBIT AI connected" : "ORBIT knowledge mode";}
+
+/* ---------- toast ---------- */
+var toastT;
+function toast(msg){
+  if(!els.toast)return;
+  els.toast.textContent = msg; els.toast.classList.add("show");
+  clearTimeout(toastT); toastT = setTimeout(function(){els.toast.classList.remove("show");},3200);
+}
+
+/* ---------- text helpers ---------- */
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function safeUrl(u){return /^(https?:\/\/|index\.html|ORBIT\.html|#|\.\/)/i.test(u) ? u : "#";}
+function inline(s){
+  s = esc(s);
+  s = s.replace(/`([^`]+)`/g,"<code>$1</code>");
+  s = s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
+  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,function(m,t,u){
+    u = u.replace(/&amp;/g,"&");
+    var ext = /^https?:/i.test(u);
+    return '<a href="'+esc(safeUrl(u))+'"'+(ext?' target="_blank" rel="noopener noreferrer"':'')+'>'+t+'</a>';
+  });
+  return s;
+}
+function md(text){
+  var out=[], lines=String(text).replace(/\r/g,"").split("\n"), i=0, list=null;
+  function closeList(){if(list){out.push("</"+list+">");list=null;}}
+  while(i<lines.length){
+    var ln=lines[i];
+    if(/^```/.test(ln)){
+      closeList(); var code=[]; i++;
+      while(i<lines.length && !/^```/.test(lines[i])){code.push(lines[i]);i++;}
+      out.push('<pre class="code"><code>'+esc(code.join("\n"))+'</code></pre>'); i++; continue;
+    }
+    if(/^\|.*\|\s*$/.test(ln) && i+1<lines.length && /^\|[\s:|-]+\|\s*$/.test(lines[i+1])){
+      closeList();
+      var head=ln.split("|").slice(1,-1), rows=[]; i+=2;
+      while(i<lines.length && /^\|.*\|\s*$/.test(lines[i])){rows.push(lines[i].split("|").slice(1,-1));i++;}
+      out.push('<div class="tbl"><table><thead><tr>'+head.map(function(c){return "<th>"+inline(c.trim())+"</th>";}).join("")+"</tr></thead><tbody>"+
+        rows.map(function(r){return "<tr>"+r.map(function(c){return "<td>"+inline(c.trim())+"</td>";}).join("")+"</tr>";}).join("")+"</tbody></table></div>");
+      continue;
+    }
+    var h=ln.match(/^(#{1,4})\s+(.*)$/);
+    if(h){closeList();out.push("<h3>"+inline(h[2])+"</h3>");i++;continue;}
+    var ul=ln.match(/^\s*[-*•]\s+(.*)$/), ol=ln.match(/^\s*\d+[.)]\s+(.*)$/);
+    if(ul){if(list!=="ul"){closeList();out.push("<ul>");list="ul";}out.push("<li>"+inline(ul[1])+"</li>");i++;continue;}
+    if(ol){if(list!=="ol"){closeList();out.push("<ol>");list="ol";}out.push("<li>"+inline(ol[1])+"</li>");i++;continue;}
+    closeList();
+    if(ln.trim()===""){i++;continue;}
+    var para=[ln]; i++;
+    while(i<lines.length && lines[i].trim()!=="" && !/^(```|#{1,4}\s|\s*[-*•]\s|\s*\d+[.)]\s|\|)/.test(lines[i])){para.push(lines[i]);i++;}
+    out.push("<p>"+para.map(inline).join("<br>")+"</p>");
+  }
+  closeList();
+  return out.join("");
+}
+function plain(text){
+  return String(text).replace(/```[\s\S]*?```/g," code example. ").replace(/\|[-\s:|]+\|/g," ").replace(/\|/g,", ")
+    .replace(/\[([^\]]+)\]\([^)]*\)/g,"$1").replace(/[#*`_>]/g,"").replace(/\s+/g," ").trim();
+}
+
+/* ---------- speech synthesis ---------- */
+var synth = ("speechSynthesis" in window) ? window.speechSynthesis : null;
+var voicesCache = [];
+function loadVoices(){ if(synth){ voicesCache = synth.getVoices() || []; } }
+if(synth){ loadVoices(); if(synth.addEventListener){synth.addEventListener("voiceschanged",loadVoices);} else {synth.onvoiceschanged=loadVoices;} }
+function pickVoice(deep){
+  var en = voicesCache.filter(function(v){return /^en([_-]|$)/i.test(v.lang);});
+  if(!en.length) return null;
+  var male = /david|daniel|george|james|mark|guy|alex|aaron|fred|ryan|rishi|thomas|male|oliver|arthur|lee|google uk english male|en-gb-x-rjs|en-us-x-iom|en-us-x-iol|en-in-x-ene/i;
+  var female = /female|zira|samantha|susan|hazel|karen|victoria|fiona|moira|tessa|siri/i;
+  return en.filter(function(v){return male.test(v.name) && !female.test(v.name);})[0] ||
+         en.filter(function(v){return !female.test(v.name);})[0] || en[0];
+}
+var speaking = false, speakToken = 0;
+function setSpeaking(on){
+  speaking = on;
+  if(els.core){els.core.classList.toggle("speaking",on);}
+  if(els.introOrb){els.introOrb.classList.toggle("speaking",on);}
+  document.querySelectorAll(".speech-replay.is-playing").forEach(function(b){b.classList.remove("is-playing");});
+}
+function stopSpeech(){
+  speakToken++;
+  if(synth){try{synth.cancel();}catch(e){}}
+  setSpeaking(false);
+  clearHighlight();
+}
+var hlTimers=[], hlRoot=null;
+function clearHighlight(){
+  hlTimers.forEach(clearTimeout); hlTimers=[];
+  if(hlRoot){hlRoot.querySelectorAll(".speech-word-active").forEach(function(s){s.classList.remove("speech-word-active");});}
+}
+function wrapWords(el,text){
+  el.textContent=""; var spans=[];
+  String(text).split(/(\s+)/).forEach(function(w){
+    if(/^\s+$/.test(w)||w===""){el.appendChild(document.createTextNode(w));return;}
+    var s=document.createElement("span"); s.textContent=w; el.appendChild(s); spans.push(s);
+  });
+  return spans;
+}
+function setActive(spans,idx){spans.forEach(function(s,i){s.classList.toggle("speech-word-active",i===idx);});}
+
+/* speak(text, {deep, spans, root, onend}) */
+function speak(text,opts){
+  opts=opts||{};
+  if(!synth || typeof SpeechSynthesisUtterance==="undefined"){
+    toast("Voice output is not supported in this browser."); if(opts.onend)opts.onend(false); return;
+  }
+  stopSpeech();
+  var token=speakToken, spans=opts.spans||null; hlRoot=opts.root||null;
+  var clean=plain(text);
+  var chunks=clean.match(/[^.!?;:]+[.!?;:]*\s*/g)||[clean];
+  var merged=[],cur=""; chunks.forEach(function(c){ if((cur+c).length>170 && cur){merged.push(cur);cur=c;} else {cur+=c;} }); if(cur)merged.push(cur);
+  var idx=0, offset=0, gotBoundary=false;
+  var voice=pickVoice(opts.deep);
+  setSpeaking(true);
+  function done(ok){ if(token!==speakToken)return; setSpeaking(false); clearHighlight(); if(opts.onend)opts.onend(ok); }
+  function next(){
+    if(token!==speakToken)return;
+    if(idx>=merged.length){done(true);return;}
+    var part=merged[idx++], base=offset; offset+=part.length;
+    var u=new SpeechSynthesisUtterance(part);
+    if(voice)u.voice=voice; u.lang=(voice&&voice.lang)||"en-US";
+    if(opts.deep){u.pitch=0.05;u.rate=0.68;u.volume=1;} else {u.pitch=0.7;u.rate=0.95;u.volume=1;}
+    u.onboundary=function(e){
+      if(token!==speakToken||!spans||(e.name&&e.name!=="word"))return;
+      gotBoundary=true; var pos=base+e.charIndex, acc=0, hit=0;
+      for(var i=0;i<spans.length;i++){acc+=spans[i].textContent.length+1; if(pos<acc){hit=i;break;} hit=i;}
+      setActive(spans,hit);
+    };
+    u.onend=function(){next();};
+    u.onerror=function(e){ if(token!==speakToken)return; if(e&&(e.error==="canceled"||e.error==="interrupted"))return; if(e&&e.error==="not-allowed"){toast("Tap the speaker button once to allow sound."); done(false);} else {next();} };
+    try{synth.speak(u);}catch(err){done(false);}
+  }
+  if(spans&&spans.length){
+    /* fallback highlighting when the voice gives no word events */
+    var per=Math.round(((opts.deep?460:300))); 
+    hlTimers.push(setTimeout(function(){
+      if(gotBoundary||token!==speakToken)return;
+      spans.forEach(function(s,i){hlTimers.push(setTimeout(function(){if(token===speakToken&&!gotBoundary)setActive(spans,i);},i*per));});
+    },700));
+  }
+  /* some mobile browsers pause the engine; nudge it */
+  try{synth.resume();}catch(e){}
+  next();
+}
+
+/* ---------- greeting (voice + synced text) ---------- */
+function playGreeting(targetEl,onend,orbitIntro){
+  var spans=wrapWords(targetEl,GREETING);
+  speak(GREETING,{deep:true,spans:spans,root:targetEl,onend:function(ok){
+    clearHighlightNow(targetEl); if(onend)onend(ok);
+  }});
+}
+function clearHighlightNow(el){el.querySelectorAll(".speech-word-active").forEach(function(s){s.classList.remove("speech-word-active");});}
+
+/* ---------- intro overlay (when ORBIT opened directly) ---------- */
+function hideIntro(){ if(els.intro){els.intro.classList.remove("active");} document.body.classList.remove("intro-open"); }
+function initIntro(){
+  var wantsWelcome=false, spoken=ssget("orbit-greeting-spoken");
+  try{wantsWelcome=(new URLSearchParams(location.search)).get("welcome")==="1";}catch(e){}
+  ssdel("orbit-greeting-spoken");
+  if(!els.intro||!wantsWelcome||spoken){ return; }
+  els.intro.classList.add("active"); document.body.classList.add("intro-open");
+  var started=false;
+  function run(){
+    if(started)return; started=true;
+    if(els.introBtn)els.introBtn.hidden=true;
+    playGreeting(els.introLine,function(){ setTimeout(hideIntro,500); });
+    /* safety: never trap the user */
+    setTimeout(function(){ if(els.intro.classList.contains("active")){ stopSpeech(); hideIntro(); } },12000);
+  }
+  /* typed text appears even if sound is blocked */
+  els.introLine.textContent=GREETING;
+  if(els.introBtn){els.introBtn.addEventListener("click",run);}
+  if(els.introSkip){els.introSkip.addEventListener("click",function(){stopSpeech();hideIntro();});}
+}
+
+/* ---------- local knowledge engine ---------- */
+var KB=[
+{t:"Ohm's law & basic circuits",k:["ohm","resistor","resistance","voltage","current","kvl","kcl","kirchhoff","series","parallel","circuit","power dissipation"],a:"### Ohm's law and basic circuits\n**Ohm's law:** V = I × R. Voltage (V) drives current (I) through resistance (R).\n- **Power:** P = V × I = I²R = V²/R\n- **Series:** same current, resistances add: R = R1 + R2 + …\n- **Parallel:** same voltage, 1/R = 1/R1 + 1/R2 + …\n- **KCL:** currents entering a node sum to zero.\n- **KVL:** voltages around any closed loop sum to zero.\n\n**Example:** 12 V across 4 Ω gives I = 3 A and P = 36 W. A 1/4 W resistor would burn out, so always check power rating.\n\nTip: for any circuit, label node voltages, write KCL at each node, and solve the equations."},
+{t:"Diodes",k:["diode","rectifier","zener","led","forward bias","reverse bias","pn junction","p-n junction"],a:"### Diodes\nA diode conducts in one direction (forward bias) once the voltage passes its threshold: about 0.7 V for silicon, 0.2–0.3 V for Schottky, and 1.8–3.3 V for LEDs.\n- **Rectifier:** half-wave uses 1 diode; full-wave bridge uses 4 and, with a smoothing capacitor, gives DC.\n- **Zener:** conducts in reverse at its breakdown voltage, used for simple regulation and clamping.\n- **LED:** always use a series resistor: R = (Vsupply − Vled) / I.\n\n**Example:** 5 V supply, red LED (2 V), 10 mA gives R = 300 Ω, so use 330 Ω."},
+{t:"Transistors (BJT & MOSFET)",k:["transistor","bjt","mosfet","fet","gate","drain","source","collector","emitter","base","amplifier","cmos"],a:"### Transistors\n**BJT:** a current-controlled device. A small base current IB gives a collector current IC = β·IB in the active region. Used as an amplifier or a switch.\n**MOSFET:** a voltage-controlled device. A gate voltage above the threshold VT forms a channel between source and drain. It has a very high input impedance, so it is the basis of CMOS logic and modern ICs.\n\n**As a switch:** use cut-off (OFF) and saturation/triode (ON). For a MOSFET, pick a logic-level one for 3.3 V/5 V MCUs and add a gate resistor.\n**As an amplifier:** bias in the active/saturation region and check the small-signal gain (gm·RD for a common-source stage)."},
+{t:"Op-amps",k:["op-amp","opamp","operational amplifier","inverting","non-inverting","comparator","integrator","differentiator","summing"],a:"### Operational amplifiers\nAn ideal op-amp has infinite gain, infinite input impedance and zero output impedance. With negative feedback the inputs are at the same voltage (the virtual short).\n- **Inverting:** Av = −Rf/Rin\n- **Non-inverting:** Av = 1 + Rf/Rg\n- **Buffer:** gain 1 (output tied to the inverting input)\n- **Summing, integrator, differentiator** are built by swapping resistors and capacitors in the feedback network.\n- **Comparator:** no feedback, so the output saturates high or low.\n\nReal limits: gain-bandwidth product, slew rate, input offset and the supply rails."},
+{t:"Digital logic",k:["logic gate","gates","boolean","karnaugh","k-map","truth table","combinational","multiplexer","mux","decoder","adder","nand","nor","xor"],a:"### Digital logic\nBasic gates are AND, OR, NOT, NAND, NOR, XOR and XNOR. NAND and NOR are universal: any logic can be built from either one alone.\n- **Simplify** with Boolean algebra or Karnaugh maps (group 1s in powers of two).\n- **Combinational blocks:** multiplexer, decoder, encoder, half/full adder.\n- **Full adder:** Sum = A⊕B⊕Cin, Cout = AB + Cin(A⊕B)\n\nDe Morgan: (A·B)' = A' + B' and (A+B)' = A'·B'."},
+{t:"Flip-flops & sequential circuits",k:["flip flop","flip-flop","latch","register","counter","fsm","state machine","sequential","clock","setup time","hold time","d flip"],a:"### Sequential circuits\nFlip-flops store one bit and change state on a clock edge (D, JK, T, SR).\n- **Registers/counters** are chains of flip-flops.\n- **FSM:** Moore (output depends on state) or Mealy (state and input). Draw the state diagram, then the state table, then the next-state logic.\n- **Timing:** data must be stable for the setup time before and the hold time after the clock edge. Violations cause metastability.\n\nIn Verilog, use non-blocking assignments (<=) for sequential logic."},
+{t:"Verilog / VHDL & FPGA",k:["verilog","vhdl","fpga","hdl","rtl","synthesis","testbench","xilinx","vivado","lut"],a:"### HDL and FPGA\nVerilog and VHDL **describe** hardware, they are not run like software. An FPGA is built from LUTs, flip-flops, block RAM and DSP blocks that you reconfigure.\n\nWorkflow: write RTL, simulate with a testbench, synthesize, place and route, check timing, program the board.\n```\nmodule counter(input clk, rst, output reg [3:0] q);\n  always @(posedge clk) begin\n    if (rst) q <= 0; else q <= q + 1;\n  end\nendmodule\n```\nStart with a counter, a UART and a traffic-light FSM. Free tools: Vivado/Quartus plus the open-source Icarus Verilog and GTKWave."},
+{t:"Microcontrollers & Arduino/ESP32",k:["arduino","esp32","esp8266","microcontroller","mcu","stm32","raspberry pi","pic","8051","gpio","pwm","adc","timer","interrupt","embedded"],a:"### Microcontrollers\n- **Arduino (ATmega):** easiest start, 5 V, great for learning.\n- **ESP32:** 3.3 V, dual core, built-in Wi-Fi and Bluetooth, ideal for IoT.\n- **STM32:** ARM Cortex-M, professional-grade, used in industry.\n- **Raspberry Pi:** a full Linux computer, not a microcontroller.\n\nKey peripherals: GPIO, ADC (read analog sensors), PWM (motor speed and dimming), timers and interrupts.\n```\nvoid setup(){ pinMode(13, OUTPUT); }\nvoid loop(){ digitalWrite(13,HIGH); delay(500); digitalWrite(13,LOW); delay(500); }\n```\nGood habits: avoid delay() in real projects (use millis()), debounce buttons and never power motors from a GPIO pin."},
+{t:"Communication protocols (UART, SPI, I2C)",k:["uart","spi","i2c","protocol","serial","rs232","rs485","can bus","baud","modbus"],a:"### Serial protocols\n| Protocol | Wires | Notes |\n|---|---|---|\n| UART | TX, RX | Async, both sides need the same baud rate |\n| SPI | MOSI, MISO, SCK, CS | Fast, full duplex, one CS line per device |\n| I2C | SDA, SCL | Many devices on 2 wires by address, needs pull-up resistors |\n| CAN | CANH, CANL | Robust, used in vehicles |\n\nPick I2C for many slow sensors, SPI for displays and SD cards, UART for GPS, Bluetooth and debugging."},
+{t:"Sensors & IoT",k:["sensor","iot","internet of things","dht11","ultrasonic","ir sensor","mqtt","thingspeak","lora","bluetooth","wifi","smart"],a:"### Sensors and IoT\nCommon sensors: **DHT11/22** (temperature and humidity), **HC-SR04** (ultrasonic distance), **MPU6050** (accelerometer and gyro), **MQ-x** (gas), **LDR** (light), **soil moisture**, **IR**.\n\nAn IoT pipeline is: sensor → microcontroller (ESP32) → network (Wi-Fi/LoRa/BLE) → protocol (MQTT/HTTP) → cloud/dashboard → alerts.\nAlways calibrate sensors, filter noise (moving average) and think about power (deep sleep) and security (never hard-code passwords in public repos)."},
+{t:"Signals & systems, Fourier",k:["fourier","fft","laplace","z-transform","convolution","sampling","nyquist","aliasing","signal","dsp","spectrum","frequency domain"],a:"### Signals and systems\n- **Convolution:** y(t) = x(t) * h(t) is the output of an LTI system with impulse response h.\n- **Fourier transform:** shows which frequencies a signal contains. The FFT is its fast computation.\n- **Laplace / Z-transform:** analyse continuous / discrete systems and stability (poles in the left half of the s-plane).\n- **Nyquist:** sample at fs > 2·fmax or aliasing corrupts the signal.\n\nTry it: in Python, `numpy.fft.fft` on a sum of two sine waves shows two clear peaks."},
+{t:"Filters",k:["filter","low pass","high pass","band pass","cutoff","rc filter","butterworth","fir","iir"],a:"### Filters\nAn RC low-pass filter has cutoff **fc = 1 / (2πRC)**. Above fc the output falls at 20 dB/decade per pole.\n- **Low-pass** removes noise; **high-pass** blocks DC; **band-pass** selects a range.\n- **Active filters** use op-amps for gain and higher order (Butterworth is flat, Chebyshev is steeper but rippled).\n- **Digital:** FIR (always stable, linear phase) and IIR (efficient, can be unstable).\n\n**Example:** R = 10 kΩ, C = 100 nF gives fc ≈ 159 Hz."},
+{t:"Analog & digital communication",k:["modulation","am ","fm ","qam","psk","ask","fsk","ofdm","snr","bandwidth","communication","channel","noise","shannon","5g","ber"],a:"### Communication systems\nModulation puts a message on a carrier: **AM** (amplitude), **FM** (frequency), **PM** (phase). Digital versions: ASK, FSK, PSK and QAM (a mix of amplitude and phase, used in Wi-Fi/LTE).\n- **Shannon capacity:** C = B·log2(1 + SNR)\n- **OFDM** splits data over many subcarriers to fight multipath; it is used in Wi-Fi, 4G and 5G.\n- Performance is measured by **BER** vs SNR.\n\nA good first project is simulating BPSK over noise in MATLAB/Python and plotting BER."},
+{t:"Antennas & electromagnetics",k:["antenna","electromagnetic","maxwell","wave","transmission line","vswr","dipole","wavelength","impedance matching","em wave"],a:"### Antennas and EM\nWavelength λ = c/f. A half-wave dipole is about λ/2 long. Key terms: gain, directivity, radiation pattern, bandwidth and polarisation.\n- **Transmission lines:** match the load to the line impedance (50 Ω typical) to avoid reflections. VSWR close to 1 is good.\n- **Maxwell's equations** are the base of all EM theory.\n\nQuick check: at 2.4 GHz, λ ≈ 12.5 cm, so a quarter-wave monopole is about 3.1 cm."},
+{t:"Semiconductors & VLSI",k:["semiconductor","vlsi","silicon","doping","cmos inverter","fabrication","moore","chip","ic design","asic","layout","finfet","wafer"],a:"### Semiconductors and VLSI\nDoping makes silicon n-type (extra electrons) or p-type (holes). Joining them gives a p-n junction, the basis of diodes and transistors.\n- **CMOS inverter:** a PMOS pulls up, an NMOS pulls down, so almost no static power.\n- **Design flow:** specification, RTL, synthesis, place and route, verification, tape-out.\n- **Trends:** FinFET/GAA transistors, power and heat limits, chiplets.\n\nGood learning path: digital design, then Verilog, then CMOS layout in an open tool (Magic/Sky130 via OpenLane)."},
+{t:"Control systems & PID",k:["control system","pid","feedback","transfer function","stability","bode","root locus","controller","plant","setpoint","closed loop"],a:"### Control systems\nA closed-loop system compares the output with a setpoint and corrects the error.\n**PID:** u = Kp·e + Ki·∫e dt + Kd·de/dt\n- **P** reacts to the present error (too high causes oscillation)\n- **I** removes steady-state error (too high causes overshoot/windup)\n- **D** damps the response (amplifies noise)\n\nTune by raising Kp until it oscillates slightly, then add D, then a little I. Analyse stability with poles, Bode plots and gain/phase margins."},
+{t:"Power electronics & power supplies",k:["power supply","buck","boost","converter","smps","regulator","7805","ldo","inverter","rectification","battery","charging","transformer","motor driver","h-bridge"],a:"### Power electronics\n- **Linear regulator (7805, LDO):** simple and quiet but wasteful. Heat = (Vin − Vout) × I.\n- **Buck converter:** efficient step-down. **Boost:** step-up. **Buck-boost:** either.\n- **H-bridge:** drives a DC motor in both directions (L298N, TB6612).\n- **Batteries:** use a protection/BMS board for Li-ion, never short or overcharge.\n\nBuck duty cycle ≈ Vout/Vin. Always add input and output capacitors and a flyback diode for inductive loads."},
+{t:"PCB design",k:["pcb","kicad","eagle","altium","gerber","schematic","footprint","trace","via","ground plane","layout"],a:"### PCB design\nSteps: schematic, footprint assignment, placement, routing, design-rule check, Gerber export, fabrication.\n- Keep traces short, use a solid ground plane, place decoupling capacitors (100 nF) next to IC power pins.\n- Separate noisy (power, motors) from sensitive (analog) parts.\n- Trace width depends on current (use a calculator; 0.3 mm is fine for low-power signals).\n\nKiCad is free and professional. Order prototypes from JLCPCB or PCBWay once the DRC passes."},
+{t:"Machine learning basics",k:["machine learning","ml","neural network","deep learning","ai","regression","classification","overfitting","tensorflow","pytorch","dataset","training","model","cnn","scikit"],a:"### Machine learning basics\nML learns patterns from data instead of hand-written rules.\n- **Supervised:** labelled data (regression, classification)\n- **Unsupervised:** find structure (clustering)\n- **Reinforcement:** learn by reward\n\nWorkflow: collect data, clean it, split into train/validation/test, train, evaluate (accuracy, precision, recall), tune. Watch for **overfitting** (great on train, poor on test): use more data, regularisation or simpler models.\nStart with scikit-learn, then PyTorch. A good beginner project: classify sensor or image data on a Raspberry Pi or ESP32-CAM."},
+{t:"Python",k:["python","pandas","numpy","matplotlib","pip","flask","list comprehension"],a:"### Python\nPython is the best first language for engineers: readable and strong in data, automation and AI.\n```\nnums = [1, 2, 3, 4]\nsquares = [n*n for n in nums if n % 2 == 0]\nprint(squares)   # [4, 16]\n```\nLearn in this order: variables and types, control flow, functions, lists/dicts, files, modules, then NumPy, Matplotlib and Pandas. Build small tools often, such as a unit converter, a data logger or a web scraper."},
+{t:"Java & OOP",k:["java","oop","object oriented","class","inheritance","polymorphism","encapsulation","abstraction","jvm","spring"],a:"### Java and OOP\nThe four OOP pillars: **encapsulation** (hide data), **abstraction** (expose only what is needed), **inheritance** (reuse), **polymorphism** (one interface, many forms).\n```\nclass Animal { void speak(){ System.out.println(\"...\"); } }\nclass Dog extends Animal { @Override void speak(){ System.out.println(\"Woof\"); } }\n```\nJava runs on the JVM, so it is platform-independent. Practise collections, exceptions, interfaces and streams, then build a console app (library or bank system) before moving to Spring Boot."},
+{t:"C / C++ & embedded programming",k:["c programming","c++","pointer","memory","malloc","struct","bitwise","embedded c","volatile","register"],a:"### C and embedded C\nC gives direct control of memory and hardware.\n- **Pointers** store addresses: `int *p = &x; *p = 5;`\n- **Bitwise ops** set and clear register bits: `PORTB |= (1<<3); PORTB &= ~(1<<3);`\n- Use `volatile` for variables changed by interrupts or hardware.\n- Prefer fixed-size types (`uint8_t`) and avoid malloc on small MCUs.\n\nAlways initialise variables, check array bounds and keep interrupt routines short."},
+{t:"Data structures & algorithms",k:["data structure","algorithm","array","linked list","stack","queue","tree","graph","sorting","binary search","big o","complexity","recursion","dynamic programming","dsa"],a:"### Data structures and algorithms\n| Structure | Access | Insert | Use |\n|---|---|---|---|\n| Array | O(1) | O(n) | Fast index |\n| Linked list | O(n) | O(1) | Frequent inserts |\n| Hash map | O(1) avg | O(1) avg | Lookups |\n| Binary search tree | O(log n) | O(log n) | Sorted data |\n\nKey algorithms: binary search O(log n), merge/quick sort O(n log n), BFS/DFS for graphs, Dijkstra for shortest paths.\nPlan: learn arrays, strings, hashing and recursion first, then trees and graphs, then DP. Solve 2–3 problems a day and always state the time complexity."},
+{t:"Databases & SQL",k:["sql","database","dbms","mysql","normalization","join","primary key","nosql","mongodb","query","table"],a:"### Databases and SQL\nA relational database stores data in tables linked by keys.\n```\nSELECT s.name, c.title\nFROM students s JOIN courses c ON c.id = s.course_id\nWHERE s.year = 3 ORDER BY s.name;\n```\n**Normalisation** removes redundancy (1NF, 2NF, 3NF). **ACID** guarantees reliable transactions. Use NoSQL (MongoDB) for flexible, document-style data. Practise with SQLite, it needs no setup."},
+{t:"Computer networks",k:["network","osi","tcp","udp","ip address","subnet","dns","http","router","switch","tcp/ip","packet","firewall","ethernet"],a:"### Computer networks\n**OSI layers:** Physical, Data link, Network, Transport, Session, Presentation, Application.\n- **IP** addresses and routes packets; **TCP** is reliable and ordered; **UDP** is fast with no guarantee.\n- **DNS** turns names into IPs; **HTTP/HTTPS** carries the web; **DHCP** assigns addresses.\n- **Subnetting:** a /24 mask gives 256 addresses (254 usable).\n\nTry Wireshark on your own traffic to see these layers for real."},
+{t:"Operating systems",k:["operating system","process","thread","scheduling","deadlock","paging","virtual memory","semaphore","mutex","linux","kernel","rtos"],a:"### Operating systems\nAn OS manages the CPU, memory, files and devices.\n- **Process vs thread:** a process has its own memory; threads share it.\n- **Scheduling:** FCFS, SJF, round robin, priority.\n- **Deadlock** needs mutual exclusion, hold-and-wait, no pre-emption and circular wait; break any one.\n- **Virtual memory** uses paging to give each process its own address space.\n\nFor embedded work, learn an **RTOS** (FreeRTOS) with tasks, queues and semaphores."},
+{t:"Git & GitHub",k:["git","github","commit","branch","merge","pull request","repository","repo","gh-pages","github pages","version control","readme"],a:"### Git and GitHub\n```\ngit init\ngit add .\ngit commit -m \"Describe the change\"\ngit branch feature-x\ngit push origin main\n```\n- Commit small and often with clear messages.\n- Use branches for features and pull requests for review.\n- Never commit passwords or API keys. If you do, rotate the key at once.\n- **GitHub Pages** hosts static sites (like THE SPACE) free from Settings, then Pages.\n\nOn a phone, you can upload or edit files straight from the GitHub web interface."},
+{t:"Web development",k:["html","css","javascript","website","web development","frontend","backend","react","node","responsive","api","json","fetch"],a:"### Web development\n- **HTML** is structure, **CSS** is style, **JavaScript** is behaviour.\n- Build **responsive** pages with flexbox/grid and media queries; test on a phone first.\n- Call APIs with `fetch(url).then(r=>r.json())`.\n- Keep secrets (API keys) on a server, never in front-end code.\n\nPath: HTML/CSS, JavaScript, a framework (React), then Node.js/Express and a database. Host static sites on GitHub Pages, Netlify or Cloudflare Pages."},
+{t:"Thermodynamics & mechanical basics",k:["thermodynamics","entropy","enthalpy","heat","carnot","engine","stress","strain","torque","gear","fluid","bernoulli","mechanical","cad","solidworks"],a:"### Mechanical and thermal basics\n- **1st law:** energy is conserved (ΔU = Q − W). **2nd law:** entropy of an isolated system never decreases.\n- **Carnot efficiency:** η = 1 − Tc/Th (temperatures in kelvin).\n- **Stress** σ = F/A, **strain** ε = ΔL/L, and E = σ/ε (Young's modulus).\n- **Torque** τ = F × r; gears trade speed for torque.\n- **Bernoulli:** pressure drops where fluid speed rises.\n\nFor design, learn CAD (Fusion 360, SolidWorks) and simulate stress before you build."},
+{t:"Robotics & motors",k:["robot","robotics","servo","stepper","dc motor","line follower","arm","drone","quadcopter","encoder","ros","motor"],a:"### Robotics and motors\n- **DC motor:** simple, needs a driver (H-bridge) and PWM speed control.\n- **Servo:** position control by PWM pulse (1–2 ms).\n- **Stepper:** precise steps, great for 3D printers and CNC.\n- **Encoders** and IMUs give feedback; fuse them for navigation.\n\nBeginner projects: line follower (IR sensors plus PID), obstacle-avoiding car (ultrasonic), robotic arm with servos. Next level: ROS 2 and SLAM."},
+{t:"Renewable energy & EVs",k:["solar","renewable","wind","ev","electric vehicle","mppt","photovoltaic","energy storage","grid","smart grid"],a:"### Renewable energy and EVs\n- **Solar PV:** output depends on irradiance and temperature. **MPPT** controllers keep the panel at its maximum power point.\n- **Battery sizing:** capacity (Wh) = load (W) × hours ÷ usable depth of discharge.\n- **EVs:** battery pack, BMS, motor controller and charger; regenerative braking recovers energy.\n- **Smart grids** add sensing and control for balancing supply and demand.\n\nA good project: solar-powered IoT node with MPPT charging and deep-sleep firmware."},
+{t:"Project ideas",k:["project idea","project ideas","final year project","mini project","major project","suggest a project","what project","capstone","hackathon"],a:"### Project ideas that stand out\n**Embedded / IoT**\n- Smart energy meter with live dashboard (ESP32 + MQTT)\n- Air-quality monitor with alerts and a map\n- Smart irrigation using soil sensors and weather data\n\n**Robotics / Automation**\n- Autonomous line-follower with PID tuning\n- Floor-cleaning or inspection robot with obstacle avoidance\n\n**Software / AI**\n- Plant-disease detection from leaf photos\n- Campus resource search assistant\n\n**Electronics / VLSI**\n- Custom PCB data logger, or FPGA-based image filter\n\nA strong project has a clear problem, measurable results, a block diagram, test data and clean documentation. Tell me your branch and interests and I will narrow this down."},
+{t:"Project planning & documentation",k:["project plan","documentation","report","block diagram","problem statement","methodology","literature","abstract","presentation","viva","ppt"],a:"### Planning and documenting a project\n1. **Problem statement:** who has the problem and how big it is.\n2. **Objectives:** 3–4 measurable goals.\n3. **Literature/market survey:** what exists and what is missing.\n4. **Design:** block diagram, component selection, cost.\n5. **Implementation:** build in small tested stages.\n6. **Testing:** compare results with objectives, with tables and graphs.\n7. **Conclusion and future scope.**\n\nFor the viva, know every component's purpose, your formulas and the limits of your design."},
+{t:"Internships, resumes & careers",k:["internship","resume","cv","job","career","placement","interview","linkedin","skills","portfolio","opportunit","fresher","gate","higher studies","masters"],a:"### Careers and internships\n- **Resume:** one page, projects first (with results), then skills, education and achievements. Use numbers: reduced power by 30%.\n- **Portfolio:** GitHub repos with a clear README, photos or a demo video.\n- **Internships:** apply to startups, research labs and companies directly; show a relevant project in your first message.\n- **Interviews:** revise fundamentals of your branch, DSA basics and every line of your resume.\n- **Higher studies:** GATE, GRE or CAT depending on the goal.\n\nOpen the **Careers** and **Opportunities** sections of THE SPACE for curated links: [Careers](index.html#careers) · [Opportunities](index.html#opportunities)."},
+{t:"Study strategy",k:["study","exam","how to learn","preparation","time table","timetable","focus","motivation","semester","revision","notes","backlog"],a:"### Study strategy that works\n- **Understand before memorising:** explain each topic aloud in simple words.\n- **Active recall + spaced repetition:** test yourself after 1, 3, 7 and 21 days.\n- **Past papers:** solve them under time limits.\n- **Pomodoro:** 25 minutes of focus, 5 minutes of rest.\n- **Build to learn:** every concept gets a tiny experiment or code.\n\nTell me your subject and exam date and I will make a day-by-day plan."},
+{t:"Math for engineers",k:["matrix","eigenvalue","derivative","integral","differential equation","probability","statistics","calculus","complex number","linear algebra","taylor"],a:"### Engineering math essentials\n- **Linear algebra:** matrices solve systems; eigenvalues give modes and stability.\n- **Calculus:** derivative = rate of change, integral = accumulation.\n- **ODEs:** first-order RC response: v(t) = V(1 − e^(−t/RC)).\n- **Complex numbers:** e^(jθ) = cosθ + j·sinθ, the basis of phasors.\n- **Probability:** mean, variance, normal distribution, used for noise and reliability.\n\nTell me the exact problem and I will solve it step by step."},
+{t:"Troubleshooting hardware & code",k:["not working","debug","error","bug","troubleshoot","fix","issue","problem","fails","crash","stuck","no output","burnt","hot"],a:"### Systematic troubleshooting\n1. **Reproduce** the problem and write down exactly what happens vs what you expected.\n2. **Check power first:** correct voltage, common ground, enough current.\n3. **Isolate:** test each block alone (sensor, MCU, driver).\n4. **Measure:** multimeter for voltages, serial prints for code, oscilloscope or logic analyser for signals.\n5. **Change one thing at a time.**\n6. **Read the error message fully:** it usually names the file and line.\n\nPaste your code, circuit description and the exact error, and I will help narrow it down."}
+];
+
+var SITE=[
+ {k:["academics","syllabus","subject","notes","semester"],t:"Academics",u:"index.html#academics"},
+ {k:["video","youtube","lecture","course","learn"],t:"Video Learning",u:"index.html#learn-beyond"},
+ {k:["project"],t:"Projects",u:"index.html#projects"},
+ {k:["industry","company","companies"],t:"Industry",u:"index.html#industry"},
+ {k:["opportunit","scholarship","competition"],t:"Opportunities",u:"index.html#opportunities"},
+ {k:["career","job","internship"],t:"Careers",u:"index.html#careers"},
+ {k:["event","workshop","webinar"],t:"Events",u:"index.html#events"}
+];
+function tokens(s){return String(s).toLowerCase();}
+function score(entry,q){
+  var s=0; entry.k.forEach(function(k){
+    var kk=k.toLowerCase(), from=0, idx, hit=false;
+    while((idx=q.indexOf(kk,from))>-1){
+      var before=idx===0?" ":q.charAt(idx-1), after=q.charAt(idx+kk.length)||" ";
+      var startOk=/[^a-z0-9]/.test(before)||kk.charAt(0)===" ";
+      var endOk=/[^a-z0-9]/.test(after)||kk.charAt(kk.length-1)===" "||kk.length>=8||(/^(s|es)$/.test(q.substr(idx+kk.length,2).replace(/[^a-z]+.*$/,""))&&kk.length>=3);
+      if(startOk&&endOk){hit=true;break;}
+      from=idx+1;
+    }
+    if(hit){ s+= 1+Math.min(kk.length,12)/6; }
+  });
+  return s;
+}
+function byTitle(t){for(var i=0;i<KB.length;i++){if(KB[i].t.indexOf(t)===0)return KB[i];}return null;}
+function intentAnswer(low){
+  if(/(explain a difficult engineering|understand an engineering concept)/.test(low)){
+    return "### Let us learn a concept\nTell me the topic and your level, and I will explain it step by step with an example and a recap. Popular picks:\n- **Electronics:** op-amps, transistors, diodes, filters\n- **Digital:** logic gates, flip-flops, FPGA, Verilog\n- **Embedded:** Arduino, ESP32, I2C/SPI/UART, sensors\n- **Signals & comms:** Fourier transform, modulation, antennas\n- **Computing:** Python, Java, data structures, networks, SQL\n\nFor example, type **explain op-amps** or **how does the Fourier transform work**.";
+  }
+  if(/(turn an idea into|plan a technically meaningful project)/.test(low)){
+    var p=byTitle("Project planning"); return p.a+"\n\nShare your idea, branch and budget, and I will turn it into a block diagram and a build plan. For inspiration, type **project ideas**.";
+  }
+  if(/(understand this code or debug|debug this problem systematically)/.test(low)){
+    return byTitle("Troubleshooting").a;
+  }
+  if(/i have an idea i want to explore/.test(low)){
+    return "### Let us shape your idea\nAnswer these and I will help you sharpen it:\n1. **What problem** does it solve, and for whom?\n2. **What exists already**, and what is missing?\n3. **What is the smallest version** you could build in two weeks?\n4. **How will you measure** success?\n\nTell me the idea in one or two sentences to begin.";
+  }
+  return null;
+}
+function localAnswer(q){
+  var raw=q.trim(), low=tokens(raw);
+  if(/^(hi|hello|hey|yo|hola|namaste|good (morning|afternoon|evening))\b[\s!.?]*$/.test(low)){
+    return "Hello, supreme! I am ORBIT, your engineering guide inside THE SPACE. Ask me about electronics, programming, projects, internships or study plans, or tap a shortcut above.";
+  }
+  if((/\b(who are you|what are you|your name|what can you do|capabilities)\b/.test(low) || /^(help|help me|menu|options)[\s!?.]*$/.test(low)) && low.length<60){
+    return "### I am ORBIT\nYour engineering guide inside THE SPACE. I can:\n- Explain concepts in electronics, communication, VLSI, embedded systems, programming, networks, databases and more\n- Help you plan and document projects\n- Troubleshoot circuits and code step by step\n- Guide you on internships, resumes and study plans\n- Point you to the right section of THE SPACE\n\nTry: **explain op-amps**, **project ideas for ECE**, or **how does I2C work**.";
+  }
+  if(/^(thanks|thank you|thx|ty|great|awesome|nice)\b/.test(low)){return "You are welcome, supreme. Ask me anything else whenever you are ready.";}
+  var intent=intentAnswer(low); if(intent){lastTopic={t:"your idea",a:intent};return intent;}
+  /* quick calculators */
+  var calc=quickCalc(low); if(calc) return calc;
+  var ranked=KB.map(function(e){return {e:e,s:score(e,low)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;});
+  if(!ranked.length && lastTopic && /\b(more|example|explain|again|simpler|detail|why|how)\b/.test(low) && low.length<60){
+    return "Let me go deeper on **"+lastTopic.t+"**.\n\n"+lastTopic.a+"\n\nTell me the exact part you want broken down further, or give me a numerical problem and I will solve it step by step.";
+  }
+  if(!ranked.length){
+    var site=SITE.filter(function(s){return score(s,low)>0;});
+    var msg="I do not have a detailed answer for that in my built-in knowledge yet. Here is how to get the best help:\n- Rephrase with the key topic, for example **op-amp gain**, **I2C**, **PID tuning**, **Python lists**.\n- Add the context: your branch, what you tried and the exact error.\n";
+    if(site.length){msg+="\nRelevant sections of THE SPACE:\n"+site.map(function(s){return "- ["+s.t+"]("+s.u+")";}).join("\n")+"\n";}
+    msg+="\nTopics I cover well: circuits, diodes, transistors, op-amps, digital logic, FPGA, microcontrollers, protocols, IoT, signals, filters, communication, antennas, VLSI, control, power electronics, PCB, ML, Python, Java, C, DSA, SQL, networks, OS, Git, web, robotics, projects and careers.";
+    return msg;
+  }
+  var top=ranked[0].e; lastTopic=top;
+  var ans=top.a, rel=ranked.slice(1,3).filter(function(x){return x.s>=ranked[0].s*0.6;});
+  if(rel.length){ans+="\n\n**Related:** "+rel.map(function(x){return x.e.t;}).join(" · ");}
+  var site2=SITE.filter(function(s){return score(s,low)>0;})[0];
+  if(site2 && ans.indexOf(site2.u)<0){ans+="\n\nMore resources: ["+site2.t+" on THE SPACE]("+site2.u+")";}
+  return ans;
+}
+function num(s){return parseFloat(s);}
+function fmt(n){return (Math.round(n*10000)/10000).toString();}
+function quickCalc(low){
+  var v=low.match(/\bv\s*=\s*([\d.]+)\s*v?/), i=low.match(/\bi\s*=\s*([\d.]+)\s*(m?a)?/), r=low.match(/\br\s*=\s*([\d.]+)\s*(k|m)?\s*(?:ohm|Ω|ω)?/);
+  if((v&&r)||(v&&i)||(i&&r)){
+    var V=v?num(v[1]):null, I=i?num(i[1])*(i[2]==="ma"?0.001:1):null, R=r?num(r[1])*(r[2]==="k"?1000:r[2]==="m"?1e6:1):null;
+    if(V==null)V=I*R; else if(I==null)I=V/R; else if(R==null)R=V/I;
+    if(isFinite(V)&&isFinite(I)&&isFinite(R)&&R>0){
+      return "### Ohm's law result\n- **V** = "+fmt(V)+" V\n- **I** = "+fmt(I)+" A ("+fmt(I*1000)+" mA)\n- **R** = "+fmt(R)+" Ω\n- **Power** P = V×I = "+fmt(V*I)+" W\n\nUse a resistor rated at least twice the calculated power.";
+    }
+  }
+  var m=low.match(/^\s*(?:calculate|calc|solve|what is|what's|=)?\s*([-+*/%^().\d\s]{3,})\s*\??$/);
+  if(m && /[-+*/^%]/.test(m[1]) && /\d/.test(m[1])){
+    try{
+      var ex=m[1].replace(/\^/g,"**"); if(!/^[-+*/%().\d\s]+$/.test(ex))return null;
+      var val=Function('"use strict";return ('+ex+')')(); if(typeof val==="number"&&isFinite(val)){return "**"+m[1].trim()+" = "+fmt(val)+"**";}
+    }catch(e){}
+  }
+  return null;
+}
+
+/* ---------- optional live AI ---------- */
+function apiAnswer(){
+  var ctrl=("AbortController" in window)?new AbortController():null, t=setTimeout(function(){if(ctrl)ctrl.abort();},30000);
+  return fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history.slice(-12)}),signal:ctrl?ctrl.signal:undefined})
+   .then(function(r){clearTimeout(t); if(!r.ok)throw new Error("HTTP "+r.status); return r.json();})
+   .then(function(d){ if(!d||!d.answer)throw new Error("Empty reply"); return String(d.answer); });
+}
+
+/* ---------- chat UI ---------- */
+function showChat(){ if(els.welcome&&!els.welcome.hidden){els.welcome.hidden=true;} }
+function showWelcome(){ if(els.welcome){els.welcome.hidden=false;} }
+function scrollDown(){ var s=els.messages; if(!s)return; setTimeout(function(){ try{ s.lastElementChild&&s.lastElementChild.scrollIntoView({block:"end",behavior:"smooth"}); }catch(e){window.scrollTo(0,document.body.scrollHeight);} },30); }
+function addMsg(role,text,opts){
+  opts=opts||{}; showChat();
+  var wrap=document.createElement("article"); wrap.className="message "+role;
+  var av=document.createElement("div"); av.className="avatar"; av.setAttribute("aria-hidden","true"); av.textContent=role==="user"?"You":"O";
+  var body=document.createElement("div"); body.className="message-body";
+  wrap.appendChild(av); wrap.appendChild(body); els.messages.appendChild(wrap);
+  if(role==="user"){ body.textContent=text; }
+  else if(opts.thinking){ body.innerHTML='<div class="thinking" aria-label="ORBIT is thinking"><span></span><span></span><span></span></div>'; }
+  else { renderBot(body,text); }
+  scrollDown(); return {wrap:wrap,body:body};
+}
+function renderBot(body,text){
+  body.innerHTML=md(text);
+  var bar=document.createElement("div"); bar.className="msg-actions";
+  var listen=document.createElement("button"); listen.type="button"; listen.className="speech-replay"; listen.setAttribute("aria-label","Listen to this answer"); listen.innerHTML="🔊 Listen";
+  listen.addEventListener("click",function(){
+    if(speaking){stopSpeech();listen.innerHTML="🔊 Listen";return;}
+    listen.innerHTML="⏹ Stop";
+    speak(text,{deep:false,onend:function(){listen.innerHTML="🔊 Listen";}});
+  });
+  var copy=document.createElement("button"); copy.type="button"; copy.className="speech-replay"; copy.setAttribute("aria-label","Copy this answer"); copy.innerHTML="⧉ Copy";
+  copy.addEventListener("click",function(){ copyText(text).then(function(ok){toast(ok?"Answer copied":"Copy is not available here");}); });
+  bar.appendChild(listen); bar.appendChild(copy); body.appendChild(bar);
+}
+function copyText(t){
+  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(t).then(function(){return true;},function(){return fallbackCopy(t);});}
+  return Promise.resolve(fallbackCopy(t));
+}
+function fallbackCopy(t){
+  try{var ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;opacity:0;top:0;left:0";document.body.appendChild(ta);ta.focus();ta.select();var ok=document.execCommand("copy");document.body.removeChild(ta);return ok;}catch(e){return false;}
+}
+function save(){ sset("orbit_chat_v1",JSON.stringify(history.slice(-40))); }
+function setBusy(b){ busy=b; els.send.disabled=b||!els.q.value.trim(); }
+
+function ask(text){
+  text=String(text||"").trim(); if(!text||busy)return;
+  if(listening){stopMic();}
+  stopSpeech();
+  history.push({role:"user",content:text}); addMsg("user",text);
+  els.q.value=""; autosize(); setBusy(true);
+  var pending=addMsg("assistant","",{thinking:true});
+  var p = API ? apiAnswer().catch(function(err){ toast("Live AI unavailable, using built-in knowledge."); return localAnswer(text); })
+              : new Promise(function(res){ setTimeout(function(){res(localAnswer(text));},450+Math.random()*350); });
+  p.then(function(ans){
+    history.push({role:"assistant",content:ans}); save();
+    typeOut(pending.body,ans,function(){
+      setBusy(false); scrollDown();
+      if(speakOn){speak(ans,{deep:false});}
+    });
+  }).catch(function(){
+    pending.body.innerHTML="<p>Something went wrong while preparing that answer. Please try again.</p>"; setBusy(false);
+  });
+}
+function typeOut(body,text,done){
+  /* reveal progressively, then render final markdown with action buttons */
+  var i=0, step=Math.max(6,Math.ceil(text.length/90)); clearInterval(typingTimer);
+  body.innerHTML="";
+  typingTimer=setInterval(function(){
+    i+=step;
+    if(i>=text.length){clearInterval(typingTimer);renderBot(body,text);done();return;}
+    body.innerHTML=md(text.slice(0,i)); scrollDown();
+  },28);
+}
+
+/* ---------- composer ---------- */
+function autosize(){ els.q.style.height="auto"; els.q.style.height=Math.min(els.q.scrollHeight,180)+"px"; els.send.disabled=busy||!els.q.value.trim(); }
+els.q.addEventListener("input",autosize);
+els.q.addEventListener("keydown",function(e){
+  if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing&&window.matchMedia&&window.matchMedia("(pointer:fine)").matches){e.preventDefault();ask(els.q.value);}
+});
+els.form.addEventListener("submit",function(e){e.preventDefault();ask(els.q.value);});
+
+/* shortcut buttons: rail + suggestion chips */
+document.querySelectorAll("[data-prompt]").forEach(function(b){
+  b.addEventListener("click",function(){
+    var p=b.getAttribute("data-prompt"); if(!p)return;
+    document.querySelectorAll(".rail-btn").forEach(function(x){x.classList.remove("active");}); if(b.classList.contains("rail-btn"))b.classList.add("active");
+    ask(p);
+  });
+});
+
+/* new chat */
+function newChat(){
+  stopSpeech(); stopMic(); clearInterval(typingTimer);
+  history=[]; lastTopic=null; sset("orbit_chat_v1","[]"); els.messages.innerHTML=""; showWelcome(); setBusy(false);
+  els.q.value=""; autosize(); window.scrollTo(0,0);
+  document.querySelectorAll(".rail-btn").forEach(function(x){x.classList.toggle("active",x.id==="newChat");});
+  toast("New conversation started");
+}
+$("newChat").addEventListener("click",newChat);
+$("topNew").addEventListener("click",newChat);
+
+/* theme */
+function applyTheme(t){
+  if(t==="black"){document.documentElement.setAttribute("data-theme","black");} else {document.documentElement.removeAttribute("data-theme");}
+  var m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute("content",t==="black"?"#03060b":"#03152d");
+}
+applyTheme(sget("orbit_theme")==="black"?"black":"blue");
+$("topTheme").addEventListener("click",function(){
+  var next=document.documentElement.getAttribute("data-theme")==="black"?"blue":"black";
+  applyTheme(next); sset("orbit_theme",next); toast(next==="black"?"Midnight black theme":"Deep blue theme");
+});
+
+/* spoken answers toggle */
+function setSpeakOn(on){
+  speakOn=on; els.speak.setAttribute("aria-pressed",on?"true":"false");
+  els.speak.setAttribute("aria-label",on?"Turn off spoken answers":"Turn on spoken answers");
+  els.speak.classList.toggle("on",on);
+}
+els.speak.addEventListener("click",function(){
+  if(!synth){toast("Voice output is not supported in this browser.");return;}
+  setSpeakOn(!speakOn);
+  if(speakOn){ var u=new SpeechSynthesisUtterance(" "); u.volume=0; try{synth.speak(u);}catch(e){} toast("Spoken answers on"); }
+  else{ stopSpeech(); toast("Spoken answers off"); }
+});
+
+/* replay greeting */
+if(els.replay){
+  els.replay.addEventListener("click",function(){
+    if(speaking){stopSpeech();return;}
+    playGreeting(els.title);
+  });
+}
+
+/* ---------- voice input ---------- */
+var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, listening=false, baseText="";
+function setListening(on){
+  listening=on; els.mic.setAttribute("aria-pressed",on?"true":"false"); els.mic.classList.toggle("on",on);
+  els.mic.setAttribute("aria-label",on?"Stop voice input":"Start voice input");
+}
+function stopMic(){ if(rec){try{rec.stop();}catch(e){}} setListening(false); }
+els.mic.addEventListener("click",function(){
+  if(!SR){toast("Voice input is not supported in this browser. Try Chrome or Safari.");return;}
+  if(listening){stopMic();return;}
+  stopSpeech();
+  try{
+    rec=new SR(); rec.lang=(navigator.language||"en-US"); rec.interimResults=true; rec.continuous=false; rec.maxAlternatives=1;
+    baseText=els.q.value?els.q.value.replace(/\s+$/,"")+" ":"";
+    rec.onstart=function(){setListening(true);toast("Listening… speak now");};
+    rec.onresult=function(e){
+      var t="",final=false; for(var i=e.resultIndex;i<e.results.length;i++){t+=e.results[i][0].transcript; if(e.results[i].isFinal)final=true;}
+      els.q.value=baseText+t; autosize();
+      if(final){baseText=els.q.value+" ";}
+    };
+    rec.onerror=function(e){
+      setListening(false); var c=e&&e.error;
+      if(c==="not-allowed"||c==="service-not-allowed"){toast("Microphone permission is blocked. Allow it in your browser settings.");}
+      else if(c==="no-speech"){toast("I did not hear anything. Tap the mic and try again.");}
+      else if(c==="audio-capture"){toast("No microphone was found.");}
+      else if(c==="network"){toast("Voice input needs an internet connection.");}
+      else if(c!=="aborted"){toast("Voice input stopped. Please try again.");}
+    };
+    rec.onend=function(){ var had=listening; setListening(false); if(had&&els.q.value.trim()){els.q.focus();} };
+    rec.start();
+  }catch(err){setListening(false);toast("Could not start the microphone.");}
+});
+
+/* ---------- restore + boot ---------- */
+function restore(){
+  var saved=null; try{saved=JSON.parse(sget("orbit_chat_v1")||"[]");}catch(e){saved=[];}
+  if(!Array.isArray(saved)||!saved.length)return;
+  saved.forEach(function(m){
+    if(!m||typeof m.content!=="string"||(m.role!=="user"&&m.role!=="assistant"))return;
+    history.push({role:m.role,content:m.content}); addMsg(m.role,m.content);
+  });
+}
+restore(); autosize(); initIntro();
+window.addEventListener("pagehide",stopSpeech);
+document.addEventListener("visibilitychange",function(){if(document.hidden){stopSpeech();}});
+window.OrbitDebug={ask:ask,localAnswer:localAnswer};
+})();
+
+</script>
 </body>
 </html>

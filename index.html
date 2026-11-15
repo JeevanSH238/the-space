@@ -238,7 +238,7 @@ footer{padding:40px 0 70px}
     <a class="brand" href="#home">THE SPACE<small>YOUR SPACE FOR ENGINEERING RESOURCES</small></a>
     <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="navlinks">Menu</button>
     <nav class="navlinks" id="navlinks" aria-label="Main navigation">
-      <a href="#academics">Academics</a><a href="#learn-beyond">Video Learning</a><a href="#projects">Projects</a><a href="#industry">Industry</a><a href="#opportunities">Opportunities</a><a href="#careers">Careers</a><a href="#events">Events</a><a href="#feedback">Feedback</a><a class="orbit-nav-link" href="ORBIT.html?welcome=1">Ask ORBIT ↗</a>
+      <a href="#academics">Academics</a><a href="#learn-beyond">Video Learning</a><a href="#projects">Projects</a><a href="#industry">Industry</a><a href="#opportunities">Opportunities</a><a href="#careers">Careers</a><a href="#events">Events</a><a class="orbit-nav-link" href="ORBIT.html?welcome=1">Ask ORBIT ↗</a>
     </nav>
   </div>
 </header>
@@ -413,22 +413,9 @@ footer{padding:40px 0 70px}
  </div>
 </section>
 
-<section class="section" id="feedback">
- <div class="container">
-  <div class="heading"><span class="kicker">07 / Feedback</span><h2>Help improve THE SPACE.</h2><p>Use this form to draft a suggestion or report a broken link. This standalone version does not send responses to a server.</p></div>
-  <form class="feedback-form" id="feedbackForm">
-   <label>Type of feedback<select id="feedbackType" required><option value="Suggestion">Suggestion</option><option value="Broken link">Broken link</option><option value="Incorrect information">Incorrect information</option><option value="Resource request">Resource request</option></select></label>
-   <label>Message<textarea id="feedbackMessage" required maxlength="1200" placeholder="Describe your suggestion or the issue..."></textarea></label>
-   <button class="btn primary" type="submit">Prepare feedback email</button>
-   <p class="form-help">This opens your email app with a draft. It will not send anything automatically. Update the placeholder email address in the code when you have a dedicated project email.</p>
-   <p class="form-help" id="feedbackStatus" role="status"></p>
-  </form>
- </div>
-</section>
-
 <section class="section" id="about">
  <div class="container">
-  <div class="heading"><span class="kicker">08 / About</span><h2>A space to learn and build.</h2><p>THE SPACE is an independent student initiative intended to make useful learning resources easier to discover. Its guiding principle is simple: be curious, be honest about sources, respect the work of others, and use knowledge responsibly.</p></div>
+  <div class="heading"><span class="kicker">07 / About</span><h2>A space to learn and build.</h2><p>THE SPACE is an independent student initiative intended to make useful learning resources easier to discover. Its guiding principle is simple: be curious, be honest about sources, respect the work of others, and use knowledge responsibly.</p></div>
   <div class="callout"><h3>Transparency matters</h3><p>This project is not affiliated with or endorsed by VTU, any college, or the companies linked here. External links lead to their respective owners. Resource links, curricula, programmes and eligibility can change. Verify important information at its official source before relying on it.</p></div>
  </div>
 </section>
@@ -518,22 +505,6 @@ footer{padding:40px 0 70px}
   });
   projectSearch.addEventListener('input', filterProjects);
   filterProjects();
-
-  document.getElementById('feedbackForm').addEventListener('submit', function(event){
-    event.preventDefault();
-    const type = document.getElementById('feedbackType').value;
-    const message = document.getElementById('feedbackMessage').value.trim();
-    if(!message) return;
-    // Replace this placeholder with a dedicated project contact address before using.
-    const recipient = 'YOUR_PROJECT_EMAIL@example.com';
-    const subject = encodeURIComponent('THE SPACE feedback: ' + type);
-    const body = encodeURIComponent('Feedback type: ' + type + '\n\n' + message);
-    if(recipient === 'YOUR_PROJECT_EMAIL@example.com'){
-      document.getElementById('feedbackStatus').textContent = 'Your feedback draft is ready, but no project email has been configured yet. Copy your message and save it, or configure a dedicated email address in the code.';
-      return;
-    }
-    window.location.href = 'mailto:' + recipient + '?subject=' + subject + '&body=' + body;
-  });
 })();
 
 // Searchable branch-wise lab resource directory.
@@ -672,6 +643,21 @@ filterLabCards();
 #orbit-voice-transition .voice-line span.active{color:#7fe7ff;text-shadow:0 0 16px rgba(71,216,255,.8)}
 #orbit-voice-transition .voice-note{margin-top:14px;color:#9eb8d5;font-size:12px;letter-spacing:.08em}
 </style>
+<style>
+.orbit-fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:9000;display:flex;align-items:center;gap:10px;text-decoration:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.orbit-fab-label{padding:9px 14px;border-radius:999px;font:700 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:#e8f4ff;background:rgba(4,16,34,.88);border:1px solid rgba(110,190,255,.38);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none;white-space:nowrap}
+.orbit-fab:hover .orbit-fab-label,.orbit-fab:focus-visible .orbit-fab-label{opacity:1;transform:none}
+.orbit-fab-orb{position:relative;width:58px;height:58px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 32% 25%,#c8f8ff,#1688f0 24%,#071b52 62%,#010617 100%);border:1px solid rgba(133,225,255,.85);box-shadow:0 0 0 4px rgba(22,140,255,.12),0 12px 36px rgba(0,120,255,.5),inset 0 0 18px rgba(80,210,255,.35);animation:orbitFabSpin 9s linear infinite;transition:transform .2s}
+.orbit-fab-orb:before,.orbit-fab-orb:after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid transparent;border-top-color:#62eaff;border-right-color:rgba(165,140,255,.85);animation:orbitFabSpin 3.4s linear infinite}
+.orbit-fab-orb:after{inset:-13px;border-top-color:rgba(165,140,255,.55);border-right-color:transparent;border-bottom-color:rgba(98,234,255,.4);animation-duration:5.6s;animation-direction:reverse}
+.orbit-fab:hover .orbit-fab-orb{transform:scale(1.07)}
+.orbit-fab:focus-visible{outline:2px solid #62eaff;outline-offset:8px;border-radius:999px}
+@keyframes orbitFabSpin{to{transform:rotate(360deg)}}
+@media(max-width:560px){.orbit-fab-orb{width:52px;height:52px}}
+@media(prefers-reduced-motion:reduce){.orbit-fab-orb,.orbit-fab-orb:before,.orbit-fab-orb:after{animation:none}}
+@media print{.orbit-fab{display:none}}
+</style>
+<a class="orbit-fab" href="ORBIT.html?welcome=1" aria-label="Ask ORBIT, your engineering guide" title="Ask ORBIT"><span class="orbit-fab-label">Ask ORBIT</span><span class="orbit-fab-orb" aria-hidden="true"></span></a>
 <div id="orbit-voice-transition" role="status" aria-live="polite"><div class="voice-card"><div class="voice-orb"></div><div class="voice-line" id="orbit-transition-text">Hello supreme, what are you looking for?</div><div class="voice-note">ORBIT · THE SPACE</div></div></div>
 <script>
 (function(){
@@ -693,15 +679,19 @@ filterLabCards();
       var english = voices.filter(function(v){return /^en([_-]|$)/i.test(v.lang);});
       var voice = english.find(function(v){return /david|daniel|george|james|mark|guy|alex|aaron/i.test(v.name);}) || english[0];
       if(voice) utterance.voice=voice;
-      utterance.lang='en-US';utterance.rate=0.76;utterance.pitch=0.42;utterance.volume=1;
+      utterance.lang='en-US';utterance.rate=0.68;utterance.pitch=0.05;utterance.volume=1;
+      var gotB=false;
       utterance.onboundary=function(e){
+        gotB=true;
         if(!line || (e.name && e.name!=='word'))return;
         var spans=Array.prototype.slice.call(line.children), index=0, total=0;
         for(var i=0;i<spans.length;i++){var next=total+spans[i].textContent.length;if(e.charIndex<next){index=i;break;}total=next;index=Math.min(i+1,spans.length-1);}
         spans.forEach(function(span,i){span.classList.toggle('active',i===index);});
       };
       utterance.onend=go;utterance.onerror=go;
-      try{synth.speak(utterance);window.setTimeout(go,9000);}catch(e){go();}
+      try{synth.speak(utterance);window.setTimeout(go,11000);
+        window.setTimeout(function(){ if(gotB||!line)return; var sp=Array.prototype.filter.call(line.children,function(s){return s.textContent.trim();}); sp.forEach(function(s,i){window.setTimeout(function(){ if(gotB)return; Array.prototype.forEach.call(line.children,function(x){x.classList.remove('active');}); s.classList.add('active'); },i*430);}); },700);
+      }catch(e){go();}
     });
   });
 })();
