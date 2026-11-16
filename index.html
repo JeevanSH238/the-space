@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' blob: data:; font-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com https://*.workers.dev; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-src 'none'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#000000">
@@ -33,7 +36,7 @@ header{position:sticky;top:0;z-index:100;background:rgba(8,8,8,.96);border-botto
 .brand{font-size:20px;font-weight:800;letter-spacing:1px}.brand small{display:block;font-size:9px;letter-spacing:1.3px;color:var(--muted);font-weight:500}
 .navlinks{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:12px;color:#c8c8c8}
 .navlinks a:hover,.textlink:hover{color:#fff;text-decoration:underline;text-underline-offset:4px}
-.orbit-nav-link{background:#2563eb;color:#fff!important;padding:9px 13px;border-radius:999px;font-weight:800}.orbit-nav-link:hover{background:#1d4ed8;text-decoration:none!important}
+.orbit-nav-link{background:#ff1e27;color:#fff!important;padding:9px 13px;border-radius:999px;font-weight:800}.orbit-nav-link:hover{background:#e0141c;text-decoration:none!important}
 .menu-btn{display:none;background:#111;color:#fff;border:1px solid #444;border-radius:8px;padding:8px 10px}
 .hero{padding:76px 0 62px;border-bottom:1px solid var(--line)}
 .eyebrow,.tag{display:inline-block;background:var(--soft);border:1px solid var(--line);border-radius:30px;padding:5px 10px;font-size:10px;color:#ddd;letter-spacing:.5px}
@@ -139,33 +142,33 @@ footer{padding:28px 0}.foot{display:flex;justify-content:space-between;align-ite
 
 <style id="spatial-ui">
 /* ===== SPATIAL UI LAYER ===== */
-:root{--ink:#f4f6fb;--mute:#aeb7c9;--glass2:rgba(255,255,255,.1);--edge:rgba(255,255,255,.14);--ice:#9cc9ff;--lilac:#b9a7ff;--sh:0 1px 0 rgba(255,255,255,.2) inset,0 -1px 0 rgba(255,255,255,.03) inset,0 40px 70px -42px rgba(0,0,0,.95);--px:0;--py:0}
-html{background:#05060a}
+:root{--ink:#f4f6fb;--mute:#aeb7c9;--glass2:rgba(255,255,255,.1);--edge:rgba(255,255,255,.14);--ice:#ff6b6b;--lilac:#ff1e27;--sh:0 1px 0 rgba(255,255,255,.2) inset,0 -1px 0 rgba(255,255,255,.03) inset,0 40px 70px -42px rgba(0,0,0,.95);--px:0;--py:0}
+html{background:#070709}
 body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:transparent;color:var(--ink);-webkit-font-smoothing:antialiased}
-.space-scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(120% 80% at 50% -10%,#111829 0%,#07080d 55%,#030308 100%)}
+.space-scene{position:fixed;inset:0;z-index:-1;overflow:hidden;pointer-events:none;background:radial-gradient(120% 80% at 50% -10%,#14090b 0%,#070709 55%,#030304 100%)}
 .space-scene i{position:absolute;border-radius:50%;filter:blur(70px);will-change:transform}
-.space-scene .o1{width:46vmax;height:46vmax;left:-12vmax;top:-12vmax;background:radial-gradient(circle,rgba(110,160,255,.38),transparent 65%);transform:translate3d(calc(var(--px)*34px),calc(var(--py)*34px),0)}
+.space-scene .o1{width:46vmax;height:46vmax;left:-12vmax;top:-12vmax;background:radial-gradient(circle,rgba(255,30,39,.38),transparent 65%);transform:translate3d(calc(var(--px)*34px),calc(var(--py)*34px),0)}
 .space-scene .o2{width:42vmax;height:42vmax;right:-14vmax;top:20vh;background:radial-gradient(circle,rgba(185,167,255,.28),transparent 65%);transform:translate3d(calc(var(--px)*-52px),calc(var(--py)*-40px),0)}
 .space-scene .o3{width:38vmax;height:38vmax;left:28vw;bottom:-22vmax;background:radial-gradient(circle,rgba(120,230,210,.17),transparent 65%);transform:translate3d(calc(var(--px)*22px),calc(var(--py)*-22px),0)}
 .space-scene b{position:absolute;left:50%;top:34vh;aspect-ratio:1;border-radius:50%;border:1px solid rgba(255,255,255,.07)}
 .space-scene .r1{width:min(130vmin,1200px);transform:translate(-50%,-50%) perspective(900px) rotateX(72deg) translate3d(calc(var(--px)*-16px),calc(var(--py)*-16px),0)}
-.space-scene .r2{width:min(88vmin,800px);border-color:rgba(156,201,255,.1);transform:translate(-50%,-50%) perspective(900px) rotateX(72deg) translate3d(calc(var(--px)*10px),calc(var(--py)*10px),0)}
+.space-scene .r2{width:min(88vmin,800px);border-color:rgba(255,107,107,.1);transform:translate(-50%,-50%) perspective(900px) rotateX(72deg) translate3d(calc(var(--px)*10px),calc(var(--py)*10px),0)}
 
 header{background:transparent!important;border:0!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important;padding:14px 0 0}
-.navbar{min-height:60px;padding:0 10px 0 24px;border-radius:999px;background:rgba(18,22,34,.5);border:1px solid var(--edge);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:var(--sh);transition:background .3s}
-header.scrolled .navbar{background:rgba(10,12,20,.74)}
+.navbar{min-height:60px;padding:0 10px 0 24px;border-radius:999px;background:rgba(14,14,16,.55);border:1px solid var(--edge);backdrop-filter:blur(28px) saturate(1.6);-webkit-backdrop-filter:blur(28px) saturate(1.6);box-shadow:var(--sh);transition:background .3s}
+header.scrolled .navbar{background:rgba(8,8,10,.82)}
 .brand{font-size:17px;letter-spacing:.14em}
 .navlinks{gap:2px;font-size:12.5px;color:var(--mute)}
 .navlinks a{padding:9px 12px;border-radius:999px;transition:background .25s,color .25s}
 .navlinks a:hover{background:var(--glass2);color:#fff;text-decoration:none}
-.orbit-nav-link{background:linear-gradient(135deg,var(--ice),var(--lilac))!important;color:#07101f!important;padding:10px 16px!important;box-shadow:0 8px 30px -8px rgba(156,201,255,.8)}
+.orbit-nav-link{background:linear-gradient(135deg,var(--ice),var(--lilac))!important;color:#07101f!important;padding:10px 16px!important;box-shadow:0 8px 30px -8px rgba(255,107,107,.8)}
 .menu-btn{background:var(--glass2);border-color:var(--edge);border-radius:999px;padding:9px 16px}
 
 .card,.card:hover,.callout,.quick-link,.quick-link:hover,.stat,details,.global-result-card,.global-result-project,.branch-finder{background:radial-gradient(420px circle at var(--mx,50%) var(--my,-30%),rgba(255,255,255,.13),transparent 45%),linear-gradient(150deg,rgba(255,255,255,.085),rgba(255,255,255,.025));border:1px solid var(--edge);border-radius:26px;backdrop-filter:blur(18px) saturate(1.5);-webkit-backdrop-filter:blur(18px) saturate(1.5);box-shadow:var(--sh);transition:transform .25s ease-out,border-color .3s,box-shadow .35s}
 .card,.quick-link{padding:24px}
-.card:hover,.quick-link:hover{border-color:rgba(255,255,255,.3);transform:perspective(900px) translateY(-6px) rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 50px 80px -40px rgba(0,0,0,1),0 0 60px -30px rgba(156,201,255,.5)}
+.card:hover,.quick-link:hover{border-color:rgba(255,255,255,.3);transform:perspective(900px) translateY(-6px) rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));box-shadow:0 1px 0 rgba(255,255,255,.28) inset,0 50px 80px -40px rgba(0,0,0,1),0 0 60px -30px rgba(255,107,107,.5)}
 .card h3{font-size:17px;letter-spacing:-.01em}.card p,.card li{color:var(--mute)}
-.card .tag,.eyebrow{background:rgba(156,201,255,.1);border:1px solid rgba(156,201,255,.25);color:#cfe3ff;border-radius:999px;padding:5px 12px}
+.card .tag,.eyebrow{background:rgba(255,107,107,.1);border:1px solid rgba(255,107,107,.25);color:#f2e8e8;border-radius:999px;padding:5px 12px}
 .card .meta{border-top-color:var(--edge)}
 .grid{gap:20px}.callout{padding:30px;border-radius:30px}
 .step{border-top:1px solid var(--edge)}
@@ -174,10 +177,10 @@ details{border-radius:20px}
 .hero{border:0;padding:clamp(48px,8vw,110px) 0 36px}
 .hero .container{display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);column-gap:clamp(28px,5vw,76px);align-items:start;perspective:1400px}
 .hero .container>*{grid-column:1}
-.hero h1{font-size:clamp(44px,7.2vw,92px);letter-spacing:-.045em;line-height:1;background:linear-gradient(180deg,#fff 35%,#9fb0cf);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
+.hero h1{font-size:clamp(44px,7.2vw,92px);letter-spacing:-.045em;line-height:1;background:linear-gradient(180deg,#fff 35%,#b9b9c6);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:700}
 .hero p{color:var(--mute)}
 .hero .space-tagline{letter-spacing:.22em!important;color:var(--ice)!important}
-.hero .callout{grid-column:2;grid-row:1/span 5;align-self:center;margin:0;padding:38px;border-radius:36px;position:relative;transform-style:preserve-3d;transform:rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));transition:transform .2s ease-out;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 70px 110px -50px #000,0 0 90px -40px rgba(156,201,255,.5)}
+.hero .callout{grid-column:2;grid-row:1/span 5;align-self:center;margin:0;padding:38px;border-radius:36px;position:relative;transform-style:preserve-3d;transform:rotateX(calc(var(--ty,0)*1deg)) rotateY(calc(var(--tx,0)*1deg));transition:transform .2s ease-out;box-shadow:0 1px 0 rgba(255,255,255,.25) inset,0 70px 110px -50px #000,0 0 90px -40px rgba(255,107,107,.5)}
 .hero .callout::after{content:"";position:absolute;inset:18px -18px -18px 18px;border-radius:36px;border:1px solid rgba(255,255,255,.08);background:linear-gradient(150deg,rgba(255,255,255,.05),transparent);transform:translateZ(-60px);z-index:-1}
 .hero .callout h3{font-size:clamp(22px,2.6vw,30px);line-height:1.2;letter-spacing:-.02em;margin-bottom:12px}
 .hero .callout p{font-size:15px}
@@ -186,7 +189,7 @@ details{border-radius:20px}
 .hero .notice{grid-row:6}
 .btn{border-radius:999px;padding:13px 24px;font-size:13px;transition:transform .25s,box-shadow .3s}
 .btn:hover{opacity:1;transform:translateY(-2px)}
-.btn.primary{background:#fff;color:#06080f;border-color:#fff;box-shadow:0 12px 40px -12px rgba(156,201,255,.8)}
+.btn.primary{background:#fff;color:#06080f;border-color:#fff;box-shadow:0 12px 40px -12px rgba(255,107,107,.8)}
 .btn.secondary{background:var(--glass2);color:#fff;border-color:var(--edge);backdrop-filter:blur(16px)}
 
 .quick-access,.section{background:transparent;border:0}
@@ -200,18 +203,18 @@ details{border-radius:20px}
 .global-search-wrap{background:transparent;border:0;padding:6px 0 0}
 .global-search-inner{width:min(1120px,92%);margin:18px auto 0;padding:18px 22px;border-radius:28px;background:linear-gradient(150deg,rgba(255,255,255,.08),rgba(255,255,255,.025));border:1px solid var(--edge);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);box-shadow:var(--sh)}
 #globalResourceSearch,#branchSearch,.tools input,.tools select,.feedback-form input,.feedback-form select,.feedback-form textarea,.selector-row select{background:rgba(255,255,255,.06);border:1px solid var(--edge);border-radius:16px;color:#fff}
-#globalResourceSearch:focus,#branchSearch:focus,.tools input:focus,.feedback-form input:focus,.feedback-form select:focus,.feedback-form textarea:focus{border-color:var(--ice);box-shadow:0 0 0 4px rgba(156,201,255,.18);outline:none}
+#globalResourceSearch:focus,#branchSearch:focus,.tools input:focus,.feedback-form input:focus,.feedback-form select:focus,.feedback-form textarea:focus{border-color:var(--ice);box-shadow:0 0 0 4px rgba(255,107,107,.18);outline:none}
 #globalSearchClear,.pill,.level-btn,.category-chip{background:rgba(255,255,255,.06);border:1px solid var(--edge);border-radius:999px;color:#eef2fb}
 .pill.active,.level-btn.active,.category-chip.active,.category-chip:hover{background:#fff;color:#06080f;border-color:#fff}
 
 footer{padding:40px 0 70px}
 .foot{padding:22px 28px;border-radius:30px;background:linear-gradient(150deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid var(--edge);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
 
-.orbit-launch{background:linear-gradient(135deg,var(--ice),var(--lilac));border:1px solid rgba(255,255,255,.5);color:#07101f;box-shadow:0 14px 50px -10px rgba(156,201,255,.7)}
+.orbit-launch{background:linear-gradient(135deg,var(--ice),var(--lilac));border:1px solid rgba(255,255,255,.5);color:#07101f;box-shadow:0 14px 50px -10px rgba(255,107,107,.7)}
 .orbit-panel{background:rgba(14,18,30,.62);backdrop-filter:blur(36px) saturate(1.6);-webkit-backdrop-filter:blur(36px) saturate(1.6);border:1px solid var(--edge);border-radius:30px;box-shadow:var(--sh),0 60px 120px -40px #000}
 .orbit-head{background:transparent;border-color:var(--edge)}
 .orbit-msg.bot{background:rgba(255,255,255,.07);border-color:var(--edge)}
-.orbit-msg.user{background:linear-gradient(135deg,#dbe9ff,#d3c8ff)}
+.orbit-msg.user{background:linear-gradient(135deg,#f2e8e8,#f2e8e8)}
 .orbit-form{border-color:var(--edge)}.orbit-form input{background:rgba(255,255,255,.06);border-color:var(--edge)}
 .orbit-form button{background:linear-gradient(135deg,var(--ice),var(--lilac))}
 :focus-visible{outline:2px solid var(--ice);outline-offset:3px}
@@ -220,6 +223,7 @@ footer{padding:40px 0 70px}
 @media(max-width:600px){header{padding-top:10px}.navbar{border-radius:28px;padding:8px 12px 8px 20px}.navlinks{padding:8px 0 12px}.card,.callout{padding:20px}.hero .callout{padding:24px}}
 @media(prefers-reduced-motion:reduce){.space-scene i,.space-scene b{transform:none!important}.card:hover,.quick-link:hover,.btn:hover{transform:none}}
 </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2712%27 fill=%27%23ff1e27%27/%3E%3C/svg%3E">
 </head>
 <body>
 <div class="space-scene" aria-hidden="true"><i class="o1"></i><i class="o2"></i><i class="o3"></i><b class="r1"></b><b class="r2"></b></div>
@@ -254,11 +258,13 @@ footer{padding:40px 0 70px}
 <main id="main">
 <section class="hero" id="home">
  <div class="container">
+  <button class="core-btn core-hero" id="heroCoreBtn" type="button" aria-label="Wake ORBIT"><canvas id="heroCore" aria-hidden="true"></canvas></button>
+  <div class="hud" id="orbitHud" role="group" aria-label="ORBIT controls"><button class="hud-btn" id="hudVision" type="button" aria-pressed="false"><i></i><span>Neural Vision: OFF</span></button><button class="hud-btn" id="hudVoice" type="button" aria-pressed="false"><i></i><span>Neural Voice: OFF</span></button></div>
   <span class="eyebrow">Independent student initiative</span>
   <p class="space-tagline" style="font-size:clamp(13px,2vw,16px);font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#f7f7f7;margin-top:18px;">One space. More possibilities.</p>
   <h1>Learn with purpose.<br>Build with confidence.</h1>
   <p>A thoughtful starting point for engineering students to explore academics, learn from industry, build useful projects and discover opportunities. Learn at your own pace; build with care; let curiosity become capability.</p>
-  <div class="actions"><a class="btn primary" href="#academics">Explore academics</a><a class="btn secondary" href="#projects">Find a project</a><a class="btn secondary" href="ORBIT.html?welcome=1" style="border-color:#60a5fa;color:#bfdbfe">Ask ORBIT — Your Engineering Guide ↗</a></div>
+  <div class="actions"><a class="btn primary" href="#academics">Explore academics</a><a class="btn secondary" href="#projects">Find a project</a><a class="btn secondary" href="ORBIT.html?welcome=1" style="border-color:#ff4d4d;color:#ffd0d0">Ask ORBIT — Your Engineering Guide ↗</a></div>
   <div class="callout"><h3>Knowledge grows when it is shared.</h3><p>Start where you are. Ask clear questions, verify what you learn, respect different perspectives, and turn ideas into work that can help someone in the real world.</p></div>
   <div class="stats"><div class="stat"><strong>01—08</strong><span>Semester directory structure</span></div><div class="stat"><strong>All branches</strong><span>Expandable resource directory</span></div><div class="stat"><strong>Learn by doing</strong><span>Projects and career preparation</span></div></div>
   <p class="notice">THE SPACE is an independent student project, not an official VTU or college website. Always check official sources for the latest syllabus, eligibility, deadlines and announcements.</p>
@@ -281,6 +287,24 @@ footer{padding:40px 0 70px}
 <section class="section" id="resource-safety">
  <div class="container">
   <div class="callout"><h3>Our resource-safety promise</h3><p>THE SPACE prioritizes official university and government portals, recognized educational institutions, and first-party documentation from the organizations that maintain the tools. We avoid random download sites, link shorteners, pirated material, unofficial application forms, and links that ask for passwords or one-time codes.</p><p style="margin-top:10px"><strong>Stay safe:</strong> a trusted source can still change or be compromised, and a link being HTTPS does not prove that it is safe. Before registering, paying, downloading software, or applying for an opportunity, confirm the domain and details on the institution's or company's official website. Never pay an individual to secure an internship or job, and never share passwords or OTPs.</p><p style="margin-top:10px">We review the sources selected for this page, but cannot guarantee every external page will always be available, current, or risk-free. Report any suspicious or broken link through the feedback section.</p></div>
+ </div>
+</section>
+
+<section class="section ox-section" id="orbit-intro" aria-labelledby="orbit-intro-title">
+ <div class="container ox-wrap">
+  <div class="ox-stage ox-reveal"><button class="core-btn core-stage" id="stageCoreBtn" type="button" aria-label="Wake ORBIT"><canvas id="stageCore" aria-hidden="true"></canvas></button></div>
+  <div class="ox-copy">
+   <span class="kicker ox-reveal">ORBIT · Your engineering guide</span>
+   <h2 id="orbit-intro-title" class="ox-reveal">Ask it. Say it. Gesture it.</h2>
+   <p class="ox-reveal">ORBIT is the guide built into THE SPACE. Get concepts explained step by step, plan projects, debug circuits and code, and prepare for internships, all in one calm workspace that you can type to, talk to, or even control with your hand.</p>
+   <div class="ox-grid">
+    <div class="ox-card ox-reveal"><span class="ox-ico" aria-hidden="true">💬</span><b>Ask anything</b><span>Electronics, embedded, programming, networks, projects and careers, explained clearly with examples.</span></div>
+    <div class="ox-card ox-reveal"><span class="ox-ico" aria-hidden="true">🎙️</span><b>Talk hands-free</b><span>Say "ORBIT" to wake it, or turn on Neural Voice and say "open projects" or "search java".</span></div>
+    <div class="ox-card ox-reveal"><span class="ox-ico" aria-hidden="true">✋</span><b>Hand gestures</b><span>Hold an open palm to wake, make a fist to stop, point to click, swipe with two fingers. Your camera never leaves your device.</span></div>
+    <div class="ox-card ox-reveal"><span class="ox-ico" aria-hidden="true">🧭</span><b>Guided by THE SPACE</b><span>Points you to the right academics, projects, industry and career resources on this site.</span></div>
+   </div>
+   <div class="ox-cta ox-reveal"><a class="ox-btn" href="ORBIT.html?welcome=1">Ask ORBIT <span aria-hidden="true">↗</span></a><span class="ox-note">Voice and gestures work best in Chrome or Safari.</span></div>
+  </div>
  </div>
 </section>
 
@@ -634,68 +658,104 @@ filterLabCards();
 
 <style>
 #orbit-voice-transition{position:fixed;inset:0;z-index:99999;display:none;place-items:center;padding:28px;background:radial-gradient(circle at 50% 42%,rgba(13,89,164,.34),transparent 48%),rgba(2,8,18,.96);backdrop-filter:blur(18px);color:#f3f8ff;text-align:center}
-#orbit-voice-transition.active{display:grid}
+#orbit-voice-transition.active{display:grid;animation:oxFadeIn .3s ease}#orbit-voice-transition.leaving{opacity:0;transition:opacity .35s ease}@keyframes oxFadeIn{from{opacity:0}to{opacity:1}}
 #orbit-voice-transition .voice-card{width:min(560px,100%);padding:32px 22px;border:1px solid rgba(100,190,255,.32);border-radius:26px;background:linear-gradient(145deg,rgba(7,29,55,.96),rgba(3,12,27,.98));box-shadow:0 25px 90px rgba(0,0,0,.55),0 0 45px rgba(0,130,255,.14)}
-#orbit-voice-transition .voice-orb{width:90px;height:90px;margin:0 auto 24px;border-radius:50%;background:radial-gradient(circle at 32% 25%,#a5f5ff,#1379d8 24%,#071b48 62%,#010617 100%);border:1px solid rgba(133,225,255,.8);box-shadow:0 0 45px rgba(20,150,255,.5);animation:orbitTransitionSpin 5s linear infinite}
+#orbit-voice-transition .voice-orb{width:90px;height:90px;margin:0 auto 24px;border-radius:50%;background:radial-gradient(circle at 32% 25%,#ffd0d0,#d41a22 24%,#2a0507 62%,#010617 100%);border:1px solid rgba(255,120,120,.8);box-shadow:0 0 45px rgba(255,30,39,.5);animation:orbitTransitionSpin 5s linear infinite}
 #orbit-voice-transition.active.speaking .voice-orb{animation:orbitTransitionSpin 1.8s linear infinite}
 @keyframes orbitTransitionSpin{to{transform:rotate(360deg)}}
 #orbit-voice-transition .voice-line{font-size:clamp(25px,6vw,38px);font-weight:750;line-height:1.2;letter-spacing:-.035em}
-#orbit-voice-transition .voice-line span.active{color:#7fe7ff;text-shadow:0 0 16px rgba(71,216,255,.8)}
-#orbit-voice-transition .voice-note{margin-top:14px;color:#9eb8d5;font-size:12px;letter-spacing:.08em}
+#orbit-voice-transition .voice-line span{transition:color .15s,text-shadow .15s;color:#a8a8b4}#orbit-voice-transition .voice-line span.active,#orbit-voice-transition .voice-line span.spoken{color:#fff}#orbit-voice-transition .voice-line span.active{color:#ff6b6b;text-shadow:0 0 18px rgba(71,216,255,.9)}
+#orbit-voice-transition .voice-note{margin-top:14px;color:#a8a8b4;font-size:12px;letter-spacing:.08em}
+</style>
+<style>
+/* ===== ORBIT showcase (homepage) ===== */
+.ox-orb{position:relative;width:var(--s,200px);height:var(--s,200px);aspect-ratio:1;flex:0 0 auto;border-radius:50%;display:block;text-decoration:none}
+.ox-orb .core{position:absolute;inset:14%;border-radius:50%;background:radial-gradient(circle at 32% 25%,#ffd9d9,#ff1e27 22%,#2a0507 58%,#010617 100%);border:1px solid rgba(255,120,120,.7);box-shadow:0 0 60px rgba(255,30,39,.55),inset 0 0 40px rgba(255,90,90,.28);animation:oxSpin 14s linear infinite;will-change:transform}
+.ox-orb .core:after{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,transparent 0 25%,rgba(255,77,77,.55) 38%,transparent 52% 70%,rgba(255,30,39,.5) 84%,transparent);mix-blend-mode:screen;filter:blur(7px);opacity:.75;animation:oxSpin 6s linear infinite reverse}
+.ox-orb .ring{position:absolute;inset:0;border-radius:50%;border:2px solid transparent;border-top-color:#ff4d4d;border-right-color:rgba(255,30,39,.85);animation:oxSpin 4.2s linear infinite;will-change:transform}
+.ox-orb .ring.r2{inset:-7%;border-top-color:rgba(255,30,39,.7);border-right-color:transparent;border-bottom-color:rgba(255,77,77,.5);animation-duration:7s;animation-direction:reverse}
+.ox-orb .glow{position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,rgba(255,30,39,.32),transparent 62%);animation:oxPulse 4s ease-in-out infinite}
+.ox-orb.paused *,.ox-orb.paused:after{animation-play-state:paused!important}
+@keyframes oxSpin{to{transform:rotate(360deg)}}
+@keyframes oxPulse{0%,100%{opacity:.7;transform:scale(1)}50%{opacity:1;transform:scale(1.08)}}
+.ox-hero-orb{display:none}
+@media(min-width:960px){.ox-hero-orb{display:block;position:absolute;right:9%;top:8px;--s:min(15vw,176px);z-index:2}.ox-hero-orb:hover .core{box-shadow:0 0 90px rgba(40,190,255,.75),inset 0 0 40px rgba(255,90,90,.4)}}
+.ox-section{position:relative;overflow:hidden}
+.ox-wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,5vw,70px);align-items:center}
+.ox-stage{display:grid;place-items:center;padding:30px 0}
+.ox-copy h2{font-size:clamp(30px,5vw,52px);line-height:1.04;letter-spacing:-.04em;margin:10px 0 14px;background:linear-gradient(180deg,#fff 35%,#b9b9c6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.ox-copy>p{color:#b9c6dc;font-size:15px;line-height:1.7;max-width:56ch}
+.ox-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:22px 0}
+.ox-card{padding:16px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.03));backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .25s,border-color .25s,box-shadow .25s}
+.ox-card:hover{transform:translateY(-3px);border-color:rgba(120,200,255,.5);box-shadow:0 18px 40px -20px rgba(255,30,39,.6)}
+.ox-card b{display:block;font-size:14px;margin-bottom:5px;color:#fff}
+.ox-card span{display:block;font-size:12.5px;line-height:1.55;color:#aeb9cf}
+.ox-ico{font-size:20px;display:block;margin-bottom:8px}
+.ox-cta{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.ox-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:999px;font-weight:800;font-size:13px;color:#ffffff!important;background:linear-gradient(135deg,#ff6b6b,#ff4d4d);box-shadow:0 12px 36px rgba(255,50,60,.35);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.ox-btn:hover{transform:translateY(-2px);box-shadow:0 16px 44px rgba(255,50,60,.5)}
+.ox-note{font-size:11.5px;color:#a8a8b4}
+.ox-reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.ox-reveal.in{opacity:1;transform:none}
+@media(max-width:820px){.ox-wrap{grid-template-columns:1fr}.ox-stage{order:-1;padding:10px 0 0}.ox-grid{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){.ox-orb *,.ox-orb:after{animation:none!important}.ox-reveal{opacity:1;transform:none;transition:none}}
+</style>
+<style id="sentinel">
+/* ===== SENTINEL identity: obsidian carbon · titanium borders · crimson core ===== */
+:root{--edge:rgba(255,255,255,.08)}
+.core-btn{display:block;border:0;background:none;padding:0;cursor:pointer;-webkit-tap-highlight-color:transparent;touch-action:manipulation;border-radius:50%}
+.core-btn canvas{display:block;width:100%;height:100%}
+.core-btn:focus-visible{outline:2px solid #ff4d4d;outline-offset:6px}
+.core-hero{width:min(58vw,210px);aspect-ratio:1;margin:0 auto 6px}
+.core-stage{width:min(80vw,340px);aspect-ratio:1}
+@media(min-width:960px){.core-hero{position:absolute;right:7%;top:-14px;width:min(21vw,250px);margin:0;z-index:2}}
+.hud{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px;grid-column:1/-1}
+.hud-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#e6e6ea;font:700 11px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;transition:border-color .2s,background .2s,color .2s;-webkit-tap-highlight-color:transparent;touch-action:manipulation;min-height:38px}
+.hud-btn i{width:8px;height:8px;border-radius:50%;background:#5b5b66;transition:background .2s,box-shadow .2s}
+.hud-btn[aria-pressed="true"]{border-color:rgba(255,30,39,.7);background:rgba(255,30,39,.12);color:#fff}
+.hud-btn[aria-pressed="true"] i{background:#ff1e27;box-shadow:0 0 12px #ff1e27}
+.hud-btn:hover{border-color:rgba(255,77,77,.6)}
+.ox-btn{background:linear-gradient(135deg,#ff1e27,#ff4d4d)!important;color:#fff!important;box-shadow:0 12px 36px rgba(255,30,39,.35)!important}
+.orbit-nav-link{background:linear-gradient(135deg,#ff1e27,#ff4d4d)!important;color:#fff!important;box-shadow:0 0 24px rgba(255,30,39,.4)}
+.ox-card:hover{border-color:rgba(255,77,77,.5)!important;box-shadow:0 18px 40px -20px rgba(255,30,39,.55)!important}
+.ox-stage{padding:10px 0}
+.ow{opacity:.12;display:inline-block;transform:translateY(6px);transition:opacity .18s ease,transform .18s ease,color .15s,text-shadow .15s}
+.ow.rev{opacity:1;transform:none}
+#orbit-voice-transition .voice-card{background:linear-gradient(145deg,rgba(18,8,10,.97),rgba(5,5,7,.99))!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 25px 90px rgba(0,0,0,.7),0 0 55px rgba(255,30,39,.16)!important}
+#orbit-voice-transition .voice-core{display:block;width:min(64vw,230px);aspect-ratio:1;margin:0 auto 10px}
+#orbit-voice-transition .voice-line span{color:#fff}
+#orbit-voice-transition .voice-line span.active{color:#ff6b6b!important;text-shadow:0 0 18px rgba(255,30,39,.85)!important}
+.ov-toast{position:fixed;left:50%;bottom:max(24px,env(safe-area-inset-bottom));z-index:100000;transform:translate(-50%,20px);opacity:0;pointer-events:none;max-width:min(92vw,420px);padding:11px 16px;border-radius:14px;background:rgba(12,12,14,.95);border:1px solid rgba(255,77,77,.4);color:#fff;font:600 13px/1.4 system-ui,sans-serif;transition:opacity .25s,transform .25s;text-align:center}
+.ov-toast.show{opacity:1;transform:translate(-50%,0)}
+.orbit-fab-orb{background:radial-gradient(circle at 32% 25%,#ffd9d9,#ff1e27 24%,#2a0507 62%,#050102 100%)!important;border-color:rgba(255,120,120,.85)!important;box-shadow:0 0 0 4px rgba(255,30,39,.12),0 12px 36px rgba(255,30,39,.5),inset 0 0 18px rgba(255,90,90,.35)!important}
+.orbit-fab-orb:before{border-top-color:#ff4d4d!important;border-right-color:rgba(255,255,255,.7)!important}
+.orbit-fab-orb:after{border-top-color:rgba(255,255,255,.5)!important;border-bottom-color:rgba(255,77,77,.5)!important}
+@media(max-width:520px){.hud-btn{padding:8px 10px;font-size:9.5px;letter-spacing:.06em}}
+@media(prefers-reduced-motion:reduce){.ow{transition:none;opacity:1;transform:none}}
 </style>
 <style>
 .orbit-fab{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:max(18px,env(safe-area-inset-bottom));z-index:9000;display:flex;align-items:center;gap:10px;text-decoration:none!important;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .orbit-fab-label{padding:9px 14px;border-radius:999px;font:700 12px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.04em;color:#e8f4ff;background:rgba(4,16,34,.88);border:1px solid rgba(110,190,255,.38);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.4);opacity:0;transform:translateX(8px);transition:.2s;pointer-events:none;white-space:nowrap}
 .orbit-fab:hover .orbit-fab-label,.orbit-fab:focus-visible .orbit-fab-label{opacity:1;transform:none}
-.orbit-fab-orb{position:relative;width:58px;height:58px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 32% 25%,#c8f8ff,#1688f0 24%,#071b52 62%,#010617 100%);border:1px solid rgba(133,225,255,.85);box-shadow:0 0 0 4px rgba(22,140,255,.12),0 12px 36px rgba(0,120,255,.5),inset 0 0 18px rgba(80,210,255,.35);animation:orbitFabSpin 9s linear infinite;transition:transform .2s}
-.orbit-fab-orb:before,.orbit-fab-orb:after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid transparent;border-top-color:#62eaff;border-right-color:rgba(165,140,255,.85);animation:orbitFabSpin 3.4s linear infinite}
-.orbit-fab-orb:after{inset:-13px;border-top-color:rgba(165,140,255,.55);border-right-color:transparent;border-bottom-color:rgba(98,234,255,.4);animation-duration:5.6s;animation-direction:reverse}
+.orbit-fab-orb{position:relative;width:58px;height:58px;border-radius:50%;flex:0 0 auto;background:radial-gradient(circle at 32% 25%,#ffd9d9,#ff1e27 24%,#2a0507 62%,#010617 100%);border:1px solid rgba(255,120,120,.85);box-shadow:0 0 0 4px rgba(22,140,255,.12),0 12px 36px rgba(0,120,255,.5),inset 0 0 18px rgba(80,210,255,.35);animation:orbitFabSpin 9s linear infinite;transition:transform .2s}
+.orbit-fab-orb:before,.orbit-fab-orb:after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid transparent;border-top-color:#ff4d4d;border-right-color:rgba(255,30,39,.85);animation:orbitFabSpin 3.4s linear infinite}
+.orbit-fab-orb:after{inset:-13px;border-top-color:rgba(255,30,39,.55);border-right-color:transparent;border-bottom-color:rgba(255,77,77,.4);animation-duration:5.6s;animation-direction:reverse}
 .orbit-fab:hover .orbit-fab-orb{transform:scale(1.07)}
-.orbit-fab:focus-visible{outline:2px solid #62eaff;outline-offset:8px;border-radius:999px}
+.orbit-fab:focus-visible{outline:2px solid #ff4d4d;outline-offset:8px;border-radius:999px}
 @keyframes orbitFabSpin{to{transform:rotate(360deg)}}
 @media(max-width:560px){.orbit-fab-orb{width:52px;height:52px}}
 @media(prefers-reduced-motion:reduce){.orbit-fab-orb,.orbit-fab-orb:before,.orbit-fab-orb:after{animation:none}}
 @media print{.orbit-fab{display:none}}
 </style>
 <a class="orbit-fab" href="ORBIT.html?welcome=1" aria-label="Ask ORBIT, your engineering guide" title="Ask ORBIT"><span class="orbit-fab-label">Ask ORBIT</span><span class="orbit-fab-orb" aria-hidden="true"></span></a>
-<div id="orbit-voice-transition" role="status" aria-live="polite"><div class="voice-card"><div class="voice-orb"></div><div class="voice-line" id="orbit-transition-text">Hello supreme, what are you looking for?</div><div class="voice-note">ORBIT · THE SPACE</div></div></div>
-<script>
-(function(){
-  var greeting = "Hello supreme, what are you looking for?";
-  var links = document.querySelectorAll('a[href*="ORBIT.html"]');
-  var overlay = document.getElementById('orbit-voice-transition');
-  var line = document.getElementById('orbit-transition-text');
-  links.forEach(function(link){
-    link.addEventListener('click', function(event){
-      if (!('speechSynthesis' in window) || !('SpeechSynthesisUtterance' in window)) return;
-      event.preventDefault();
-      var destination = link.href, synth = window.speechSynthesis, moved = false;
-      function go(){ if(moved)return; moved=true; try{sessionStorage.setItem('orbit-greeting-spoken','1');}catch(e){} window.location.href=destination; }
-      synth.cancel();
-      if(overlay) overlay.classList.add('active','speaking');
-      if(line){line.textContent='';greeting.split(/(\s+)/).forEach(function(word){var span=document.createElement('span');span.textContent=word;line.appendChild(span);});}
-      var utterance = new SpeechSynthesisUtterance(greeting);
-      var voices = synth.getVoices ? synth.getVoices() : [];
-      var english = voices.filter(function(v){return /^en([_-]|$)/i.test(v.lang);});
-      var voice = english.find(function(v){return /david|daniel|george|james|mark|guy|alex|aaron/i.test(v.name);}) || english[0];
-      if(voice) utterance.voice=voice;
-      utterance.lang='en-US';utterance.rate=0.68;utterance.pitch=0.05;utterance.volume=1;
-      var gotB=false;
-      utterance.onboundary=function(e){
-        gotB=true;
-        if(!line || (e.name && e.name!=='word'))return;
-        var spans=Array.prototype.slice.call(line.children), index=0, total=0;
-        for(var i=0;i<spans.length;i++){var next=total+spans[i].textContent.length;if(e.charIndex<next){index=i;break;}total=next;index=Math.min(i+1,spans.length-1);}
-        spans.forEach(function(span,i){span.classList.toggle('active',i===index);});
-      };
-      utterance.onend=go;utterance.onerror=go;
-      try{synth.speak(utterance);window.setTimeout(go,11000);
-        window.setTimeout(function(){ if(gotB||!line)return; var sp=Array.prototype.filter.call(line.children,function(s){return s.textContent.trim();}); sp.forEach(function(s,i){window.setTimeout(function(){ if(gotB)return; Array.prototype.forEach.call(line.children,function(x){x.classList.remove('active');}); s.classList.add('active'); },i*430);}); },700);
-      }catch(e){go();}
-    });
-  });
-})();
-</script>
+<div class="ov-toast" id="orbitToast" role="status" aria-live="polite"></div>
+<div id="orbit-voice-transition" role="status" aria-live="polite"><div class="voice-card"><canvas class="voice-core" id="overlayCore" aria-hidden="true"></canvas><div class="voice-line" id="orbit-transition-text">Hello supreme, what are you looking for?</div><div class="voice-note">ORBIT · THE SPACE</div></div></div>
+<script src="orbit-core.js"></script>
+<script src="orbit-voice.js"></script>
+<script src="orbit-neural.js"></script>
+<script src="orbit-vision.js"></script>
+<script src="orbit-home.js"></script>
+<script>(function(){var need=["OrbitCore","OrbitVoice","NeuralCore","OrbitVision"],miss=need.filter(function(n){return !window[n];});if(miss.length){var d=document.createElement("div");d.setAttribute("role","alert");d.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:100000;padding:14px;background:#2a0507;color:#fff;font:600 13px system-ui,sans-serif;text-align:center";d.textContent="ORBIT could not load: missing "+miss.join(", ")+". Upload every .js file to the repository root next to this page.";document.body.appendChild(d);}})();</script>
 
 </body>
 </html>

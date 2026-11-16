@@ -1,17 +1,18 @@
 <!doctype html>
 <html lang="en">
 <head>
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; media-src 'self' blob: data:; font-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://storage.googleapis.com https://*.workers.dev; worker-src 'self' blob:; object-src 'none'; base-uri 'self'; form-action 'self'"><meta name="referrer" content="no-referrer">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#03152d">
+<meta name="theme-color" content="#1c1414">
 <meta name="description" content="ORBIT — the intelligent companion inside THE SPACE. Explore ideas, understand engineering, build projects and solve problems.">
 <title>ORBIT | THE SPACE</title>
 <style>
-:root{color-scheme:dark;--bg:#031329;--surface:#061d39;--surface-2:#08284c;--surface-3:#0b3562;--line:rgba(111,181,255,.19);--line-strong:rgba(104,188,255,.38);--text:#edf6ff;--muted:#91abc8;--blue:#168cff;--cyan:#47d8ff;--violet:#9c8cff;--shadow:0 22px 70px rgba(0,0,0,.35);--sidebar:78px}
-:root[data-theme="black"]{color-scheme:dark;--bg:#03060b;--surface:#080d15;--surface-2:#101722;--surface-3:#172231;--line:rgba(150,190,230,.16);--line-strong:rgba(150,190,230,.32);--text:#edf4fc;--muted:#9aaec4;--blue:#168cff;--cyan:#47d8ff;--violet:#9c8cff;--shadow:0 22px 70px rgba(0,0,0,.72)}
-*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 50% 5%,rgba(0,112,210,.32),transparent 42%),radial-gradient(ellipse at 12% 82%,rgba(35,83,180,.18),transparent 36%),linear-gradient(145deg,#052c53 0%,#001c36 58%,#001226 100%);color:var(--text)}:root[data-theme="black"] body{background:radial-gradient(ellipse at 50% 5%,rgba(20,80,145,.20),transparent 44%),radial-gradient(ellipse at 10% 85%,rgba(60,65,120,.10),transparent 38%),linear-gradient(145deg,#080d16 0%,#03060b 60%,#010204 100%)}button,a,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
-.app{min-height:100dvh;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);padding:14px;gap:14px}.rail{display:flex;flex-direction:column;align-items:center;gap:13px;padding:12px 8px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(7,37,72,.92),rgba(3,21,43,.92));box-shadow:var(--shadow);min-height:calc(100dvh - 28px)}:root[data-theme="black"] .rail{background:linear-gradient(180deg,#101a29,#070b12)}.brand-mark{width:48px;height:48px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,#0b68bd,#071c43);border:1px solid rgba(121,205,255,.35);box-shadow:0 0 28px rgba(0,140,255,.28)}.brand-mark svg{width:31px;height:31px}.rail-divider{height:1px;width:32px;background:var(--line);margin:3px 0}.rail-btn{width:46px;height:46px;border:1px solid transparent;border-radius:15px;background:transparent;color:var(--muted);display:grid;place-items:center;transition:.18s}.rail-btn svg{width:20px;height:20px}.rail-btn:hover,.rail-btn.active{color:var(--text);background:linear-gradient(145deg,rgba(15,133,235,.25),rgba(118,105,255,.13));border-color:var(--line-strong);box-shadow:0 0 24px rgba(0,130,255,.12)}.rail-spacer{flex:1}.workspace{min-width:0;min-height:calc(100dvh - 28px);border:1px solid var(--line);border-radius:30px;background:radial-gradient(ellipse at 52% 0%,rgba(0,111,205,.24),transparent 48%),linear-gradient(155deg,rgba(0,37,72,.98),rgba(0,24,47,.99) 54%,rgba(0,17,34,.99));box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;position:relative}:root[data-theme="black"] .workspace{background:radial-gradient(ellipse at 52% 0%,rgba(15,80,145,.16),transparent 48%),linear-gradient(155deg,#0a1422,#050a12 58%,#02050a)}.topbar{height:76px;flex:0 0 76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,3.5vw,48px);border-bottom:1px solid var(--line);background:rgba(4,24,48,.45);position:relative;z-index:2}:root[data-theme="black"] .topbar{background:rgba(5,10,18,.72)}.brand-line{display:flex;align-items:center;gap:12px}.brand-line .mini-mark{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#0b80df,#5d61d9);box-shadow:0 0 22px rgba(22,140,255,.25)}.mini-mark svg{width:23px;height:23px}.brand-name{font-size:15px;font-weight:850;letter-spacing:.19em}.brand-sub{font-size:10px;color:var(--muted);letter-spacing:.12em;margin-top:3px}.top-actions{display:flex;align-items:center;gap:9px}.status-pill,.top-btn{border:1px solid var(--line);border-radius:999px;background:rgba(13,58,101,.42);color:var(--text);padding:9px 14px;font-size:12px}.status-pill{display:flex;align-items:center;gap:8px;color:var(--muted)}.status-dot{width:7px;height:7px;border-radius:50%;background:#48d9a3;box-shadow:0 0 12px #48d9a3}.top-btn:hover{border-color:var(--line-strong);background:var(--surface-3)}.main-content{width:min(1120px,100%);margin:0 auto;padding:clamp(22px,4vh,48px) clamp(18px,4vw,54px) 22px;display:flex;flex:1;flex-direction:column;min-height:0}.welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:auto 0 22px;padding:10px 0 0}.orbital-core{width:clamp(138px,18vw,208px);height:clamp(138px,18vw,208px);position:relative;margin:0 auto 22px;display:grid;place-items:center;filter:drop-shadow(0 0 30px rgba(0,153,255,.2))}.orbital-core:before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 35% 28%,rgba(41,209,255,.3),rgba(24,83,198,.16) 36%,rgba(6,16,48,.9) 70%);border:1px solid rgba(76,194,255,.68);box-shadow:inset 0 0 35px rgba(19,126,255,.45),0 0 34px rgba(0,145,255,.22)}.orbital-core:after{content:"";position:absolute;inset:-4%;border-radius:50%;border:1px solid rgba(90,181,255,.16);box-shadow:0 0 36px rgba(0,111,255,.13)}.orbital-core svg{width:100%;height:100%;position:relative;z-index:1;overflow:visible}.orbital-core .orbit-ring{fill:none;stroke:url(#ringGlow);stroke-width:2.2;opacity:.92}.orbital-core .orbit-ring.second{stroke:#a28cff;stroke-width:1.4;opacity:.8}.orbital-core .core-sphere{fill:url(#sphereFill);stroke:rgba(133,225,255,.8);stroke-width:1.3}.orbital-core .spark{fill:#c5f5ff;filter:drop-shadow(0 0 5px #46d9ff)}.welcome-kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#67caff;font-weight:800}.welcome h1{font-size:clamp(32px,4.6vw,55px);line-height:1.08;letter-spacing:-.045em;margin:13px 0 12px;font-weight:780;background:linear-gradient(100deg,#6abaff 4%,#f2f8ff 47%,#79c9ff 90%);-webkit-background-clip:text;background-clip:text;color:transparent}:root[data-theme="black"] .welcome h1{background:linear-gradient(100deg,#62b8ff,#edf6ff 48%,#8c9dff);-webkit-background-clip:text;background-clip:text}.welcome p{max-width:610px;color:var(--muted);font-size:14px;line-height:1.75;margin:0 auto}.suggestion-label{font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin:26px 0 11px}.suggestions{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}.prompt{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:linear-gradient(145deg,rgba(10,57,101,.8),rgba(7,34,67,.8));color:#dceeff;font-size:12px;white-space:nowrap;transition:.18s}:root[data-theme="black"] .prompt{background:linear-gradient(145deg,#101c2b,#0a111b);color:var(--text)}.prompt svg{width:15px;height:15px;color:#7bcaff}.prompt:hover{transform:translateY(-2px);border-color:var(--line-strong);box-shadow:0 8px 25px rgba(0,125,255,.13)}.messages{display:grid;gap:22px;width:min(850px,100%);margin:0 auto;padding:0 0 20px}.message{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.avatar{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#0c6fc4,#433c9c);color:#fff;font-weight:800;font-size:12px;box-shadow:0 5px 18px rgba(0,100,220,.2)}.message.user .avatar{background:linear-gradient(145deg,#234e7e,#273d65)}.message-body{min-width:0;line-height:1.75;font-size:14px;overflow-wrap:anywhere;padding:5px 0}.message.user .message-body{background:rgba(15,75,130,.36);border:1px solid var(--line);padding:12px 15px;border-radius:5px 16px 16px 16px;justify-self:start;max-width:100%}.message-body p{margin:0 0 12px}.message-body p:last-child{margin-bottom:0}.message-body h3,.message-body h4{font-size:16px;margin:17px 0 7px}.message-body ul,.message-body ol{padding-left:22px;margin:7px 0 14px}.message-body li{margin:5px 0}.message-body code{background:var(--surface-2);border:1px solid var(--line);padding:2px 5px;border-radius:5px;font-size:.92em}.message-body a{color:#72c7ff;text-decoration:underline;text-underline-offset:3px}.thinking{display:flex;align-items:center;gap:7px;color:var(--muted)}.thinking span{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1s infinite ease-in-out}.thinking span:nth-child(2){animation-delay:.15s}.thinking span:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
-.composer-wrap{width:min(900px,100%);margin:0 auto;padding:16px 0 max(10px,env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(transparent,var(--workspace-bg,var(--bg)) 22%);z-index:3}.composer{border:1px solid var(--line-strong);border-radius:23px;padding:12px 14px 10px;background:linear-gradient(145deg,rgba(7,39,75,.98),rgba(4,26,52,.98));box-shadow:0 12px 38px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.035)}:root[data-theme="black"] .composer{background:linear-gradient(145deg,#101b2a,#080e17)}.composer textarea{display:block;width:100%;resize:none;min-height:46px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);padding:7px 5px;font-size:14px;line-height:1.55}.composer textarea::placeholder{color:var(--muted)}.composer-foot{display:flex;align-items:center;justify-content:space-between;padding:2px 1px 0;gap:10px}.composer-tools{display:flex;align-items:center;gap:7px}.hint{color:var(--muted);font-size:10px}.icon-btn{width:37px;height:37px;border:1px solid var(--line-strong);border-radius:50%;background:rgba(9,55,98,.6);color:var(--muted);display:grid;place-items:center}.icon-btn svg{width:17px;height:17px}.icon-btn:hover,.icon-btn[aria-pressed="true"]{color:var(--text);border-color:var(--cyan);background:rgba(14,111,185,.34)}.send{width:42px;height:42px;border:0;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#18aaff,#0872e3);color:white;box-shadow:0 5px 18px rgba(0,128,255,.35)}.send svg{width:19px;height:19px}.send:disabled{opacity:.45;cursor:not-allowed}.disclaimer{text-align:center;color:var(--muted);font-size:9px;line-height:1.5;margin:9px auto 0;max-width:760px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line-strong);padding:10px 15px;border-radius:12px;display:none;z-index:20;font-size:12px;box-shadow:var(--shadow)}.toast.show{display:block}[hidden]{display:none!important}
+:root{color-scheme:dark;--bg:#1a1213;--surface:#251a1b;--surface-2:#312324;--surface-3:#3f2e2f;--line:rgba(255,111,123,.19);--line-strong:rgba(255,104,117,.38);--text:#ffedee;--muted:#c89195;--blue:#ff162a;--cyan:#ff475c;--violet:#ff8c8e;--shadow:0 22px 70px rgba(0,0,0,.35);--sidebar:78px}
+:root[data-theme="black"]{color-scheme:dark;--bg:#080606;--surface:#100d0d;--surface-2:#1b1717;--surface-3:#272122;--line:rgba(230,150,157,.16);--line-strong:rgba(230,150,157,.32);--text:#fcedee;--muted:#c49a9d;--blue:#ff162a;--cyan:#ff475c;--violet:#ff8c8e;--shadow:0 22px 70px rgba(0,0,0,.72)}
+*{box-sizing:border-box}html,body{min-height:100%;margin:0}body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:radial-gradient(ellipse at 50% 5%,rgba(178,32,44,.32),transparent 42%),radial-gradient(ellipse at 12% 82%,rgba(158,57,63,.18),transparent 36%),linear-gradient(145deg,#342425 0%,#201617 58%,#170f10 100%);color:var(--text)}:root[data-theme="black"] body{background:radial-gradient(ellipse at 50% 5%,rgba(95,70,72,.20),transparent 44%),radial-gradient(ellipse at 10% 85%,rgba(111,69,71,.10),transparent 38%),linear-gradient(145deg,#100e0e 0%,#080606 60%,#030202 100%)}button,a,textarea{font:inherit}button{cursor:pointer}a{color:inherit;text-decoration:none}button:focus-visible,a:focus-visible,textarea:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.app{min-height:100dvh;display:grid;grid-template-columns:var(--sidebar) minmax(0,1fr);padding:14px;gap:14px}.rail{display:flex;flex-direction:column;align-items:center;gap:13px;padding:12px 8px;border:1px solid var(--line);border-radius:24px;background:linear-gradient(180deg,rgba(46,33,34,.92),rgba(27,19,20,.92));box-shadow:var(--shadow);min-height:calc(100dvh - 28px)}:root[data-theme="black"] .rail{background:linear-gradient(180deg,#1f1a1a,#0e0b0c)}.brand-mark{width:48px;height:48px;border-radius:17px;display:grid;place-items:center;background:linear-gradient(145deg,#a22630,#2b1f20);border:1px solid rgba(255,121,134,.35);box-shadow:0 0 28px rgba(255,0,23,.28)}.brand-mark svg{width:31px;height:31px}.rail-divider{height:1px;width:32px;background:var(--line);margin:3px 0}.rail-btn{width:46px;height:46px;border:1px solid transparent;border-radius:15px;background:transparent;color:var(--muted);display:grid;place-items:center;transition:.18s}.rail-btn svg{width:20px;height:20px}.rail-btn:hover,.rail-btn.active{color:var(--text);background:linear-gradient(145deg,rgba(202,48,61,.25),rgba(255,105,109,.13));border-color:var(--line-strong);box-shadow:0 0 24px rgba(255,0,22,.12)}.rail-spacer{flex:1}.workspace{min-width:0;min-height:calc(100dvh - 28px);border:1px solid var(--line);border-radius:30px;background:radial-gradient(ellipse at 52% 0%,rgba(174,31,43,.24),transparent 48%),linear-gradient(155deg,rgba(43,29,30,.98),rgba(28,19,20,.99) 54%,rgba(20,14,14,.99));box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;position:relative}:root[data-theme="black"] .workspace{background:radial-gradient(ellipse at 52% 0%,rgba(93,67,69,.16),transparent 48%),linear-gradient(155deg,#181414,#0d0a0a 58%,#070505)}.topbar{height:76px;flex:0 0 76px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(18px,3.5vw,48px);border-bottom:1px solid var(--line);background:rgba(30,22,22,.45);position:relative;z-index:2}:root[data-theme="black"] .topbar{background:rgba(13,10,10,.72)}.brand-line{display:flex;align-items:center;gap:12px}.brand-line .mini-mark{width:35px;height:35px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#bf2b38,#d95d62);box-shadow:0 0 22px rgba(255,22,42,.25)}.mini-mark svg{width:23px;height:23px}.brand-name{font-size:15px;font-weight:850;letter-spacing:.19em}.brand-sub{font-size:10px;color:var(--muted);letter-spacing:.12em;margin-top:3px}.top-actions{display:flex;align-items:center;gap:9px}.status-pill,.top-btn{border:1px solid var(--line);border-radius:999px;background:rgba(66,48,50,.42);color:var(--text);padding:9px 14px;font-size:12px}.status-pill{display:flex;align-items:center;gap:8px;color:var(--muted)}.status-dot{width:7px;height:7px;border-radius:50%;background:#48d9a3;box-shadow:0 0 12px #48d9a3}.top-btn:hover{border-color:var(--line-strong);background:var(--surface-3)}.main-content{width:min(1120px,100%);margin:0 auto;padding:clamp(22px,4vh,48px) clamp(18px,4vw,54px) 22px;display:flex;flex:1;flex-direction:column;min-height:0}.welcome{display:flex;flex-direction:column;align-items:center;text-align:center;margin:auto 0 22px;padding:10px 0 0}.orbital-core{width:clamp(138px,18vw,208px);height:clamp(138px,18vw,208px);position:relative;margin:0 auto 22px;display:grid;place-items:center;filter:drop-shadow(0 0 30px rgba(255,0,24,.2))}.orbital-core:before{content:"";position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle at 35% 28%,rgba(255,41,65,.3),rgba(172,50,58,.16) 36%,rgba(31,23,23,.9) 70%);border:1px solid rgba(255,76,94,.68);box-shadow:inset 0 0 35px rgba(255,19,38,.45),0 0 34px rgba(255,0,23,.22)}.orbital-core:after{content:"";position:absolute;inset:-4%;border-radius:50%;border:1px solid rgba(255,90,105,.16);box-shadow:0 0 36px rgba(255,0,20,.13)}.orbital-core svg{width:100%;height:100%;position:relative;z-index:1;overflow:visible}.orbital-core .orbit-ring{fill:none;stroke:url(#ringGlow);stroke-width:2.2;opacity:.92}.orbital-core .orbit-ring.second{stroke:#ff8c8e;stroke-width:1.4;opacity:.8}.orbital-core .core-sphere{fill:url(#sphereFill);stroke:rgba(255,133,146,.8);stroke-width:1.3}.orbital-core .spark{fill:#ffc5cc;filter:drop-shadow(0 0 5px #ff465b)}.welcome-kicker{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#ff6776;font-weight:800}.welcome h1{font-size:clamp(32px,4.6vw,55px);line-height:1.08;letter-spacing:-.045em;margin:13px 0 12px;font-weight:780;background:linear-gradient(100deg,#ff6a77 4%,#fff2f3 47%,#ff7985 90%);-webkit-background-clip:text;background-clip:text;color:transparent}:root[data-theme="black"] .welcome h1{background:linear-gradient(100deg,#ff6270,#ffedee 48%,#ff8c92);-webkit-background-clip:text;background-clip:text}.welcome p{max-width:610px;color:var(--muted);font-size:14px;line-height:1.75;margin:0 auto}.suggestion-label{font-size:10px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin:26px 0 11px}.suggestions{display:flex;justify-content:center;flex-wrap:wrap;gap:9px}.prompt{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;padding:10px 15px;background:linear-gradient(145deg,rgba(65,46,48,.8),rgba(43,31,32,.8));color:#ffdcdf;font-size:12px;white-space:nowrap;transition:.18s}:root[data-theme="black"] .prompt{background:linear-gradient(145deg,#201b1b,#141111);color:var(--text)}.prompt svg{width:15px;height:15px;color:#ff7b87}.prompt:hover{transform:translateY(-2px);border-color:var(--line-strong);box-shadow:0 8px 25px rgba(255,0,21,.13)}.messages{display:grid;gap:22px;width:min(850px,100%);margin:0 auto;padding:0 0 20px}.message{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}.avatar{width:34px;height:34px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(145deg,#a82833,#8e4a4c);color:#ffffff;font-weight:800;font-size:12px;box-shadow:0 5px 18px rgba(187,33,45,.2)}.message.user .avatar{background:linear-gradient(145deg,#5a4749,#4c4041)}.message-body{min-width:0;line-height:1.75;font-size:14px;overflow-wrap:anywhere;padding:5px 0}.message.user .message-body{background:rgba(84,61,63,.36);border:1px solid var(--line);padding:12px 15px;border-radius:5px 16px 16px 16px;justify-self:start;max-width:100%}.message-body p{margin:0 0 12px}.message-body p:last-child{margin-bottom:0}.message-body h3,.message-body h4{font-size:16px;margin:17px 0 7px}.message-body ul,.message-body ol{padding-left:22px;margin:7px 0 14px}.message-body li{margin:5px 0}.message-body code{background:var(--surface-2);border:1px solid var(--line);padding:2px 5px;border-radius:5px;font-size:.92em}.message-body a{color:#ff727f;text-decoration:underline;text-underline-offset:3px}.thinking{display:flex;align-items:center;gap:7px;color:var(--muted)}.thinking span{width:6px;height:6px;border-radius:50%;background:var(--cyan);animation:pulse 1s infinite ease-in-out}.thinking span:nth-child(2){animation-delay:.15s}.thinking span:nth-child(3){animation-delay:.3s}@keyframes pulse{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-4px)}}
+.composer-wrap{width:min(900px,100%);margin:0 auto;padding:16px 0 max(10px,env(safe-area-inset-bottom));position:sticky;bottom:0;background:linear-gradient(transparent,var(--workspace-bg,var(--bg)) 22%);z-index:3}.composer{border:1px solid var(--line-strong);border-radius:23px;padding:12px 14px 10px;background:linear-gradient(145deg,rgba(48,34,35,.98),rgba(33,23,24,.98));box-shadow:0 12px 38px rgba(0,0,0,.22),inset 0 1px rgba(255,255,255,.035)}:root[data-theme="black"] .composer{background:linear-gradient(145deg,#201a1b,#110e0e)}.composer textarea{display:block;width:100%;resize:none;min-height:46px;max-height:180px;border:0;outline:0;background:transparent;color:var(--text);padding:7px 5px;font-size:14px;line-height:1.55}.composer textarea::placeholder{color:var(--muted)}.composer-foot{display:flex;align-items:center;justify-content:space-between;padding:2px 1px 0;gap:10px}.composer-tools{display:flex;align-items:center;gap:7px}.hint{color:var(--muted);font-size:10px}.icon-btn{width:37px;height:37px;border:1px solid var(--line-strong);border-radius:50%;background:rgba(62,45,46,.6);color:var(--muted);display:grid;place-items:center}.icon-btn svg{width:17px;height:17px}.icon-btn:hover,.icon-btn[aria-pressed="true"]{color:var(--text);border-color:var(--cyan);background:rgba(159,40,50,.34)}.send{width:42px;height:42px;border:0;border-radius:50%;display:grid;place-items:center;background:linear-gradient(145deg,#ff182e,#c22935);color:white;box-shadow:0 5px 18px rgba(255,0,21,.35)}.send svg{width:19px;height:19px}.send:disabled{opacity:.45;cursor:not-allowed}.disclaimer{text-align:center;color:var(--muted);font-size:9px;line-height:1.5;margin:9px auto 0;max-width:760px}.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:var(--surface-3);border:1px solid var(--line-strong);padding:10px 15px;border-radius:12px;display:none;z-index:20;font-size:12px;box-shadow:var(--shadow)}.toast.show{display:block}[hidden]{display:none!important}
 @media(max-width:760px){.app{display:flex;flex-direction:column;padding:8px;gap:8px}.rail{min-height:0;height:58px;flex-direction:row;justify-content:space-between;padding:5px 9px;border-radius:18px;gap:4px}.brand-mark{width:38px;height:38px;border-radius:13px;flex:0 0 auto}.brand-mark svg{width:25px;height:25px}.rail-divider{width:1px;height:27px;margin:0 3px}.rail-btn{width:39px;height:39px;border-radius:12px}.rail-btn svg{width:18px;height:18px}.rail-spacer{display:none}.workspace{min-height:calc(100dvh - 74px);border-radius:22px}.topbar{height:58px;flex-basis:58px;padding:0 14px}.brand-line{gap:8px}.brand-line .mini-mark{width:29px;height:29px;border-radius:10px}.mini-mark svg{width:19px;height:19px}.brand-name{font-size:12px}.brand-sub{font-size:8px}.status-pill{display:none}.top-btn{padding:8px 11px;font-size:11px}.main-content{padding:18px 14px 10px}.welcome{margin:auto 0 15px;padding-top:12px}.orbital-core{width:132px;height:132px;margin-bottom:17px}.welcome-kicker{font-size:9px}.welcome h1{font-size:clamp(29px,8vw,39px);margin:10px 0}.welcome p{font-size:12px;line-height:1.65}.suggestion-label{margin:20px 0 9px}.suggestions{gap:7px}.prompt{padding:9px 12px;font-size:10px}.prompt svg{width:13px;height:13px}.composer-wrap{padding:12px 0 max(8px,env(safe-area-inset-bottom))}.composer{border-radius:18px;padding:10px 11px 9px}.composer textarea{font-size:13px;min-height:43px}.hint{font-size:9px}.icon-btn{width:34px;height:34px}.send{width:38px;height:38px}.messages{gap:16px}.message{grid-template-columns:29px minmax(0,1fr);gap:9px}.avatar{width:29px;height:29px;border-radius:10px}.message-body{font-size:13px}.disclaimer{font-size:8px}}
 @media(max-width:390px){.rail{gap:1px;padding-inline:6px}.rail-btn{width:35px;height:36px}.brand-mark{width:35px;height:35px}.main-content{padding-inline:11px}.suggestions{display:grid;grid-template-columns:1fr 1fr}.prompt{justify-content:center;padding:9px 6px}.hint{max-width:130px}.composer-tools{gap:5px}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;scroll-behavior:auto!important;transition:none!important}}
@@ -24,8 +25,8 @@
 .orbital-core .rotor{transform-box:fill-box;transform-origin:center;will-change:transform}
 .orbital-core .rotor-a{animation:orbitSpinTilted 18s linear infinite}
 .orbital-core .rotor-b{animation:orbitSpinTiltedReverse 13s linear infinite}
-.orbital-core .precision-ring{fill:none;stroke:rgba(197,232,255,.42);stroke-width:1;stroke-dasharray:2 5;transform-box:fill-box;transform-origin:center;animation:orbitSpin 34s linear infinite}
-.orbital-core .core-sphere{filter:drop-shadow(0 0 13px rgba(47,190,255,.38))}
+.orbital-core .precision-ring{fill:none;stroke:rgba(255,197,202,.42);stroke-width:1;stroke-dasharray:2 5;transform-box:fill-box;transform-origin:center;animation:orbitSpin 34s linear infinite}
+.orbital-core .core-sphere{filter:drop-shadow(0 0 13px rgba(255,47,68,.38))}
 .orbital-core .spark{animation:starPulse 2.8s ease-in-out infinite alternate}
 @keyframes orbitSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes orbitSpinTilted{from{transform:rotate(-34deg)}to{transform:rotate(326deg)}}
@@ -39,7 +40,7 @@
 
 
 /* ORBIT identity: luminous glass sphere inspired by the supplied reference */
-.orbital-core{width:clamp(158px,20vw,226px);height:clamp(158px,20vw,226px);filter:drop-shadow(0 0 34px rgba(0,133,255,.28))}
+.orbital-core{width:clamp(158px,20vw,226px);height:clamp(158px,20vw,226px);filter:drop-shadow(0 0 34px rgba(255,0,22,.28))}
 .orbital-core svg{overflow:visible}
 .hero-flow{transform-box:fill-box;transform-origin:center;will-change:transform}
 .hero-flow-one{animation:heroFlowA 18s linear infinite}
@@ -48,7 +49,7 @@
 .hero-flow-four{animation:heroFlowB 29s linear infinite reverse}
 .logo-rotor-a{transform-origin:24px 24px;animation:logoOrbA 12s linear infinite}
 .logo-rotor-b{transform-origin:24px 24px;animation:logoOrbB 17s linear infinite}
-.orbital-core:before{inset:4%;background:radial-gradient(circle at 38% 30%,rgba(35,158,255,.13),rgba(3,12,37,.1) 58%,transparent 72%);border:0;box-shadow:0 0 44px rgba(0,135,255,.14)}
+.orbital-core:before{inset:4%;background:radial-gradient(circle at 38% 30%,rgba(255,35,55,.13),rgba(23,17,17,.1) 58%,transparent 72%);border:0;box-shadow:0 0 44px rgba(255,0,22,.14)}
 @keyframes heroFlowA{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 @keyframes heroFlowB{from{transform:rotate(0deg) scale(.98)}to{transform:rotate(-360deg) scale(.98)}}
 @keyframes heroFlowC{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
@@ -57,11 +58,11 @@
 @media(prefers-reduced-motion:reduce){.hero-flow,.logo-rotor-a,.logo-rotor-b{animation:none!important}}
 
 /* ORBIT voice state: the central glass orb rotates only while speech is active. */
-.orbital-core.speaking svg{animation:orbVoiceTurn 5.5s linear infinite;filter:drop-shadow(0 0 16px rgba(55,205,255,.45))}
+.orbital-core.speaking svg{animation:orbVoiceTurn 5.5s linear infinite;filter:drop-shadow(0 0 16px rgba(255,55,77,.45))}
 .orbital-core.speaking:after{animation:orbVoiceHalo 2.2s ease-in-out infinite}
 @keyframes orbVoiceTurn{to{transform:rotate(360deg)}}
 @keyframes orbVoiceHalo{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.06);opacity:1}}
-.speech-word-active{color:#9ceaff!important;text-shadow:0 0 12px rgba(71,216,255,.75);background:rgba(40,170,255,.13);border-radius:4px}
+.speech-word-active{color:#ff9ca7!important;text-shadow:0 0 12px rgba(255,71,92,.75);background:rgba(255,40,60,.13);border-radius:4px}
 .speech-replay{display:inline-flex;align-items:center;gap:7px;margin-top:10px;border:1px solid var(--line-strong);border-radius:999px;padding:7px 11px;background:var(--surface-2);color:var(--text);font-size:11px}
 .speech-replay:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.orbital-core.speaking svg,.orbital-core.speaking:after{animation:none!important}}
@@ -71,14 +72,14 @@
 .msg-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
 .msg-actions .speech-replay{margin-top:0;cursor:pointer}
 .speech-replay{cursor:pointer;min-height:34px}
-.message-body pre.code{margin:10px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(1,8,20,.7);overflow-x:auto;font-size:12.5px;line-height:1.6}
+.message-body pre.code{margin:10px 0;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:rgba(12,9,9,.7);overflow-x:auto;font-size:12.5px;line-height:1.6}
 .message-body pre.code code{background:none;border:0;padding:0;white-space:pre}
 .message-body .tbl{overflow-x:auto;margin:10px 0;border:1px solid var(--line);border-radius:12px}
 .message-body table{border-collapse:collapse;width:100%;font-size:12.5px}
 .message-body th,.message-body td{padding:8px 11px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
-.message-body th{color:#9ad8ff;font-weight:700;background:rgba(14,90,160,.2)}
+.message-body th{color:#ff9aa4;font-weight:700;background:rgba(102,72,75,.2)}
 .message-body tr:last-child td{border-bottom:0}
-.icon-btn.on,.icon-btn[aria-pressed="true"]{color:#fff;border-color:var(--cyan);background:rgba(14,140,230,.45);box-shadow:0 0 18px rgba(40,190,255,.35)}
+.icon-btn.on,.icon-btn[aria-pressed="true"]{color:#ffffff;border-color:var(--cyan);background:rgba(198,46,60,.45);box-shadow:0 0 18px rgba(255,40,62,.35)}
 #orbitMic.on{animation:micPulse 1.2s ease-in-out infinite;border-color:#ff6b8b;background:rgba(255,80,120,.25)}
 @keyframes micPulse{0%,100%{box-shadow:0 0 0 0 rgba(255,90,130,.5)}50%{box-shadow:0 0 0 9px rgba(255,90,130,0)}}
 .rail-btn,.icon-btn,.send,.prompt,.top-btn,.speech-replay{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
@@ -86,28 +87,56 @@
 .welcome h1 span{-webkit-text-fill-color:inherit}
 /* intro overlay */
 body.intro-open{overflow:hidden}
-.intro{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:24px;background:radial-gradient(circle at 50% 38%,rgba(10,95,180,.38),transparent 50%),rgba(2,7,16,.97);text-align:center}
+.intro{position:fixed;inset:0;z-index:100;display:none;place-items:center;padding:24px;background:radial-gradient(circle at 50% 38%,rgba(154,36,45,.38),transparent 50%),rgba(10,8,8,.97);text-align:center}
 .intro.active{display:grid;animation:introIn .5s ease}
 @keyframes introIn{from{opacity:0}to{opacity:1}}
 .intro-card{width:min(560px,100%)}
-.intro-orb{width:150px;height:150px;margin:0 auto 26px;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#b8f7ff,#1688f0 22%,#071b52 60%,#010617 100%);border:1px solid rgba(133,225,255,.8);box-shadow:0 0 60px rgba(20,150,255,.55),inset 0 0 40px rgba(60,200,255,.25);animation:introSpin 7s linear infinite}
-.intro-orb:before,.intro-orb:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid transparent;border-top-color:#62eaff;border-right-color:rgba(165,140,255,.8);animation:introSpin 3.2s linear infinite}
-.intro-orb:after{inset:-30px;border-top-color:rgba(165,140,255,.7);border-right-color:transparent;border-bottom-color:rgba(98,234,255,.5);animation-duration:5.4s;animation-direction:reverse}
-.intro-orb.speaking{animation-duration:2s;box-shadow:0 0 90px rgba(40,190,255,.8),inset 0 0 40px rgba(60,200,255,.4)}
+.intro-orb{width:150px;height:150px;margin:0 auto 26px;border-radius:50%;position:relative;background:radial-gradient(circle at 32% 25%,#ffb8c1,#f01629 22%,#342526 60%,#0e0a0a 100%);border:1px solid rgba(255,133,146,.8);box-shadow:0 0 60px rgba(255,20,41,.55),inset 0 0 40px rgba(255,60,81,.25);animation:introSpin 7s linear infinite}
+.intro-orb:before,.intro-orb:after{content:"";position:absolute;inset:-14px;border-radius:50%;border:2px solid transparent;border-top-color:#ff6275;border-right-color:rgba(255,140,141,.8);animation:introSpin 3.2s linear infinite}
+.intro-orb:after{inset:-30px;border-top-color:rgba(255,140,141,.7);border-right-color:transparent;border-bottom-color:rgba(255,98,117,.5);animation-duration:5.4s;animation-direction:reverse}
+.intro-orb.speaking{animation-duration:2s;box-shadow:0 0 90px rgba(255,40,62,.8),inset 0 0 40px rgba(255,60,81,.4)}
 @keyframes introSpin{to{transform:rotate(360deg)}}
 .intro-line{font-size:clamp(26px,7vw,40px);font-weight:760;line-height:1.2;letter-spacing:-.035em;min-height:2.5em}
 .intro-line span{transition:color .15s,text-shadow .15s}
-.intro-line .speech-word-active{color:#7fe7ff!important;text-shadow:0 0 18px rgba(71,216,255,.9);background:none}
-.intro-note{margin-top:12px;color:#9eb8d5;font-size:12px;letter-spacing:.14em}
-.intro-btn{margin-top:22px;border:0;border-radius:999px;padding:14px 26px;font-weight:800;font-size:14px;color:#02142a;background:linear-gradient(135deg,#7fe7ff,#a58cff);box-shadow:0 10px 36px rgba(60,170,255,.4)}
-.intro-skip{display:block;margin:16px auto 0;background:none;border:0;color:#7f9cbc;font-size:12px;text-decoration:underline;padding:8px}
+.intro-line .speech-word-active{color:#ff7f8e!important;text-shadow:0 0 18px rgba(255,71,92,.9);background:none}
+.intro-note{margin-top:12px;color:#d59ea2;font-size:12px;letter-spacing:.14em}
+.intro-btn{margin-top:22px;border:0;border-radius:999px;padding:14px 26px;font-weight:800;font-size:14px;color:#1a1213;background:linear-gradient(135deg,#ff7f8e,#ff8c8d);box-shadow:0 10px 36px rgba(255,60,77,.4)}
+.intro-skip{display:block;margin:16px auto 0;background:none;border:0;color:#bc7f84;font-size:12px;text-decoration:underline;padding:8px}
 @media(prefers-reduced-motion:reduce){.intro-orb,.intro-orb:before,.intro-orb:after{animation:none!important}}
+
+/* ---- v3: talk + gestures ---- */
+#orbitTalk.on{animation:micPulse 1.4s ease-in-out infinite;border-color:#ff6275;background:rgba(255,40,62,.28)}
+.gesture-dock{position:fixed;z-index:30;right:max(10px,env(safe-area-inset-right));top:max(74px,calc(env(safe-area-inset-top) + 66px));width:min(210px,52vw);border:1px solid rgba(255,110,124,.45);border-radius:16px;background:rgba(18,13,13,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 18px 50px rgba(0,0,0,.55),0 0 30px rgba(255,30,49,.2);overflow:hidden}
+.gesture-view{position:relative;aspect-ratio:4/3;background:#0a0707}
+.gesture-view video,.gesture-view canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scaleX(-1)}
+.gesture-label{padding:8px 10px;font-size:11px;line-height:1.35;color:#ffbfc5;min-height:34px}
+.gesture-close{position:absolute;top:6px;left:6px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.6);color:#ffffff;font-size:12px;cursor:pointer}
+@media(max-width:760px){.composer-tools{gap:6px}.icon-btn{width:38px;height:38px}}
+
+/* ===== SENTINEL v3: obsidian carbon, titanium edges, crimson core ===== */
+.orbital-core{width:clamp(170px,30vw,270px)!important;height:clamp(170px,30vw,270px)!important;filter:none!important}
+.orbital-core:before,.orbital-core:after{display:none!important}
+.orbital-core canvas{width:100%;height:100%;display:block}
+.intro-core{display:block;width:min(72vw,280px);aspect-ratio:1;margin:0 auto 14px}
+.ow{display:inline-block;opacity:.12;transform:translateY(6px);transition:opacity .18s ease,transform .18s ease,color .15s,text-shadow .15s}
+.ow.rev{opacity:1;transform:none}
+.intro-line .ow.active{color:#ff6b6b!important;text-shadow:0 0 20px rgba(255,30,39,.9)}
+.hud-btn{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border-radius:999px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);color:#e6e6ea;font:700 10px/1 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;white-space:nowrap;-webkit-tap-highlight-color:transparent;touch-action:manipulation;transition:border-color .2s,background .2s}
+.hud-btn i{width:7px;height:7px;border-radius:50%;background:#5b5b66;transition:background .2s,box-shadow .2s}
+.hud-btn[aria-pressed="true"]{border-color:rgba(255,30,39,.7);background:rgba(255,30,39,.12);color:#fff}
+.hud-btn[aria-pressed="true"] i{background:#ff1e27;box-shadow:0 0 12px #ff1e27}
+@media(max-width:520px){.hud-btn{padding:8px 9px;font-size:9px;letter-spacing:.05em}.brand-sub{display:none}}
+.msg-in>*{animation:msgRise .38s ease both}
+@keyframes msgRise{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+a.speech-replay{text-decoration:none;display:inline-flex;align-items:center}
+@media(prefers-reduced-motion:reduce){.msg-in>*{animation:none}.ow{transition:none;opacity:1;transform:none}}
 </style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Ccircle cx=%2716%27 cy=%2716%27 r=%2712%27 fill=%27%23ff1e27%27/%3E%3C/svg%3E">
 </head>
 <body>
 <div class="app">
   <nav class="rail" aria-label="ORBIT navigation">
-    <a class="brand-mark" href="index.html" aria-label="THE SPACE home"><svg viewBox="0 0 48 48" aria-hidden="true" class="orbit-logo-svg"><defs><radialGradient id="orbSmallFill" cx="32%" cy="25%" r="75%"><stop stop-color="#c8f8ff"/><stop offset=".22" stop-color="#278fe9"/><stop offset=".62" stop-color="#071d57"/><stop offset="1" stop-color="#02091f"/></radialGradient></defs><circle cx="24" cy="24" r="16.5" fill="url(#orbSmallFill)" stroke="#70dfff" stroke-width=".8"/><path d="M8 25C12 8 32 4 40 17c5 9-4 22-16 23C13 41 6 33 8 25Z" fill="none" stroke="#62eaff" stroke-width="2.2" class="logo-rotor-a"/><path d="M9 19C18 4 39 11 40 25c1 12-14 19-25 10C8 31 7 24 9 19Z" fill="none" stroke="#a58cff" stroke-width="1.7" class="logo-rotor-b"/><path d="M13 31C21 23 28 17 38 16" fill="none" stroke="#d7fbff" stroke-width="1.1"/><ellipse cx="18" cy="13" rx="7" ry="3" fill="#e5fdff" opacity=".22" transform="rotate(-28 18 13)"/><circle cx="14" cy="12" r="1.2" fill="#fff"/></svg></a>
+    <a class="brand-mark" href="index.html" aria-label="THE SPACE home"><svg viewBox="0 0 48 48" aria-hidden="true" class="orbit-logo-svg"><defs><radialGradient id="orbSmallFill" cx="32%" cy="25%" r="75%"><stop stop-color="#ffc8cf"/><stop offset=".22" stop-color="#e92738"/><stop offset=".62" stop-color="#372728"/><stop offset="1" stop-color="#130e0e"/></radialGradient></defs><circle cx="24" cy="24" r="16.5" fill="url(#orbSmallFill)" stroke="#ff7080" stroke-width=".8"/><path d="M8 25C12 8 32 4 40 17c5 9-4 22-16 23C13 41 6 33 8 25Z" fill="none" stroke="#ff6275" stroke-width="2.2" class="logo-rotor-a"/><path d="M9 19C18 4 39 11 40 25c1 12-14 19-25 10C8 31 7 24 9 19Z" fill="none" stroke="#ff8c8d" stroke-width="1.7" class="logo-rotor-b"/><path d="M13 31C21 23 28 17 38 16" fill="none" stroke="#ffd7dc" stroke-width="1.1"/><ellipse cx="18" cy="13" rx="7" ry="3" fill="#ffe5e8" opacity=".22" transform="rotate(-28 18 13)"/><circle cx="14" cy="12" r="1.2" fill="#ffffff"/></svg></a>
     <div class="rail-divider"></div>
     <button class="rail-btn active" id="newChat" type="button" aria-label="New conversation" title="New conversation"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>
     <button class="rail-btn" type="button" data-prompt="Help me understand an engineering concept step by step, with examples and a short recap." aria-label="Learn a concept" title="Learn a concept"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9L19 15Z"/></svg></button>
@@ -119,16 +148,16 @@ body.intro-open{overflow:hidden}
   </nav>
   <main class="workspace">
     <header class="topbar">
-      <a class="brand-line" href="index.html" aria-label="THE SPACE home"><span class="mini-mark"><svg viewBox="0 0 48 48" aria-hidden="true" class="orbit-logo-svg"><defs><radialGradient id="orbSmallFillTop" cx="32%" cy="25%" r="75%"><stop stop-color="#c8f8ff"/><stop offset=".22" stop-color="#278fe9"/><stop offset=".62" stop-color="#071d57"/><stop offset="1" stop-color="#02091f"/></radialGradient></defs><circle cx="24" cy="24" r="16.5" fill="url(#orbSmallFillTop)" stroke="#70dfff" stroke-width=".8"/><path d="M8 25C12 8 32 4 40 17c5 9-4 22-16 23C13 41 6 33 8 25Z" fill="none" stroke="#62eaff" stroke-width="2.2" class="logo-rotor-a"/><path d="M9 19C18 4 39 11 40 25c1 12-14 19-25 10C8 31 7 24 9 19Z" fill="none" stroke="#a58cff" stroke-width="1.7" class="logo-rotor-b"/><path d="M13 31C21 23 28 17 38 16" fill="none" stroke="#d7fbff" stroke-width="1.1"/><ellipse cx="18" cy="13" rx="7" ry="3" fill="#e5fdff" opacity=".22" transform="rotate(-28 18 13)"/><circle cx="14" cy="12" r="1.2" fill="#fff"/></svg></span><span><span class="brand-name">ORBIT</span><span class="brand-sub">INTELLIGENT COMPANION · THE SPACE</span></span></a>
-      <div class="top-actions"><span class="status-pill"><span class="status-dot"></span> <span id="statusText">ORBIT workspace</span></span><button class="top-btn" id="topNew" type="button">＋ New chat</button></div>
+      <a class="brand-line" href="index.html" aria-label="THE SPACE home"><span class="mini-mark"><svg viewBox="0 0 48 48" aria-hidden="true" class="orbit-logo-svg"><defs><radialGradient id="orbSmallFillTop" cx="32%" cy="25%" r="75%"><stop stop-color="#ffc8cf"/><stop offset=".22" stop-color="#e92738"/><stop offset=".62" stop-color="#372728"/><stop offset="1" stop-color="#130e0e"/></radialGradient></defs><circle cx="24" cy="24" r="16.5" fill="url(#orbSmallFillTop)" stroke="#ff7080" stroke-width=".8"/><path d="M8 25C12 8 32 4 40 17c5 9-4 22-16 23C13 41 6 33 8 25Z" fill="none" stroke="#ff6275" stroke-width="2.2" class="logo-rotor-a"/><path d="M9 19C18 4 39 11 40 25c1 12-14 19-25 10C8 31 7 24 9 19Z" fill="none" stroke="#ff8c8d" stroke-width="1.7" class="logo-rotor-b"/><path d="M13 31C21 23 28 17 38 16" fill="none" stroke="#ffd7dc" stroke-width="1.1"/><ellipse cx="18" cy="13" rx="7" ry="3" fill="#ffe5e8" opacity=".22" transform="rotate(-28 18 13)"/><circle cx="14" cy="12" r="1.2" fill="#ffffff"/></svg></span><span><span class="brand-name">ORBIT</span><span class="brand-sub">INTELLIGENT COMPANION · THE SPACE</span></span></a>
+      <div class="top-actions"><span class="status-pill"><span class="status-dot"></span> <span id="statusText">ORBIT workspace</span></span><button class="hud-btn" id="topVision" type="button" aria-pressed="false" aria-label="Toggle Neural Vision hand control"><i></i><span>Neural Vision: OFF</span></button><button class="top-btn" id="topNew" type="button">＋ New chat</button></div>
     </header>
     <div class="main-content">
       <section class="welcome" id="welcome" aria-labelledby="welcomeTitle">
-        <div class="orbital-core" aria-hidden="true"><svg viewBox="0 0 220 220" role="img" aria-label="Luminous rotating blue and violet energy sphere"><defs><radialGradient id="heroOrbFill" cx="31%" cy="24%" r="78%"><stop offset="0" stop-color="#1b4d91"/><stop offset=".24" stop-color="#061b49"/><stop offset=".66" stop-color="#020b27"/><stop offset="1" stop-color="#010516"/></radialGradient><linearGradient id="heroCyan" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#e3ffff"/><stop offset=".28" stop-color="#28e6ff"/><stop offset=".68" stop-color="#0878ff"/><stop offset="1" stop-color="#5b4cff"/></linearGradient><linearGradient id="heroViolet" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#4b63ff" stop-opacity=".1"/><stop offset=".48" stop-color="#c09aff"/><stop offset="1" stop-color="#47eaff" stop-opacity=".2"/></linearGradient><filter id="heroGlow"><feGaussianBlur stdDeviation="4" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><clipPath id="heroClip"><circle cx="110" cy="110" r="64"/></clipPath></defs><circle cx="110" cy="110" r="79" fill="#087cff" opacity=".07" filter="url(#heroGlow)"/><circle cx="110" cy="110" r="65" fill="url(#heroOrbFill)" stroke="#247dca" stroke-width="1.2"/><g clip-path="url(#heroClip)"><ellipse cx="82" cy="63" rx="42" ry="19" fill="#2c8fff" opacity=".11" transform="rotate(-34 82 63)"/><path d="M35 126C65 85 90 57 119 49c30-8 52 13 54 39 2 29-25 62-56 73-24 9-49 1-58-18" fill="none" stroke="#17cfff" stroke-width="5" opacity=".22" filter="url(#heroGlow)" class="hero-flow hero-flow-one"/><path d="M35 126C65 85 90 57 119 49c30-8 52 13 54 39 2 29-25 62-56 73-24 9-49 1-58-18" fill="none" stroke="url(#heroCyan)" stroke-width="2.1" filter="url(#heroGlow)" class="hero-flow hero-flow-one"/><path d="M45 75C77 54 123 63 151 89c26 24 18 56-8 72-25 16-58 9-76-11-17-19-10-44 10-58 20-14 46-12 65 3" fill="none" stroke="url(#heroViolet)" stroke-width="2.4" filter="url(#heroGlow)" class="hero-flow hero-flow-two"/><path d="M44 109C70 119 91 132 109 153c17 20 38 24 58 5" fill="none" stroke="#8b82ff" stroke-width="1.5" opacity=".9" class="hero-flow hero-flow-three"/><path d="M68 53C91 73 112 94 126 121c10 20 8 37-2 53" fill="none" stroke="#6eeaff" stroke-width="1.5" opacity=".7" class="hero-flow hero-flow-four"/><ellipse cx="83" cy="68" rx="21" ry="8" fill="#b9faff" opacity=".13" transform="rotate(-35 83 68)"/><circle cx="72" cy="68" r="3" fill="#d9ffff" filter="url(#heroGlow)"/></g><circle cx="110" cy="110" r="65" fill="none" stroke="#79eaff" stroke-width="1.2" opacity=".78"/><path d="M53 85A65 65 0 0 1 157 59" fill="none" stroke="#b8f8ff" stroke-width="2" stroke-linecap="round" filter="url(#heroGlow)"/><path d="M161 143A65 65 0 0 1 75 169" fill="none" stroke="#9b8cff" stroke-width="1.7" stroke-linecap="round" filter="url(#heroGlow)"/><circle cx="164" cy="79" r="2.2" fill="#e6ffff" filter="url(#heroGlow)"/></svg></div>
+        <div class="orbital-core" aria-hidden="true"><canvas id="chatCore"></canvas></div>
         <div class="welcome-kicker">Think clearly · Explore deeply · Build boldly</div>
         <h1 id="welcomeTitle">Hello supreme, what are you looking for?</h1>
         <p>Meet ORBIT, your intelligent companion inside THE SPACE. Explore engineering and technology, work through difficult questions, shape meaningful projects, or simply follow an idea wherever it leads.</p>
-        <button class="speech-replay" id="replayGreeting" type="button" aria-label="Play ORBIT greeting">▶ Hear ORBIT greeting</button><div class="suggestion-label">Start a conversation</div>
+        <div class="suggestion-label">Start a conversation</div>
         <div class="suggestions">
           <button class="prompt" type="button" data-prompt="Explain a difficult engineering or ECE concept step by step, using an intuitive example and a concise summary."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="m12 3 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z"/></svg>Explore a concept</button>
           <button class="prompt" type="button" data-prompt="Help me turn an idea into a well-structured engineering project, from problem definition to testing and documentation."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="7" width="16" height="13" rx="2"/><path d="M9 7V4h6v3M8 12h8"/></svg>Design a project</button>
@@ -139,537 +168,24 @@ body.intro-open{overflow:hidden}
       <section class="messages" id="messages" aria-live="polite" aria-label="Conversation messages"></section>
       <div class="composer-wrap">
         <form class="composer" id="chatForm">
-          <textarea id="question" rows="1" maxlength="6000" placeholder="Ask ORBIT anything…" aria-label="Your message"></textarea>
-          <div class="composer-foot"><span class="hint">Engineering guide · tap ➤ to send</span><div class="composer-tools"><button class="icon-btn" id="orbitMic" type="button" aria-label="Start voice input" title="Speak your question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button><button class="icon-btn" id="orbitSpeak" type="button" aria-pressed="false" aria-label="Enable spoken answers" title="Toggle spoken answers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/></svg></button><button class="send" id="sendBtn" type="submit" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14-7-5 14-3-6-6-1Z"/><path d="m11 13 8-8"/></svg></button></div></div>
+          <textarea id="question" rows="1" maxlength="1000" placeholder="Ask ORBIT anything…" aria-label="Your message"></textarea>
+          <div class="composer-foot"><span class="hint">Engineering guide · tap ➤ to send</span><div class="composer-tools"><button class="icon-btn" id="orbitMic" type="button" aria-label="Start voice input" title="Speak your question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><rect x="9" y="3" width="6" height="12" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3m-4 0h8"/></svg></button><button class="icon-btn" id="orbitTalk" type="button" aria-pressed="false" aria-label="Start hands-free talk mode" title="Hands-free talk mode"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M4 10v4M8 6v12M12 3v18M16 7v10M20 10v4"/></svg></button><button class="icon-btn" id="orbitGesture" type="button" aria-pressed="false" aria-label="Start hand gesture control" title="Hand gesture control"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M18 11V6a2 2 0 0 0-4 0v1M14 10V4a2 2 0 0 0-4 0v2M10 10.5V6a2 2 0 0 0-4 0v8M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"/></svg></button><button class="icon-btn" id="orbitSpeak" type="button" aria-pressed="false" aria-label="Enable spoken answers" title="Toggle spoken answers"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 10v4h4l5 4V6l-5 4H4Z"/><path d="M17 9a5 5 0 0 1 0 6m2-9a9 9 0 0 1 0 12"/></svg></button><button class="send" id="sendBtn" type="submit" aria-label="Send message" disabled><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 14-7-5 14-3-6-6-1Z"/><path d="m11 13 8-8"/></svg></button></div></div>
         </form>
         <p class="disclaimer">ORBIT can make mistakes. Check important technical, academic and time-sensitive information against reliable sources.</p>
       </div>
     </div>
   </main>
 </div>
-<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="ORBIT greeting"><div class="intro-card"><div class="intro-orb" id="introOrb" aria-hidden="true"></div><div class="intro-line" id="introLine" aria-live="polite">Hello supreme, what are you looking for?</div><div class="intro-note">ORBIT · THE SPACE</div><button class="intro-btn" id="introBtn" type="button">▶ Tap to hear ORBIT</button><button class="intro-skip" id="introSkip" type="button">Skip intro</button></div></div>
+<div class="gesture-dock" id="gestureDock" hidden><div class="gesture-view"><video id="gestureVideo" playsinline muted autoplay></video><canvas id="gestureCanvas"></canvas></div><div class="gesture-label" id="gestureLabel">Starting…</div><button class="gesture-close" id="gestureClose" type="button" aria-label="Turn off gesture control">✕</button></div>
+<div class="intro" id="intro" role="dialog" aria-modal="true" aria-label="ORBIT greeting"><div class="intro-card"><canvas class="intro-core" id="introCore" aria-hidden="true"></canvas><div class="intro-line" id="introLine" aria-live="polite">Hello supreme, what are you looking for?</div><div class="intro-note">ORBIT · THE SPACE</div><button class="intro-btn" id="introBtn" type="button">▶ Tap to hear ORBIT</button><button class="intro-skip" id="introSkip" type="button">Skip intro</button></div></div>
 <div class="toast" id="toast" role="status"></div>
-<noscript><p style="position:fixed;inset:auto 0 0 0;background:#08284c;color:#fff;padding:12px;text-align:center">ORBIT needs JavaScript. Please enable it in your browser.</p></noscript>
-<script>
-(function(){
-"use strict";
-/* ===== CONFIG =====
-   ORBIT works fully on its own (built-in engineering knowledge engine).
-   To connect a live AI, deploy orbit-worker.js (see README) and paste its URL here. */
-var ORBIT_API = "";
-var GREETING = "Hello supreme, what are you looking for?";
-
-var $ = function(id){return document.getElementById(id);};
-var els = {
-  welcome:$("welcome"), messages:$("messages"), form:$("chatForm"), q:$("question"), send:$("sendBtn"),
-  mic:$("orbitMic"), speak:$("orbitSpeak"), toast:$("toast"), core:document.querySelector(".orbital-core"),
-  status:$("statusText"), title:$("welcomeTitle"), replay:$("replayGreeting"),
-  intro:$("intro"), introLine:$("introLine"), introBtn:$("introBtn"), introSkip:$("introSkip"), introOrb:$("introOrb")
-};
-var history = [], busy = false, speakOn = false, lastTopic = null, typingTimer = null;
-
-/* ---------- safe storage ---------- */
-function sget(k){try{return window.localStorage.getItem(k);}catch(e){return null;}}
-function sset(k,v){try{window.localStorage.setItem(k,v);}catch(e){}}
-function ssget(k){try{return window.sessionStorage.getItem(k);}catch(e){return null;}}
-function ssset(k,v){try{window.sessionStorage.setItem(k,v);}catch(e){}}
-function ssdel(k){try{window.sessionStorage.removeItem(k);}catch(e){}}
-try{var qs=new URLSearchParams(location.search);if(qs.get("api")){sset("orbit_api",qs.get("api"));}}catch(e){}
-var API = (sget("orbit_api")||ORBIT_API||"").trim();
-if(els.status){els.status.textContent = API ? "ORBIT AI connected" : "ORBIT knowledge mode";}
-
-/* ---------- toast ---------- */
-var toastT;
-function toast(msg){
-  if(!els.toast)return;
-  els.toast.textContent = msg; els.toast.classList.add("show");
-  clearTimeout(toastT); toastT = setTimeout(function(){els.toast.classList.remove("show");},3200);
-}
-
-/* ---------- text helpers ---------- */
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function safeUrl(u){return /^(https?:\/\/|index\.html|ORBIT\.html|#|\.\/)/i.test(u) ? u : "#";}
-function inline(s){
-  s = esc(s);
-  s = s.replace(/`([^`]+)`/g,"<code>$1</code>");
-  s = s.replace(/\*\*([^*]+)\*\*/g,"<strong>$1</strong>");
-  s = s.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g,function(m,t,u){
-    u = u.replace(/&amp;/g,"&");
-    var ext = /^https?:/i.test(u);
-    return '<a href="'+esc(safeUrl(u))+'"'+(ext?' target="_blank" rel="noopener noreferrer"':'')+'>'+t+'</a>';
-  });
-  return s;
-}
-function md(text){
-  var out=[], lines=String(text).replace(/\r/g,"").split("\n"), i=0, list=null;
-  function closeList(){if(list){out.push("</"+list+">");list=null;}}
-  while(i<lines.length){
-    var ln=lines[i];
-    if(/^```/.test(ln)){
-      closeList(); var code=[]; i++;
-      while(i<lines.length && !/^```/.test(lines[i])){code.push(lines[i]);i++;}
-      out.push('<pre class="code"><code>'+esc(code.join("\n"))+'</code></pre>'); i++; continue;
-    }
-    if(/^\|.*\|\s*$/.test(ln) && i+1<lines.length && /^\|[\s:|-]+\|\s*$/.test(lines[i+1])){
-      closeList();
-      var head=ln.split("|").slice(1,-1), rows=[]; i+=2;
-      while(i<lines.length && /^\|.*\|\s*$/.test(lines[i])){rows.push(lines[i].split("|").slice(1,-1));i++;}
-      out.push('<div class="tbl"><table><thead><tr>'+head.map(function(c){return "<th>"+inline(c.trim())+"</th>";}).join("")+"</tr></thead><tbody>"+
-        rows.map(function(r){return "<tr>"+r.map(function(c){return "<td>"+inline(c.trim())+"</td>";}).join("")+"</tr>";}).join("")+"</tbody></table></div>");
-      continue;
-    }
-    var h=ln.match(/^(#{1,4})\s+(.*)$/);
-    if(h){closeList();out.push("<h3>"+inline(h[2])+"</h3>");i++;continue;}
-    var ul=ln.match(/^\s*[-*•]\s+(.*)$/), ol=ln.match(/^\s*\d+[.)]\s+(.*)$/);
-    if(ul){if(list!=="ul"){closeList();out.push("<ul>");list="ul";}out.push("<li>"+inline(ul[1])+"</li>");i++;continue;}
-    if(ol){if(list!=="ol"){closeList();out.push("<ol>");list="ol";}out.push("<li>"+inline(ol[1])+"</li>");i++;continue;}
-    closeList();
-    if(ln.trim()===""){i++;continue;}
-    var para=[ln]; i++;
-    while(i<lines.length && lines[i].trim()!=="" && !/^(```|#{1,4}\s|\s*[-*•]\s|\s*\d+[.)]\s|\|)/.test(lines[i])){para.push(lines[i]);i++;}
-    out.push("<p>"+para.map(inline).join("<br>")+"</p>");
-  }
-  closeList();
-  return out.join("");
-}
-function plain(text){
-  return String(text).replace(/```[\s\S]*?```/g," code example. ").replace(/\|[-\s:|]+\|/g," ").replace(/\|/g,", ")
-    .replace(/\[([^\]]+)\]\([^)]*\)/g,"$1").replace(/[#*`_>]/g,"").replace(/\s+/g," ").trim();
-}
-
-/* ---------- speech synthesis ---------- */
-var synth = ("speechSynthesis" in window) ? window.speechSynthesis : null;
-var voicesCache = [];
-function loadVoices(){ if(synth){ voicesCache = synth.getVoices() || []; } }
-if(synth){ loadVoices(); if(synth.addEventListener){synth.addEventListener("voiceschanged",loadVoices);} else {synth.onvoiceschanged=loadVoices;} }
-function pickVoice(deep){
-  var en = voicesCache.filter(function(v){return /^en([_-]|$)/i.test(v.lang);});
-  if(!en.length) return null;
-  var male = /david|daniel|george|james|mark|guy|alex|aaron|fred|ryan|rishi|thomas|male|oliver|arthur|lee|google uk english male|en-gb-x-rjs|en-us-x-iom|en-us-x-iol|en-in-x-ene/i;
-  var female = /female|zira|samantha|susan|hazel|karen|victoria|fiona|moira|tessa|siri/i;
-  return en.filter(function(v){return male.test(v.name) && !female.test(v.name);})[0] ||
-         en.filter(function(v){return !female.test(v.name);})[0] || en[0];
-}
-var speaking = false, speakToken = 0;
-function setSpeaking(on){
-  speaking = on;
-  if(els.core){els.core.classList.toggle("speaking",on);}
-  if(els.introOrb){els.introOrb.classList.toggle("speaking",on);}
-  document.querySelectorAll(".speech-replay.is-playing").forEach(function(b){b.classList.remove("is-playing");});
-}
-function stopSpeech(){
-  speakToken++;
-  if(synth){try{synth.cancel();}catch(e){}}
-  setSpeaking(false);
-  clearHighlight();
-}
-var hlTimers=[], hlRoot=null;
-function clearHighlight(){
-  hlTimers.forEach(clearTimeout); hlTimers=[];
-  if(hlRoot){hlRoot.querySelectorAll(".speech-word-active").forEach(function(s){s.classList.remove("speech-word-active");});}
-}
-function wrapWords(el,text){
-  el.textContent=""; var spans=[];
-  String(text).split(/(\s+)/).forEach(function(w){
-    if(/^\s+$/.test(w)||w===""){el.appendChild(document.createTextNode(w));return;}
-    var s=document.createElement("span"); s.textContent=w; el.appendChild(s); spans.push(s);
-  });
-  return spans;
-}
-function setActive(spans,idx){spans.forEach(function(s,i){s.classList.toggle("speech-word-active",i===idx);});}
-
-/* speak(text, {deep, spans, root, onend}) */
-function speak(text,opts){
-  opts=opts||{};
-  if(!synth || typeof SpeechSynthesisUtterance==="undefined"){
-    toast("Voice output is not supported in this browser."); if(opts.onend)opts.onend(false); return;
-  }
-  stopSpeech();
-  var token=speakToken, spans=opts.spans||null; hlRoot=opts.root||null;
-  var clean=plain(text);
-  var chunks=clean.match(/[^.!?;:]+[.!?;:]*\s*/g)||[clean];
-  var merged=[],cur=""; chunks.forEach(function(c){ if((cur+c).length>170 && cur){merged.push(cur);cur=c;} else {cur+=c;} }); if(cur)merged.push(cur);
-  var idx=0, offset=0, gotBoundary=false;
-  var voice=pickVoice(opts.deep);
-  setSpeaking(true);
-  function done(ok){ if(token!==speakToken)return; setSpeaking(false); clearHighlight(); if(opts.onend)opts.onend(ok); }
-  function next(){
-    if(token!==speakToken)return;
-    if(idx>=merged.length){done(true);return;}
-    var part=merged[idx++], base=offset; offset+=part.length;
-    var u=new SpeechSynthesisUtterance(part);
-    if(voice)u.voice=voice; u.lang=(voice&&voice.lang)||"en-US";
-    if(opts.deep){u.pitch=0.05;u.rate=0.68;u.volume=1;} else {u.pitch=0.7;u.rate=0.95;u.volume=1;}
-    u.onboundary=function(e){
-      if(token!==speakToken||!spans||(e.name&&e.name!=="word"))return;
-      gotBoundary=true; var pos=base+e.charIndex, acc=0, hit=0;
-      for(var i=0;i<spans.length;i++){acc+=spans[i].textContent.length+1; if(pos<acc){hit=i;break;} hit=i;}
-      setActive(spans,hit);
-    };
-    u.onend=function(){next();};
-    u.onerror=function(e){ if(token!==speakToken)return; if(e&&(e.error==="canceled"||e.error==="interrupted"))return; if(e&&e.error==="not-allowed"){toast("Tap the speaker button once to allow sound."); done(false);} else {next();} };
-    try{synth.speak(u);}catch(err){done(false);}
-  }
-  if(spans&&spans.length){
-    /* fallback highlighting when the voice gives no word events */
-    var per=Math.round(((opts.deep?460:300))); 
-    hlTimers.push(setTimeout(function(){
-      if(gotBoundary||token!==speakToken)return;
-      spans.forEach(function(s,i){hlTimers.push(setTimeout(function(){if(token===speakToken&&!gotBoundary)setActive(spans,i);},i*per));});
-    },700));
-  }
-  /* some mobile browsers pause the engine; nudge it */
-  try{synth.resume();}catch(e){}
-  next();
-}
-
-/* ---------- greeting (voice + synced text) ---------- */
-function playGreeting(targetEl,onend,orbitIntro){
-  var spans=wrapWords(targetEl,GREETING);
-  speak(GREETING,{deep:true,spans:spans,root:targetEl,onend:function(ok){
-    clearHighlightNow(targetEl); if(onend)onend(ok);
-  }});
-}
-function clearHighlightNow(el){el.querySelectorAll(".speech-word-active").forEach(function(s){s.classList.remove("speech-word-active");});}
-
-/* ---------- intro overlay (when ORBIT opened directly) ---------- */
-function hideIntro(){ if(els.intro){els.intro.classList.remove("active");} document.body.classList.remove("intro-open"); }
-function initIntro(){
-  var wantsWelcome=false, spoken=ssget("orbit-greeting-spoken");
-  try{wantsWelcome=(new URLSearchParams(location.search)).get("welcome")==="1";}catch(e){}
-  ssdel("orbit-greeting-spoken");
-  if(!els.intro||!wantsWelcome||spoken){ return; }
-  els.intro.classList.add("active"); document.body.classList.add("intro-open");
-  var started=false;
-  function run(){
-    if(started)return; started=true;
-    if(els.introBtn)els.introBtn.hidden=true;
-    playGreeting(els.introLine,function(){ setTimeout(hideIntro,500); });
-    /* safety: never trap the user */
-    setTimeout(function(){ if(els.intro.classList.contains("active")){ stopSpeech(); hideIntro(); } },12000);
-  }
-  /* typed text appears even if sound is blocked */
-  els.introLine.textContent=GREETING;
-  if(els.introBtn){els.introBtn.addEventListener("click",run);}
-  if(els.introSkip){els.introSkip.addEventListener("click",function(){stopSpeech();hideIntro();});}
-}
-
-/* ---------- local knowledge engine ---------- */
-var KB=[
-{t:"Ohm's law & basic circuits",k:["ohm","resistor","resistance","voltage","current","kvl","kcl","kirchhoff","series","parallel","circuit","power dissipation"],a:"### Ohm's law and basic circuits\n**Ohm's law:** V = I × R. Voltage (V) drives current (I) through resistance (R).\n- **Power:** P = V × I = I²R = V²/R\n- **Series:** same current, resistances add: R = R1 + R2 + …\n- **Parallel:** same voltage, 1/R = 1/R1 + 1/R2 + …\n- **KCL:** currents entering a node sum to zero.\n- **KVL:** voltages around any closed loop sum to zero.\n\n**Example:** 12 V across 4 Ω gives I = 3 A and P = 36 W. A 1/4 W resistor would burn out, so always check power rating.\n\nTip: for any circuit, label node voltages, write KCL at each node, and solve the equations."},
-{t:"Diodes",k:["diode","rectifier","zener","led","forward bias","reverse bias","pn junction","p-n junction"],a:"### Diodes\nA diode conducts in one direction (forward bias) once the voltage passes its threshold: about 0.7 V for silicon, 0.2–0.3 V for Schottky, and 1.8–3.3 V for LEDs.\n- **Rectifier:** half-wave uses 1 diode; full-wave bridge uses 4 and, with a smoothing capacitor, gives DC.\n- **Zener:** conducts in reverse at its breakdown voltage, used for simple regulation and clamping.\n- **LED:** always use a series resistor: R = (Vsupply − Vled) / I.\n\n**Example:** 5 V supply, red LED (2 V), 10 mA gives R = 300 Ω, so use 330 Ω."},
-{t:"Transistors (BJT & MOSFET)",k:["transistor","bjt","mosfet","fet","gate","drain","source","collector","emitter","base","amplifier","cmos"],a:"### Transistors\n**BJT:** a current-controlled device. A small base current IB gives a collector current IC = β·IB in the active region. Used as an amplifier or a switch.\n**MOSFET:** a voltage-controlled device. A gate voltage above the threshold VT forms a channel between source and drain. It has a very high input impedance, so it is the basis of CMOS logic and modern ICs.\n\n**As a switch:** use cut-off (OFF) and saturation/triode (ON). For a MOSFET, pick a logic-level one for 3.3 V/5 V MCUs and add a gate resistor.\n**As an amplifier:** bias in the active/saturation region and check the small-signal gain (gm·RD for a common-source stage)."},
-{t:"Op-amps",k:["op-amp","opamp","operational amplifier","inverting","non-inverting","comparator","integrator","differentiator","summing"],a:"### Operational amplifiers\nAn ideal op-amp has infinite gain, infinite input impedance and zero output impedance. With negative feedback the inputs are at the same voltage (the virtual short).\n- **Inverting:** Av = −Rf/Rin\n- **Non-inverting:** Av = 1 + Rf/Rg\n- **Buffer:** gain 1 (output tied to the inverting input)\n- **Summing, integrator, differentiator** are built by swapping resistors and capacitors in the feedback network.\n- **Comparator:** no feedback, so the output saturates high or low.\n\nReal limits: gain-bandwidth product, slew rate, input offset and the supply rails."},
-{t:"Digital logic",k:["logic gate","gates","boolean","karnaugh","k-map","truth table","combinational","multiplexer","mux","decoder","adder","nand","nor","xor"],a:"### Digital logic\nBasic gates are AND, OR, NOT, NAND, NOR, XOR and XNOR. NAND and NOR are universal: any logic can be built from either one alone.\n- **Simplify** with Boolean algebra or Karnaugh maps (group 1s in powers of two).\n- **Combinational blocks:** multiplexer, decoder, encoder, half/full adder.\n- **Full adder:** Sum = A⊕B⊕Cin, Cout = AB + Cin(A⊕B)\n\nDe Morgan: (A·B)' = A' + B' and (A+B)' = A'·B'."},
-{t:"Flip-flops & sequential circuits",k:["flip flop","flip-flop","latch","register","counter","fsm","state machine","sequential","clock","setup time","hold time","d flip"],a:"### Sequential circuits\nFlip-flops store one bit and change state on a clock edge (D, JK, T, SR).\n- **Registers/counters** are chains of flip-flops.\n- **FSM:** Moore (output depends on state) or Mealy (state and input). Draw the state diagram, then the state table, then the next-state logic.\n- **Timing:** data must be stable for the setup time before and the hold time after the clock edge. Violations cause metastability.\n\nIn Verilog, use non-blocking assignments (<=) for sequential logic."},
-{t:"Verilog / VHDL & FPGA",k:["verilog","vhdl","fpga","hdl","rtl","synthesis","testbench","xilinx","vivado","lut"],a:"### HDL and FPGA\nVerilog and VHDL **describe** hardware, they are not run like software. An FPGA is built from LUTs, flip-flops, block RAM and DSP blocks that you reconfigure.\n\nWorkflow: write RTL, simulate with a testbench, synthesize, place and route, check timing, program the board.\n```\nmodule counter(input clk, rst, output reg [3:0] q);\n  always @(posedge clk) begin\n    if (rst) q <= 0; else q <= q + 1;\n  end\nendmodule\n```\nStart with a counter, a UART and a traffic-light FSM. Free tools: Vivado/Quartus plus the open-source Icarus Verilog and GTKWave."},
-{t:"Microcontrollers & Arduino/ESP32",k:["arduino","esp32","esp8266","microcontroller","mcu","stm32","raspberry pi","pic","8051","gpio","pwm","adc","timer","interrupt","embedded"],a:"### Microcontrollers\n- **Arduino (ATmega):** easiest start, 5 V, great for learning.\n- **ESP32:** 3.3 V, dual core, built-in Wi-Fi and Bluetooth, ideal for IoT.\n- **STM32:** ARM Cortex-M, professional-grade, used in industry.\n- **Raspberry Pi:** a full Linux computer, not a microcontroller.\n\nKey peripherals: GPIO, ADC (read analog sensors), PWM (motor speed and dimming), timers and interrupts.\n```\nvoid setup(){ pinMode(13, OUTPUT); }\nvoid loop(){ digitalWrite(13,HIGH); delay(500); digitalWrite(13,LOW); delay(500); }\n```\nGood habits: avoid delay() in real projects (use millis()), debounce buttons and never power motors from a GPIO pin."},
-{t:"Communication protocols (UART, SPI, I2C)",k:["uart","spi","i2c","protocol","serial","rs232","rs485","can bus","baud","modbus"],a:"### Serial protocols\n| Protocol | Wires | Notes |\n|---|---|---|\n| UART | TX, RX | Async, both sides need the same baud rate |\n| SPI | MOSI, MISO, SCK, CS | Fast, full duplex, one CS line per device |\n| I2C | SDA, SCL | Many devices on 2 wires by address, needs pull-up resistors |\n| CAN | CANH, CANL | Robust, used in vehicles |\n\nPick I2C for many slow sensors, SPI for displays and SD cards, UART for GPS, Bluetooth and debugging."},
-{t:"Sensors & IoT",k:["sensor","iot","internet of things","dht11","ultrasonic","ir sensor","mqtt","thingspeak","lora","bluetooth","wifi","smart"],a:"### Sensors and IoT\nCommon sensors: **DHT11/22** (temperature and humidity), **HC-SR04** (ultrasonic distance), **MPU6050** (accelerometer and gyro), **MQ-x** (gas), **LDR** (light), **soil moisture**, **IR**.\n\nAn IoT pipeline is: sensor → microcontroller (ESP32) → network (Wi-Fi/LoRa/BLE) → protocol (MQTT/HTTP) → cloud/dashboard → alerts.\nAlways calibrate sensors, filter noise (moving average) and think about power (deep sleep) and security (never hard-code passwords in public repos)."},
-{t:"Signals & systems, Fourier",k:["fourier","fft","laplace","z-transform","convolution","sampling","nyquist","aliasing","signal","dsp","spectrum","frequency domain"],a:"### Signals and systems\n- **Convolution:** y(t) = x(t) * h(t) is the output of an LTI system with impulse response h.\n- **Fourier transform:** shows which frequencies a signal contains. The FFT is its fast computation.\n- **Laplace / Z-transform:** analyse continuous / discrete systems and stability (poles in the left half of the s-plane).\n- **Nyquist:** sample at fs > 2·fmax or aliasing corrupts the signal.\n\nTry it: in Python, `numpy.fft.fft` on a sum of two sine waves shows two clear peaks."},
-{t:"Filters",k:["filter","low pass","high pass","band pass","cutoff","rc filter","butterworth","fir","iir"],a:"### Filters\nAn RC low-pass filter has cutoff **fc = 1 / (2πRC)**. Above fc the output falls at 20 dB/decade per pole.\n- **Low-pass** removes noise; **high-pass** blocks DC; **band-pass** selects a range.\n- **Active filters** use op-amps for gain and higher order (Butterworth is flat, Chebyshev is steeper but rippled).\n- **Digital:** FIR (always stable, linear phase) and IIR (efficient, can be unstable).\n\n**Example:** R = 10 kΩ, C = 100 nF gives fc ≈ 159 Hz."},
-{t:"Analog & digital communication",k:["modulation","am ","fm ","qam","psk","ask","fsk","ofdm","snr","bandwidth","communication","channel","noise","shannon","5g","ber"],a:"### Communication systems\nModulation puts a message on a carrier: **AM** (amplitude), **FM** (frequency), **PM** (phase). Digital versions: ASK, FSK, PSK and QAM (a mix of amplitude and phase, used in Wi-Fi/LTE).\n- **Shannon capacity:** C = B·log2(1 + SNR)\n- **OFDM** splits data over many subcarriers to fight multipath; it is used in Wi-Fi, 4G and 5G.\n- Performance is measured by **BER** vs SNR.\n\nA good first project is simulating BPSK over noise in MATLAB/Python and plotting BER."},
-{t:"Antennas & electromagnetics",k:["antenna","electromagnetic","maxwell","wave","transmission line","vswr","dipole","wavelength","impedance matching","em wave"],a:"### Antennas and EM\nWavelength λ = c/f. A half-wave dipole is about λ/2 long. Key terms: gain, directivity, radiation pattern, bandwidth and polarisation.\n- **Transmission lines:** match the load to the line impedance (50 Ω typical) to avoid reflections. VSWR close to 1 is good.\n- **Maxwell's equations** are the base of all EM theory.\n\nQuick check: at 2.4 GHz, λ ≈ 12.5 cm, so a quarter-wave monopole is about 3.1 cm."},
-{t:"Semiconductors & VLSI",k:["semiconductor","vlsi","silicon","doping","cmos inverter","fabrication","moore","chip","ic design","asic","layout","finfet","wafer"],a:"### Semiconductors and VLSI\nDoping makes silicon n-type (extra electrons) or p-type (holes). Joining them gives a p-n junction, the basis of diodes and transistors.\n- **CMOS inverter:** a PMOS pulls up, an NMOS pulls down, so almost no static power.\n- **Design flow:** specification, RTL, synthesis, place and route, verification, tape-out.\n- **Trends:** FinFET/GAA transistors, power and heat limits, chiplets.\n\nGood learning path: digital design, then Verilog, then CMOS layout in an open tool (Magic/Sky130 via OpenLane)."},
-{t:"Control systems & PID",k:["control system","pid","feedback","transfer function","stability","bode","root locus","controller","plant","setpoint","closed loop"],a:"### Control systems\nA closed-loop system compares the output with a setpoint and corrects the error.\n**PID:** u = Kp·e + Ki·∫e dt + Kd·de/dt\n- **P** reacts to the present error (too high causes oscillation)\n- **I** removes steady-state error (too high causes overshoot/windup)\n- **D** damps the response (amplifies noise)\n\nTune by raising Kp until it oscillates slightly, then add D, then a little I. Analyse stability with poles, Bode plots and gain/phase margins."},
-{t:"Power electronics & power supplies",k:["power supply","buck","boost","converter","smps","regulator","7805","ldo","inverter","rectification","battery","charging","transformer","motor driver","h-bridge"],a:"### Power electronics\n- **Linear regulator (7805, LDO):** simple and quiet but wasteful. Heat = (Vin − Vout) × I.\n- **Buck converter:** efficient step-down. **Boost:** step-up. **Buck-boost:** either.\n- **H-bridge:** drives a DC motor in both directions (L298N, TB6612).\n- **Batteries:** use a protection/BMS board for Li-ion, never short or overcharge.\n\nBuck duty cycle ≈ Vout/Vin. Always add input and output capacitors and a flyback diode for inductive loads."},
-{t:"PCB design",k:["pcb","kicad","eagle","altium","gerber","schematic","footprint","trace","via","ground plane","layout"],a:"### PCB design\nSteps: schematic, footprint assignment, placement, routing, design-rule check, Gerber export, fabrication.\n- Keep traces short, use a solid ground plane, place decoupling capacitors (100 nF) next to IC power pins.\n- Separate noisy (power, motors) from sensitive (analog) parts.\n- Trace width depends on current (use a calculator; 0.3 mm is fine for low-power signals).\n\nKiCad is free and professional. Order prototypes from JLCPCB or PCBWay once the DRC passes."},
-{t:"Machine learning basics",k:["machine learning","ml","neural network","deep learning","ai","regression","classification","overfitting","tensorflow","pytorch","dataset","training","model","cnn","scikit"],a:"### Machine learning basics\nML learns patterns from data instead of hand-written rules.\n- **Supervised:** labelled data (regression, classification)\n- **Unsupervised:** find structure (clustering)\n- **Reinforcement:** learn by reward\n\nWorkflow: collect data, clean it, split into train/validation/test, train, evaluate (accuracy, precision, recall), tune. Watch for **overfitting** (great on train, poor on test): use more data, regularisation or simpler models.\nStart with scikit-learn, then PyTorch. A good beginner project: classify sensor or image data on a Raspberry Pi or ESP32-CAM."},
-{t:"Python",k:["python","pandas","numpy","matplotlib","pip","flask","list comprehension"],a:"### Python\nPython is the best first language for engineers: readable and strong in data, automation and AI.\n```\nnums = [1, 2, 3, 4]\nsquares = [n*n for n in nums if n % 2 == 0]\nprint(squares)   # [4, 16]\n```\nLearn in this order: variables and types, control flow, functions, lists/dicts, files, modules, then NumPy, Matplotlib and Pandas. Build small tools often, such as a unit converter, a data logger or a web scraper."},
-{t:"Java & OOP",k:["java","oop","object oriented","class","inheritance","polymorphism","encapsulation","abstraction","jvm","spring"],a:"### Java and OOP\nThe four OOP pillars: **encapsulation** (hide data), **abstraction** (expose only what is needed), **inheritance** (reuse), **polymorphism** (one interface, many forms).\n```\nclass Animal { void speak(){ System.out.println(\"...\"); } }\nclass Dog extends Animal { @Override void speak(){ System.out.println(\"Woof\"); } }\n```\nJava runs on the JVM, so it is platform-independent. Practise collections, exceptions, interfaces and streams, then build a console app (library or bank system) before moving to Spring Boot."},
-{t:"C / C++ & embedded programming",k:["c programming","c++","pointer","memory","malloc","struct","bitwise","embedded c","volatile","register"],a:"### C and embedded C\nC gives direct control of memory and hardware.\n- **Pointers** store addresses: `int *p = &x; *p = 5;`\n- **Bitwise ops** set and clear register bits: `PORTB |= (1<<3); PORTB &= ~(1<<3);`\n- Use `volatile` for variables changed by interrupts or hardware.\n- Prefer fixed-size types (`uint8_t`) and avoid malloc on small MCUs.\n\nAlways initialise variables, check array bounds and keep interrupt routines short."},
-{t:"Data structures & algorithms",k:["data structure","algorithm","array","linked list","stack","queue","tree","graph","sorting","binary search","big o","complexity","recursion","dynamic programming","dsa"],a:"### Data structures and algorithms\n| Structure | Access | Insert | Use |\n|---|---|---|---|\n| Array | O(1) | O(n) | Fast index |\n| Linked list | O(n) | O(1) | Frequent inserts |\n| Hash map | O(1) avg | O(1) avg | Lookups |\n| Binary search tree | O(log n) | O(log n) | Sorted data |\n\nKey algorithms: binary search O(log n), merge/quick sort O(n log n), BFS/DFS for graphs, Dijkstra for shortest paths.\nPlan: learn arrays, strings, hashing and recursion first, then trees and graphs, then DP. Solve 2–3 problems a day and always state the time complexity."},
-{t:"Databases & SQL",k:["sql","database","dbms","mysql","normalization","join","primary key","nosql","mongodb","query","table"],a:"### Databases and SQL\nA relational database stores data in tables linked by keys.\n```\nSELECT s.name, c.title\nFROM students s JOIN courses c ON c.id = s.course_id\nWHERE s.year = 3 ORDER BY s.name;\n```\n**Normalisation** removes redundancy (1NF, 2NF, 3NF). **ACID** guarantees reliable transactions. Use NoSQL (MongoDB) for flexible, document-style data. Practise with SQLite, it needs no setup."},
-{t:"Computer networks",k:["network","osi","tcp","udp","ip address","subnet","dns","http","router","switch","tcp/ip","packet","firewall","ethernet"],a:"### Computer networks\n**OSI layers:** Physical, Data link, Network, Transport, Session, Presentation, Application.\n- **IP** addresses and routes packets; **TCP** is reliable and ordered; **UDP** is fast with no guarantee.\n- **DNS** turns names into IPs; **HTTP/HTTPS** carries the web; **DHCP** assigns addresses.\n- **Subnetting:** a /24 mask gives 256 addresses (254 usable).\n\nTry Wireshark on your own traffic to see these layers for real."},
-{t:"Operating systems",k:["operating system","process","thread","scheduling","deadlock","paging","virtual memory","semaphore","mutex","linux","kernel","rtos"],a:"### Operating systems\nAn OS manages the CPU, memory, files and devices.\n- **Process vs thread:** a process has its own memory; threads share it.\n- **Scheduling:** FCFS, SJF, round robin, priority.\n- **Deadlock** needs mutual exclusion, hold-and-wait, no pre-emption and circular wait; break any one.\n- **Virtual memory** uses paging to give each process its own address space.\n\nFor embedded work, learn an **RTOS** (FreeRTOS) with tasks, queues and semaphores."},
-{t:"Git & GitHub",k:["git","github","commit","branch","merge","pull request","repository","repo","gh-pages","github pages","version control","readme"],a:"### Git and GitHub\n```\ngit init\ngit add .\ngit commit -m \"Describe the change\"\ngit branch feature-x\ngit push origin main\n```\n- Commit small and often with clear messages.\n- Use branches for features and pull requests for review.\n- Never commit passwords or API keys. If you do, rotate the key at once.\n- **GitHub Pages** hosts static sites (like THE SPACE) free from Settings, then Pages.\n\nOn a phone, you can upload or edit files straight from the GitHub web interface."},
-{t:"Web development",k:["html","css","javascript","website","web development","frontend","backend","react","node","responsive","api","json","fetch"],a:"### Web development\n- **HTML** is structure, **CSS** is style, **JavaScript** is behaviour.\n- Build **responsive** pages with flexbox/grid and media queries; test on a phone first.\n- Call APIs with `fetch(url).then(r=>r.json())`.\n- Keep secrets (API keys) on a server, never in front-end code.\n\nPath: HTML/CSS, JavaScript, a framework (React), then Node.js/Express and a database. Host static sites on GitHub Pages, Netlify or Cloudflare Pages."},
-{t:"Thermodynamics & mechanical basics",k:["thermodynamics","entropy","enthalpy","heat","carnot","engine","stress","strain","torque","gear","fluid","bernoulli","mechanical","cad","solidworks"],a:"### Mechanical and thermal basics\n- **1st law:** energy is conserved (ΔU = Q − W). **2nd law:** entropy of an isolated system never decreases.\n- **Carnot efficiency:** η = 1 − Tc/Th (temperatures in kelvin).\n- **Stress** σ = F/A, **strain** ε = ΔL/L, and E = σ/ε (Young's modulus).\n- **Torque** τ = F × r; gears trade speed for torque.\n- **Bernoulli:** pressure drops where fluid speed rises.\n\nFor design, learn CAD (Fusion 360, SolidWorks) and simulate stress before you build."},
-{t:"Robotics & motors",k:["robot","robotics","servo","stepper","dc motor","line follower","arm","drone","quadcopter","encoder","ros","motor"],a:"### Robotics and motors\n- **DC motor:** simple, needs a driver (H-bridge) and PWM speed control.\n- **Servo:** position control by PWM pulse (1–2 ms).\n- **Stepper:** precise steps, great for 3D printers and CNC.\n- **Encoders** and IMUs give feedback; fuse them for navigation.\n\nBeginner projects: line follower (IR sensors plus PID), obstacle-avoiding car (ultrasonic), robotic arm with servos. Next level: ROS 2 and SLAM."},
-{t:"Renewable energy & EVs",k:["solar","renewable","wind","ev","electric vehicle","mppt","photovoltaic","energy storage","grid","smart grid"],a:"### Renewable energy and EVs\n- **Solar PV:** output depends on irradiance and temperature. **MPPT** controllers keep the panel at its maximum power point.\n- **Battery sizing:** capacity (Wh) = load (W) × hours ÷ usable depth of discharge.\n- **EVs:** battery pack, BMS, motor controller and charger; regenerative braking recovers energy.\n- **Smart grids** add sensing and control for balancing supply and demand.\n\nA good project: solar-powered IoT node with MPPT charging and deep-sleep firmware."},
-{t:"Project ideas",k:["project idea","project ideas","final year project","mini project","major project","suggest a project","what project","capstone","hackathon"],a:"### Project ideas that stand out\n**Embedded / IoT**\n- Smart energy meter with live dashboard (ESP32 + MQTT)\n- Air-quality monitor with alerts and a map\n- Smart irrigation using soil sensors and weather data\n\n**Robotics / Automation**\n- Autonomous line-follower with PID tuning\n- Floor-cleaning or inspection robot with obstacle avoidance\n\n**Software / AI**\n- Plant-disease detection from leaf photos\n- Campus resource search assistant\n\n**Electronics / VLSI**\n- Custom PCB data logger, or FPGA-based image filter\n\nA strong project has a clear problem, measurable results, a block diagram, test data and clean documentation. Tell me your branch and interests and I will narrow this down."},
-{t:"Project planning & documentation",k:["project plan","documentation","report","block diagram","problem statement","methodology","literature","abstract","presentation","viva","ppt"],a:"### Planning and documenting a project\n1. **Problem statement:** who has the problem and how big it is.\n2. **Objectives:** 3–4 measurable goals.\n3. **Literature/market survey:** what exists and what is missing.\n4. **Design:** block diagram, component selection, cost.\n5. **Implementation:** build in small tested stages.\n6. **Testing:** compare results with objectives, with tables and graphs.\n7. **Conclusion and future scope.**\n\nFor the viva, know every component's purpose, your formulas and the limits of your design."},
-{t:"Internships, resumes & careers",k:["internship","resume","cv","job","career","placement","interview","linkedin","skills","portfolio","opportunit","fresher","gate","higher studies","masters"],a:"### Careers and internships\n- **Resume:** one page, projects first (with results), then skills, education and achievements. Use numbers: reduced power by 30%.\n- **Portfolio:** GitHub repos with a clear README, photos or a demo video.\n- **Internships:** apply to startups, research labs and companies directly; show a relevant project in your first message.\n- **Interviews:** revise fundamentals of your branch, DSA basics and every line of your resume.\n- **Higher studies:** GATE, GRE or CAT depending on the goal.\n\nOpen the **Careers** and **Opportunities** sections of THE SPACE for curated links: [Careers](index.html#careers) · [Opportunities](index.html#opportunities)."},
-{t:"Study strategy",k:["study","exam","how to learn","preparation","time table","timetable","focus","motivation","semester","revision","notes","backlog"],a:"### Study strategy that works\n- **Understand before memorising:** explain each topic aloud in simple words.\n- **Active recall + spaced repetition:** test yourself after 1, 3, 7 and 21 days.\n- **Past papers:** solve them under time limits.\n- **Pomodoro:** 25 minutes of focus, 5 minutes of rest.\n- **Build to learn:** every concept gets a tiny experiment or code.\n\nTell me your subject and exam date and I will make a day-by-day plan."},
-{t:"Math for engineers",k:["matrix","eigenvalue","derivative","integral","differential equation","probability","statistics","calculus","complex number","linear algebra","taylor"],a:"### Engineering math essentials\n- **Linear algebra:** matrices solve systems; eigenvalues give modes and stability.\n- **Calculus:** derivative = rate of change, integral = accumulation.\n- **ODEs:** first-order RC response: v(t) = V(1 − e^(−t/RC)).\n- **Complex numbers:** e^(jθ) = cosθ + j·sinθ, the basis of phasors.\n- **Probability:** mean, variance, normal distribution, used for noise and reliability.\n\nTell me the exact problem and I will solve it step by step."},
-{t:"Troubleshooting hardware & code",k:["not working","debug","error","bug","troubleshoot","fix","issue","problem","fails","crash","stuck","no output","burnt","hot"],a:"### Systematic troubleshooting\n1. **Reproduce** the problem and write down exactly what happens vs what you expected.\n2. **Check power first:** correct voltage, common ground, enough current.\n3. **Isolate:** test each block alone (sensor, MCU, driver).\n4. **Measure:** multimeter for voltages, serial prints for code, oscilloscope or logic analyser for signals.\n5. **Change one thing at a time.**\n6. **Read the error message fully:** it usually names the file and line.\n\nPaste your code, circuit description and the exact error, and I will help narrow it down."}
-];
-
-var SITE=[
- {k:["academics","syllabus","subject","notes","semester"],t:"Academics",u:"index.html#academics"},
- {k:["video","youtube","lecture","course","learn"],t:"Video Learning",u:"index.html#learn-beyond"},
- {k:["project"],t:"Projects",u:"index.html#projects"},
- {k:["industry","company","companies"],t:"Industry",u:"index.html#industry"},
- {k:["opportunit","scholarship","competition"],t:"Opportunities",u:"index.html#opportunities"},
- {k:["career","job","internship"],t:"Careers",u:"index.html#careers"},
- {k:["event","workshop","webinar"],t:"Events",u:"index.html#events"}
-];
-function tokens(s){return String(s).toLowerCase();}
-function score(entry,q){
-  var s=0; entry.k.forEach(function(k){
-    var kk=k.toLowerCase(), from=0, idx, hit=false;
-    while((idx=q.indexOf(kk,from))>-1){
-      var before=idx===0?" ":q.charAt(idx-1), after=q.charAt(idx+kk.length)||" ";
-      var startOk=/[^a-z0-9]/.test(before)||kk.charAt(0)===" ";
-      var endOk=/[^a-z0-9]/.test(after)||kk.charAt(kk.length-1)===" "||kk.length>=8||(/^(s|es)$/.test(q.substr(idx+kk.length,2).replace(/[^a-z]+.*$/,""))&&kk.length>=3);
-      if(startOk&&endOk){hit=true;break;}
-      from=idx+1;
-    }
-    if(hit){ s+= 1+Math.min(kk.length,12)/6; }
-  });
-  return s;
-}
-function byTitle(t){for(var i=0;i<KB.length;i++){if(KB[i].t.indexOf(t)===0)return KB[i];}return null;}
-function intentAnswer(low){
-  if(/(explain a difficult engineering|understand an engineering concept)/.test(low)){
-    return "### Let us learn a concept\nTell me the topic and your level, and I will explain it step by step with an example and a recap. Popular picks:\n- **Electronics:** op-amps, transistors, diodes, filters\n- **Digital:** logic gates, flip-flops, FPGA, Verilog\n- **Embedded:** Arduino, ESP32, I2C/SPI/UART, sensors\n- **Signals & comms:** Fourier transform, modulation, antennas\n- **Computing:** Python, Java, data structures, networks, SQL\n\nFor example, type **explain op-amps** or **how does the Fourier transform work**.";
-  }
-  if(/(turn an idea into|plan a technically meaningful project)/.test(low)){
-    var p=byTitle("Project planning"); return p.a+"\n\nShare your idea, branch and budget, and I will turn it into a block diagram and a build plan. For inspiration, type **project ideas**.";
-  }
-  if(/(understand this code or debug|debug this problem systematically)/.test(low)){
-    return byTitle("Troubleshooting").a;
-  }
-  if(/i have an idea i want to explore/.test(low)){
-    return "### Let us shape your idea\nAnswer these and I will help you sharpen it:\n1. **What problem** does it solve, and for whom?\n2. **What exists already**, and what is missing?\n3. **What is the smallest version** you could build in two weeks?\n4. **How will you measure** success?\n\nTell me the idea in one or two sentences to begin.";
-  }
-  return null;
-}
-function localAnswer(q){
-  var raw=q.trim(), low=tokens(raw);
-  if(/^(hi|hello|hey|yo|hola|namaste|good (morning|afternoon|evening))\b[\s!.?]*$/.test(low)){
-    return "Hello, supreme! I am ORBIT, your engineering guide inside THE SPACE. Ask me about electronics, programming, projects, internships or study plans, or tap a shortcut above.";
-  }
-  if((/\b(who are you|what are you|your name|what can you do|capabilities)\b/.test(low) || /^(help|help me|menu|options)[\s!?.]*$/.test(low)) && low.length<60){
-    return "### I am ORBIT\nYour engineering guide inside THE SPACE. I can:\n- Explain concepts in electronics, communication, VLSI, embedded systems, programming, networks, databases and more\n- Help you plan and document projects\n- Troubleshoot circuits and code step by step\n- Guide you on internships, resumes and study plans\n- Point you to the right section of THE SPACE\n\nTry: **explain op-amps**, **project ideas for ECE**, or **how does I2C work**.";
-  }
-  if(/^(thanks|thank you|thx|ty|great|awesome|nice)\b/.test(low)){return "You are welcome, supreme. Ask me anything else whenever you are ready.";}
-  var intent=intentAnswer(low); if(intent){lastTopic={t:"your idea",a:intent};return intent;}
-  /* quick calculators */
-  var calc=quickCalc(low); if(calc) return calc;
-  var ranked=KB.map(function(e){return {e:e,s:score(e,low)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;});
-  if(!ranked.length && lastTopic && /\b(more|example|explain|again|simpler|detail|why|how)\b/.test(low) && low.length<60){
-    return "Let me go deeper on **"+lastTopic.t+"**.\n\n"+lastTopic.a+"\n\nTell me the exact part you want broken down further, or give me a numerical problem and I will solve it step by step.";
-  }
-  if(!ranked.length){
-    var site=SITE.filter(function(s){return score(s,low)>0;});
-    var msg="I do not have a detailed answer for that in my built-in knowledge yet. Here is how to get the best help:\n- Rephrase with the key topic, for example **op-amp gain**, **I2C**, **PID tuning**, **Python lists**.\n- Add the context: your branch, what you tried and the exact error.\n";
-    if(site.length){msg+="\nRelevant sections of THE SPACE:\n"+site.map(function(s){return "- ["+s.t+"]("+s.u+")";}).join("\n")+"\n";}
-    msg+="\nTopics I cover well: circuits, diodes, transistors, op-amps, digital logic, FPGA, microcontrollers, protocols, IoT, signals, filters, communication, antennas, VLSI, control, power electronics, PCB, ML, Python, Java, C, DSA, SQL, networks, OS, Git, web, robotics, projects and careers.";
-    return msg;
-  }
-  var top=ranked[0].e; lastTopic=top;
-  var ans=top.a, rel=ranked.slice(1,3).filter(function(x){return x.s>=ranked[0].s*0.6;});
-  if(rel.length){ans+="\n\n**Related:** "+rel.map(function(x){return x.e.t;}).join(" · ");}
-  var site2=SITE.filter(function(s){return score(s,low)>0;})[0];
-  if(site2 && ans.indexOf(site2.u)<0){ans+="\n\nMore resources: ["+site2.t+" on THE SPACE]("+site2.u+")";}
-  return ans;
-}
-function num(s){return parseFloat(s);}
-function fmt(n){return (Math.round(n*10000)/10000).toString();}
-function quickCalc(low){
-  var v=low.match(/\bv\s*=\s*([\d.]+)\s*v?/), i=low.match(/\bi\s*=\s*([\d.]+)\s*(m?a)?/), r=low.match(/\br\s*=\s*([\d.]+)\s*(k|m)?\s*(?:ohm|Ω|ω)?/);
-  if((v&&r)||(v&&i)||(i&&r)){
-    var V=v?num(v[1]):null, I=i?num(i[1])*(i[2]==="ma"?0.001:1):null, R=r?num(r[1])*(r[2]==="k"?1000:r[2]==="m"?1e6:1):null;
-    if(V==null)V=I*R; else if(I==null)I=V/R; else if(R==null)R=V/I;
-    if(isFinite(V)&&isFinite(I)&&isFinite(R)&&R>0){
-      return "### Ohm's law result\n- **V** = "+fmt(V)+" V\n- **I** = "+fmt(I)+" A ("+fmt(I*1000)+" mA)\n- **R** = "+fmt(R)+" Ω\n- **Power** P = V×I = "+fmt(V*I)+" W\n\nUse a resistor rated at least twice the calculated power.";
-    }
-  }
-  var m=low.match(/^\s*(?:calculate|calc|solve|what is|what's|=)?\s*([-+*/%^().\d\s]{3,})\s*\??$/);
-  if(m && /[-+*/^%]/.test(m[1]) && /\d/.test(m[1])){
-    try{
-      var ex=m[1].replace(/\^/g,"**"); if(!/^[-+*/%().\d\s]+$/.test(ex))return null;
-      var val=Function('"use strict";return ('+ex+')')(); if(typeof val==="number"&&isFinite(val)){return "**"+m[1].trim()+" = "+fmt(val)+"**";}
-    }catch(e){}
-  }
-  return null;
-}
-
-/* ---------- optional live AI ---------- */
-function apiAnswer(){
-  var ctrl=("AbortController" in window)?new AbortController():null, t=setTimeout(function(){if(ctrl)ctrl.abort();},30000);
-  return fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({messages:history.slice(-12)}),signal:ctrl?ctrl.signal:undefined})
-   .then(function(r){clearTimeout(t); if(!r.ok)throw new Error("HTTP "+r.status); return r.json();})
-   .then(function(d){ if(!d||!d.answer)throw new Error("Empty reply"); return String(d.answer); });
-}
-
-/* ---------- chat UI ---------- */
-function showChat(){ if(els.welcome&&!els.welcome.hidden){els.welcome.hidden=true;} }
-function showWelcome(){ if(els.welcome){els.welcome.hidden=false;} }
-function scrollDown(){ var s=els.messages; if(!s)return; setTimeout(function(){ try{ s.lastElementChild&&s.lastElementChild.scrollIntoView({block:"end",behavior:"smooth"}); }catch(e){window.scrollTo(0,document.body.scrollHeight);} },30); }
-function addMsg(role,text,opts){
-  opts=opts||{}; showChat();
-  var wrap=document.createElement("article"); wrap.className="message "+role;
-  var av=document.createElement("div"); av.className="avatar"; av.setAttribute("aria-hidden","true"); av.textContent=role==="user"?"You":"O";
-  var body=document.createElement("div"); body.className="message-body";
-  wrap.appendChild(av); wrap.appendChild(body); els.messages.appendChild(wrap);
-  if(role==="user"){ body.textContent=text; }
-  else if(opts.thinking){ body.innerHTML='<div class="thinking" aria-label="ORBIT is thinking"><span></span><span></span><span></span></div>'; }
-  else { renderBot(body,text); }
-  scrollDown(); return {wrap:wrap,body:body};
-}
-function renderBot(body,text){
-  body.innerHTML=md(text);
-  var bar=document.createElement("div"); bar.className="msg-actions";
-  var listen=document.createElement("button"); listen.type="button"; listen.className="speech-replay"; listen.setAttribute("aria-label","Listen to this answer"); listen.innerHTML="🔊 Listen";
-  listen.addEventListener("click",function(){
-    if(speaking){stopSpeech();listen.innerHTML="🔊 Listen";return;}
-    listen.innerHTML="⏹ Stop";
-    speak(text,{deep:false,onend:function(){listen.innerHTML="🔊 Listen";}});
-  });
-  var copy=document.createElement("button"); copy.type="button"; copy.className="speech-replay"; copy.setAttribute("aria-label","Copy this answer"); copy.innerHTML="⧉ Copy";
-  copy.addEventListener("click",function(){ copyText(text).then(function(ok){toast(ok?"Answer copied":"Copy is not available here");}); });
-  bar.appendChild(listen); bar.appendChild(copy); body.appendChild(bar);
-}
-function copyText(t){
-  if(navigator.clipboard&&navigator.clipboard.writeText){return navigator.clipboard.writeText(t).then(function(){return true;},function(){return fallbackCopy(t);});}
-  return Promise.resolve(fallbackCopy(t));
-}
-function fallbackCopy(t){
-  try{var ta=document.createElement("textarea");ta.value=t;ta.style.cssText="position:fixed;opacity:0;top:0;left:0";document.body.appendChild(ta);ta.focus();ta.select();var ok=document.execCommand("copy");document.body.removeChild(ta);return ok;}catch(e){return false;}
-}
-function save(){ sset("orbit_chat_v1",JSON.stringify(history.slice(-40))); }
-function setBusy(b){ busy=b; els.send.disabled=b||!els.q.value.trim(); }
-
-function ask(text){
-  text=String(text||"").trim(); if(!text||busy)return;
-  if(listening){stopMic();}
-  stopSpeech();
-  history.push({role:"user",content:text}); addMsg("user",text);
-  els.q.value=""; autosize(); setBusy(true);
-  var pending=addMsg("assistant","",{thinking:true});
-  var p = API ? apiAnswer().catch(function(err){ toast("Live AI unavailable, using built-in knowledge."); return localAnswer(text); })
-              : new Promise(function(res){ setTimeout(function(){res(localAnswer(text));},450+Math.random()*350); });
-  p.then(function(ans){
-    history.push({role:"assistant",content:ans}); save();
-    typeOut(pending.body,ans,function(){
-      setBusy(false); scrollDown();
-      if(speakOn){speak(ans,{deep:false});}
-    });
-  }).catch(function(){
-    pending.body.innerHTML="<p>Something went wrong while preparing that answer. Please try again.</p>"; setBusy(false);
-  });
-}
-function typeOut(body,text,done){
-  /* reveal progressively, then render final markdown with action buttons */
-  var i=0, step=Math.max(6,Math.ceil(text.length/90)); clearInterval(typingTimer);
-  body.innerHTML="";
-  typingTimer=setInterval(function(){
-    i+=step;
-    if(i>=text.length){clearInterval(typingTimer);renderBot(body,text);done();return;}
-    body.innerHTML=md(text.slice(0,i)); scrollDown();
-  },28);
-}
-
-/* ---------- composer ---------- */
-function autosize(){ els.q.style.height="auto"; els.q.style.height=Math.min(els.q.scrollHeight,180)+"px"; els.send.disabled=busy||!els.q.value.trim(); }
-els.q.addEventListener("input",autosize);
-els.q.addEventListener("keydown",function(e){
-  if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing&&window.matchMedia&&window.matchMedia("(pointer:fine)").matches){e.preventDefault();ask(els.q.value);}
-});
-els.form.addEventListener("submit",function(e){e.preventDefault();ask(els.q.value);});
-
-/* shortcut buttons: rail + suggestion chips */
-document.querySelectorAll("[data-prompt]").forEach(function(b){
-  b.addEventListener("click",function(){
-    var p=b.getAttribute("data-prompt"); if(!p)return;
-    document.querySelectorAll(".rail-btn").forEach(function(x){x.classList.remove("active");}); if(b.classList.contains("rail-btn"))b.classList.add("active");
-    ask(p);
-  });
-});
-
-/* new chat */
-function newChat(){
-  stopSpeech(); stopMic(); clearInterval(typingTimer);
-  history=[]; lastTopic=null; sset("orbit_chat_v1","[]"); els.messages.innerHTML=""; showWelcome(); setBusy(false);
-  els.q.value=""; autosize(); window.scrollTo(0,0);
-  document.querySelectorAll(".rail-btn").forEach(function(x){x.classList.toggle("active",x.id==="newChat");});
-  toast("New conversation started");
-}
-$("newChat").addEventListener("click",newChat);
-$("topNew").addEventListener("click",newChat);
-
-/* theme */
-function applyTheme(t){
-  if(t==="black"){document.documentElement.setAttribute("data-theme","black");} else {document.documentElement.removeAttribute("data-theme");}
-  var m=document.querySelector('meta[name="theme-color"]'); if(m)m.setAttribute("content",t==="black"?"#03060b":"#03152d");
-}
-applyTheme(sget("orbit_theme")==="black"?"black":"blue");
-$("topTheme").addEventListener("click",function(){
-  var next=document.documentElement.getAttribute("data-theme")==="black"?"blue":"black";
-  applyTheme(next); sset("orbit_theme",next); toast(next==="black"?"Midnight black theme":"Deep blue theme");
-});
-
-/* spoken answers toggle */
-function setSpeakOn(on){
-  speakOn=on; els.speak.setAttribute("aria-pressed",on?"true":"false");
-  els.speak.setAttribute("aria-label",on?"Turn off spoken answers":"Turn on spoken answers");
-  els.speak.classList.toggle("on",on);
-}
-els.speak.addEventListener("click",function(){
-  if(!synth){toast("Voice output is not supported in this browser.");return;}
-  setSpeakOn(!speakOn);
-  if(speakOn){ var u=new SpeechSynthesisUtterance(" "); u.volume=0; try{synth.speak(u);}catch(e){} toast("Spoken answers on"); }
-  else{ stopSpeech(); toast("Spoken answers off"); }
-});
-
-/* replay greeting */
-if(els.replay){
-  els.replay.addEventListener("click",function(){
-    if(speaking){stopSpeech();return;}
-    playGreeting(els.title);
-  });
-}
-
-/* ---------- voice input ---------- */
-var SR=window.SpeechRecognition||window.webkitSpeechRecognition, rec=null, listening=false, baseText="";
-function setListening(on){
-  listening=on; els.mic.setAttribute("aria-pressed",on?"true":"false"); els.mic.classList.toggle("on",on);
-  els.mic.setAttribute("aria-label",on?"Stop voice input":"Start voice input");
-}
-function stopMic(){ if(rec){try{rec.stop();}catch(e){}} setListening(false); }
-els.mic.addEventListener("click",function(){
-  if(!SR){toast("Voice input is not supported in this browser. Try Chrome or Safari.");return;}
-  if(listening){stopMic();return;}
-  stopSpeech();
-  try{
-    rec=new SR(); rec.lang=(navigator.language||"en-US"); rec.interimResults=true; rec.continuous=false; rec.maxAlternatives=1;
-    baseText=els.q.value?els.q.value.replace(/\s+$/,"")+" ":"";
-    rec.onstart=function(){setListening(true);toast("Listening… speak now");};
-    rec.onresult=function(e){
-      var t="",final=false; for(var i=e.resultIndex;i<e.results.length;i++){t+=e.results[i][0].transcript; if(e.results[i].isFinal)final=true;}
-      els.q.value=baseText+t; autosize();
-      if(final){baseText=els.q.value+" ";}
-    };
-    rec.onerror=function(e){
-      setListening(false); var c=e&&e.error;
-      if(c==="not-allowed"||c==="service-not-allowed"){toast("Microphone permission is blocked. Allow it in your browser settings.");}
-      else if(c==="no-speech"){toast("I did not hear anything. Tap the mic and try again.");}
-      else if(c==="audio-capture"){toast("No microphone was found.");}
-      else if(c==="network"){toast("Voice input needs an internet connection.");}
-      else if(c!=="aborted"){toast("Voice input stopped. Please try again.");}
-    };
-    rec.onend=function(){ var had=listening; setListening(false); if(had&&els.q.value.trim()){els.q.focus();} };
-    rec.start();
-  }catch(err){setListening(false);toast("Could not start the microphone.");}
-});
-
-/* ---------- restore + boot ---------- */
-function restore(){
-  var saved=null; try{saved=JSON.parse(sget("orbit_chat_v1")||"[]");}catch(e){saved=[];}
-  if(!Array.isArray(saved)||!saved.length)return;
-  saved.forEach(function(m){
-    if(!m||typeof m.content!=="string"||(m.role!=="user"&&m.role!=="assistant"))return;
-    history.push({role:m.role,content:m.content}); addMsg(m.role,m.content);
-  });
-}
-restore(); autosize(); initIntro();
-window.addEventListener("pagehide",stopSpeech);
-document.addEventListener("visibilitychange",function(){if(document.hidden){stopSpeech();}});
-window.OrbitDebug={ask:ask,localAnswer:localAnswer};
-})();
-
-</script>
+<noscript><p style="position:fixed;inset:auto 0 0 0;background:#312324;color:#ffffff;padding:12px;text-align:center">ORBIT needs JavaScript. Please enable it in your browser.</p></noscript>
+<script src="orbit-core.js"></script>
+<script src="orbit-voice.js"></script>
+<script src="orbit-neural.js"></script>
+<script src="orbit-vision.js"></script>
+<script src="orbit-brain.js"></script>
+<script src="orbit-chat.js"></script>
+<script>(function(){var need=["OrbitCore","OrbitVoice","NeuralCore","OrbitVision","OrbitBrain"],miss=need.filter(function(n){return !window[n];});if(miss.length){var d=document.createElement("div");d.setAttribute("role","alert");d.style.cssText="position:fixed;left:0;right:0;bottom:0;z-index:100000;padding:14px;background:#2a0507;color:#fff;font:600 13px system-ui,sans-serif;text-align:center";d.textContent="ORBIT could not load: missing "+miss.join(", ")+". Upload every .js file to the repository root next to this page.";document.body.appendChild(d);}})();</script>
 </body>
 </html>
